@@ -1,0 +1,3962 @@
+/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+[0m15:10:34  Running with dbt=1.10.20
+[0m15:10:34  running dbt with arguments {'indirect_selection': 'eager', 'cache_selected_only': 'False', 'target_path': 'None', 'fail_fast': 'False', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'printer_width': '80', 'use_colors': 'True', 'warn_error': 'None', 'invocation_command': 'dbt snapshot --select INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY --vars {"INR_FKEY": "j548910", "TAB_FKEY": "silver_tpcds_customer_category", "BDAT": "2026-01-01", "ACTIVE_SNAPSHOT": "INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} --debug', 'log_cache_events': 'False', 'static_parser': 'True', 'version_check': 'True', 'log_path': '/Users/j548910/IdeaProjects/Silver_Layer/logs', 'debug': 'True', 'write_json': 'True', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'False', 'log_format': 'default', 'profiles_dir': '/Users/j548910/IdeaProjects/Silver_Layer', 'partial_parse': 'True'}
+[0m15:10:34  Registered adapter: trino=1.10.1
+[0m15:10:34  checksum: 1d6cc045d5257f72e00e3865be0735220d036e7fef684ed12f689b8a8e9bc98a, vars: {'ACTIVE_SNAPSHOT': 'INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY',
+ 'BDAT': '2026-01-01',
+ 'INR_FKEY': 'j548910',
+ 'TAB_FKEY': 'silver_tpcds_customer_category'}, profile: , target: , version: 1.10.20
+[0m15:10:34  Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m15:10:34  Partial parsing enabled, no changes found, skipping parsing
+[0m15:10:34  Wrote artifact WritableManifest to /Users/j548910/IdeaProjects/Silver_Layer/target/manifest.json
+[0m15:10:34  Wrote artifact SemanticManifest to /Users/j548910/IdeaProjects/Silver_Layer/target/semantic_manifest.json
+[0m15:10:34  Found 4 models, 1 snapshot, 4 data tests, 10 sources, 505 macros
+[0m15:10:34  
+[0m15:10:34  Concurrency: 4 threads (target='dev')
+[0m15:10:34  
+[0m15:10:34  Acquiring new trino connection 'master'
+[0m15:10:34  Acquiring new trino connection 'list_lakekeeper-etaps2'
+[0m15:10:34  Using trino connection "list_lakekeeper-etaps2"
+[0m15:10:34  On list_lakekeeper-etaps2: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "connection_name": "list_lakekeeper-etaps2"} */
+
+    select schema_name
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.schemata
+[0m15:10:34  Opening a new connection, currently in state init
+[0m15:10:35  SQL status: SUCCESS in 0.756 seconds
+[0m15:10:35  On list_lakekeeper-etaps2: Close
+[0m15:10:35  Re-using an available connection from the pool (formerly list_lakekeeper-etaps2, now list_lakekeeper-etaps2_j548910)
+[0m15:10:35  Using trino connection "list_lakekeeper-etaps2_j548910"
+[0m15:10:35  On list_lakekeeper-etaps2_j548910: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "connection_name": "list_lakekeeper-etaps2_j548910"} */
+select
+      t.table_catalog as database,
+      t.table_name as name,
+      t.table_schema as schema,
+      case when mv.name is not null then 'materialized_view'
+           when t.table_type = 'BASE TABLE' then 'table'
+           when t.table_type = 'VIEW' then 'view'
+           else t.table_type
+      end as table_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.tables t
+    left join (
+            select * from system.metadata.materialized_views
+            where catalog_name = 'lakekeeper-etaps2'
+              and schema_name = 'j548910') mv
+          on mv.catalog_name = t.table_catalog and mv.schema_name = t.table_schema and mv.name = t.table_name
+    where t.table_schema = 'j548910'
+[0m15:10:35  Opening a new connection, currently in state closed
+[0m15:10:36  SQL status: SUCCESS in 0.613 seconds
+[0m15:10:36  On list_lakekeeper-etaps2_j548910: ROLLBACK
+[0m15:10:36  On list_lakekeeper-etaps2_j548910: Close
+[0m15:10:36  On master: COMMIT
+[0m15:10:36  Began running node snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY
+[0m15:10:36  1 of 1 START snapshot j548910.silver_tpcds_customer_category ................... [RUN]
+[0m15:10:36  Re-using an available connection from the pool (formerly list_lakekeeper-etaps2_j548910, now snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY)
+[0m15:10:36  Began compiling node snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY
+[0m15:10:36  Began executing node snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY
+[0m15:10:36  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:36  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:10:36  Opening a new connection, currently in state closed
+[0m15:10:36  SQL status: SUCCESS in 0.669 seconds
+[0m15:10:36  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:36  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:10:37  SQL status: SUCCESS in 0.519 seconds
+[0m15:10:37  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:37  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:10:38  SQL status: SUCCESS in 0.489 seconds
+[0m15:10:38  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:38  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:10:38  SQL status: SUCCESS in 0.411 seconds
+[0m15:10:38  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:38  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+        
+  create or replace view
+    "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp"
+  security definer
+  as
+    
+
+    
+    
+    
+    
+
+    with snapshot_query as (
+
+        
+
+
+
+with customer_category_relation as (
+
+
+
+    select
+        ss.ss_customer_sk as customer_sk,
+        i.i_category_id,
+        min(d.d_date) as relationship_first_seen_date
+
+    from "lakekeeper-etaps2"."j548910"."tpcds_store_sales" ss
+
+    inner join "lakekeeper-etaps2"."j548910"."tpcds_item" i
+        on ss.ss_item_sk = i.i_item_sk
+
+    inner join "lakekeeper-etaps2"."j548910"."tpcds_date_dim" d
+        on ss.ss_sold_date_sk = d.d_date_sk
+
+    where ss.ss_customer_sk is not null
+      and ss.ss_item_sk is not null
+      and ss.ss_sold_date_sk is not null
+      and i.i_category_id is not null
+      and d.d_date <= DATE '2026-01-01'
+
+    group by
+        ss.ss_customer_sk,
+        i.i_category_id
+
+),
+
+active_customer_ranked as (
+
+
+
+    select
+        c.*,
+        row_number() over (
+            partition by c.c_customer_sk
+            order by c.idh_gltg_fach_adtm desc, c.idh_gltg_fach_edtm desc
+        ) as rn
+
+    from "lakekeeper-etaps2"."j548910"."tpcds_customer" c
+
+    where c.idh_gltg_fach_adtm <= DATE '2026-01-01'
+      and c.idh_gltg_fach_edtm > DATE '2026-01-01'
+
+),
+
+active_customer as (
+
+    select *
+    from active_customer_ranked
+    where rn = 1
+
+),
+
+active_item_ranked as (
+
+
+    select
+        i.*,
+        row_number() over (
+            partition by i.i_item_sk
+            order by i.idh_gltg_fach_adtm desc, i.idh_gltg_fach_edtm desc
+        ) as rn
+
+    from "lakekeeper-etaps2"."j548910"."tpcds_item" i
+
+    where i.idh_gltg_fach_adtm <= DATE '2026-01-01'
+      and i.idh_gltg_fach_edtm > DATE '2026-01-01'
+
+),
+
+active_item as (
+
+    select *
+    from active_item_ranked
+    where rn = 1
+
+),
+
+category_attributes as (
+
+
+
+    select
+        i_category_id,
+
+        max(i_category) as i_category,
+        max(i_class) as i_class,
+        max(i_brand) as i_brand,
+
+        min(idh_gltg_fach_adtm) as item_idh_gltg_fach_adtm,
+        max(idh_gltg_fach_edtm) as item_idh_gltg_fach_edtm
+
+    from active_item
+
+    where i_category_id is not null
+
+    group by
+        i_category_id
+
+),
+
+relationship_enriched as (
+
+    select
+        r.customer_sk,
+        r.i_category_id,
+
+        c.c_customer_id,
+        c.c_first_name,
+        c.c_last_name,
+        c.c_preferred_cust_flag,
+        c.c_birth_country,
+
+        i.i_category,
+        i.i_class,
+        i.i_brand,
+
+        r.relationship_first_seen_date,
+
+
+        greatest(
+            r.relationship_first_seen_date,
+            c.idh_gltg_fach_adtm,
+            i.item_idh_gltg_fach_adtm
+        ) as idh_gltg_fach_adtm,
+
+        least(
+            c.idh_gltg_fach_edtm,
+            i.item_idh_gltg_fach_edtm
+        ) as idh_gltg_fach_edtm
+
+
+
+
+    from customer_category_relation r
+
+    inner join active_customer c
+        on r.customer_sk = c.c_customer_sk
+
+    inner join category_attributes i
+        on r.i_category_id = i.i_category_id
+
+),
+
+final as (
+
+    select
+        'bla' as fusi_quel_inst_schl,
+        customer_sk,
+        i_category_id,
+
+        c_customer_id,
+        c_first_name,
+        c_last_name,
+        c_preferred_cust_flag,
+        c_birth_country,
+
+        i_category,
+        i_class,
+        i_brand,
+
+        relationship_first_seen_date,
+
+        idh_gltg_fach_adtm as von,
+        idh_gltg_fach_edtm as bis
+
+    from relationship_enriched
+
+)
+
+select *
+from final
+
+
+    ),
+
+    filtered_snapshot_query as (
+        select *
+        from snapshot_query as source_data
+        
+    ),
+
+    hard_delete_candidates as (
+        select *,
+            sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as FKEY
+        from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category" as target_data
+
+        
+            where 1 = 0
+        
+    ),
+
+    target_base as (
+        select *,
+            sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as FKEY
+        from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category" as target_data
+
+        
+            where 1 = 1
+        
+
+                  
+    ),
+
+    snapshotted_data as (
+        select *
+        from target_base
+        where
+            tech_ets = TIMESTAMP '9999-12-30 23:59:59.999'
+    ),
+
+    insertions_source_data as (
+
+        select
+            *,
+            sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as FKEY,
+            CURRENT_TIMESTAMP as aend_zeit,
+            cast(current_timestamp as timestamp(6)) as tech_ats,
+            TIMESTAMP '9999-12-30 23:59:59.999' as tech_ets
+
+        from snapshot_query
+
+    ),
+
+    insertions as (
+        select
+            'insert' as dbt_change_type,
+            source_data.*
+        
+        from insertions_source_data as source_data
+        left outer join snapshotted_data on snapshotted_data.FKEY = source_data.FKEY
+        where snapshotted_data.FKEY is null
+            or (
+                snapshotted_data.fkey is not null
+                and (
+                    
+        (
+            
+                snapshotted_data.c_customer_id != source_data.c_customer_id
+                or
+                (
+                    ((snapshotted_data.c_customer_id is null) and not (source_data.c_customer_id is null))
+                    or
+                    ((not snapshotted_data.c_customer_id is null) and (source_data.c_customer_id is null))
+                )
+                 or 
+            
+                snapshotted_data.c_first_name != source_data.c_first_name
+                or
+                (
+                    ((snapshotted_data.c_first_name is null) and not (source_data.c_first_name is null))
+                    or
+                    ((not snapshotted_data.c_first_name is null) and (source_data.c_first_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_last_name != source_data.c_last_name
+                or
+                (
+                    ((snapshotted_data.c_last_name is null) and not (source_data.c_last_name is null))
+                    or
+                    ((not snapshotted_data.c_last_name is null) and (source_data.c_last_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_preferred_cust_flag != source_data.c_preferred_cust_flag
+                or
+                (
+                    ((snapshotted_data.c_preferred_cust_flag is null) and not (source_data.c_preferred_cust_flag is null))
+                    or
+                    ((not snapshotted_data.c_preferred_cust_flag is null) and (source_data.c_preferred_cust_flag is null))
+                )
+                 or 
+            
+                snapshotted_data.c_birth_country != source_data.c_birth_country
+                or
+                (
+                    ((snapshotted_data.c_birth_country is null) and not (source_data.c_birth_country is null))
+                    or
+                    ((not snapshotted_data.c_birth_country is null) and (source_data.c_birth_country is null))
+                )
+                 or 
+            
+                snapshotted_data.i_category != source_data.i_category
+                or
+                (
+                    ((snapshotted_data.i_category is null) and not (source_data.i_category is null))
+                    or
+                    ((not snapshotted_data.i_category is null) and (source_data.i_category is null))
+                )
+                 or 
+            
+                snapshotted_data.i_class != source_data.i_class
+                or
+                (
+                    ((snapshotted_data.i_class is null) and not (source_data.i_class is null))
+                    or
+                    ((not snapshotted_data.i_class is null) and (source_data.i_class is null))
+                )
+                 or 
+            
+                snapshotted_data.i_brand != source_data.i_brand
+                or
+                (
+                    ((snapshotted_data.i_brand is null) and not (source_data.i_brand is null))
+                    or
+                    ((not snapshotted_data.i_brand is null) and (source_data.i_brand is null))
+                )
+                 or 
+            
+                snapshotted_data.relationship_first_seen_date != source_data.relationship_first_seen_date
+                or
+                (
+                    ((snapshotted_data.relationship_first_seen_date is null) and not (source_data.relationship_first_seen_date is null))
+                    or
+                    ((not snapshotted_data.relationship_first_seen_date is null) and (source_data.relationship_first_seen_date is null))
+                )
+                
+            
+        )
+    
+                )
+            )
+    ),
+
+    updates as (
+        
+        select
+            'update' as dbt_change_type,
+            source_data.*
+
+        from insertions_source_data as source_data
+        join snapshotted_data on snapshotted_data.FKEY = source_data.FKEY
+        where (
+            
+        (
+            
+                snapshotted_data.c_customer_id != source_data.c_customer_id
+                or
+                (
+                    ((snapshotted_data.c_customer_id is null) and not (source_data.c_customer_id is null))
+                    or
+                    ((not snapshotted_data.c_customer_id is null) and (source_data.c_customer_id is null))
+                )
+                 or 
+            
+                snapshotted_data.c_first_name != source_data.c_first_name
+                or
+                (
+                    ((snapshotted_data.c_first_name is null) and not (source_data.c_first_name is null))
+                    or
+                    ((not snapshotted_data.c_first_name is null) and (source_data.c_first_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_last_name != source_data.c_last_name
+                or
+                (
+                    ((snapshotted_data.c_last_name is null) and not (source_data.c_last_name is null))
+                    or
+                    ((not snapshotted_data.c_last_name is null) and (source_data.c_last_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_preferred_cust_flag != source_data.c_preferred_cust_flag
+                or
+                (
+                    ((snapshotted_data.c_preferred_cust_flag is null) and not (source_data.c_preferred_cust_flag is null))
+                    or
+                    ((not snapshotted_data.c_preferred_cust_flag is null) and (source_data.c_preferred_cust_flag is null))
+                )
+                 or 
+            
+                snapshotted_data.c_birth_country != source_data.c_birth_country
+                or
+                (
+                    ((snapshotted_data.c_birth_country is null) and not (source_data.c_birth_country is null))
+                    or
+                    ((not snapshotted_data.c_birth_country is null) and (source_data.c_birth_country is null))
+                )
+                 or 
+            
+                snapshotted_data.i_category != source_data.i_category
+                or
+                (
+                    ((snapshotted_data.i_category is null) and not (source_data.i_category is null))
+                    or
+                    ((not snapshotted_data.i_category is null) and (source_data.i_category is null))
+                )
+                 or 
+            
+                snapshotted_data.i_class != source_data.i_class
+                or
+                (
+                    ((snapshotted_data.i_class is null) and not (source_data.i_class is null))
+                    or
+                    ((not snapshotted_data.i_class is null) and (source_data.i_class is null))
+                )
+                 or 
+            
+                snapshotted_data.i_brand != source_data.i_brand
+                or
+                (
+                    ((snapshotted_data.i_brand is null) and not (source_data.i_brand is null))
+                    or
+                    ((not snapshotted_data.i_brand is null) and (source_data.i_brand is null))
+                )
+                 or 
+            
+                snapshotted_data.relationship_first_seen_date != source_data.relationship_first_seen_date
+                or
+                (
+                    ((snapshotted_data.relationship_first_seen_date is null) and not (source_data.relationship_first_seen_date is null))
+                    or
+                    ((not snapshotted_data.relationship_first_seen_date is null) and (source_data.relationship_first_seen_date is null))
+                )
+                
+            
+        )
+    
+        )
+
+    ),
+
+    invalidations as (
+
+        select
+            'invalidate' as dbt_change_type,
+            snapshotted_data.*
+        from snapshotted_data
+        left join insertions_source_data as source_data
+            on snapshotted_data.FKEY = source_data.FKEY
+        where source_data.FKEY is null
+
+    ),
+
+    deletions as (
+        select
+            'delete' as dbt_change_type,
+            hard_delete_candidates.*
+
+        from hard_delete_candidates
+    )
+
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+    , dbt_change_type
+    from insertions
+    union all
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+    , dbt_change_type
+    from updates
+    union all
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+    , dbt_change_type
+    from invalidations
+    union all
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+        , dbt_change_type
+    from deletions
+
+
+  
+[0m15:10:39  SQL status: CREATE VIEW in 0.900 seconds
+[0m15:10:39  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:39  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category__dbt_tmp'
+[0m15:10:39  SQL status: SUCCESS in 0.427 seconds
+[0m15:10:39  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:39  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:10:40  SQL status: SUCCESS in 0.402 seconds
+[0m15:10:40  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:40  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category__dbt_tmp'
+[0m15:10:40  SQL status: SUCCESS in 0.421 seconds
+[0m15:10:40  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:40  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:10:41  SQL status: SUCCESS in 0.406 seconds
+[0m15:10:41  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:41  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category__dbt_tmp'
+[0m15:10:41  SQL status: SUCCESS in 0.413 seconds
+[0m15:10:41  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:41  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:10:41  SQL status: SUCCESS in 0.410 seconds
+[0m15:10:41  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:41  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:10:42  SQL status: SUCCESS in 0.402 seconds
+[0m15:10:42  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:42  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:10:42  SQL status: SUCCESS in 0.402 seconds
+[0m15:10:42  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:42  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    
+    select
+        dbt_change_type as flag,
+        count(*) as cnt
+    from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp"
+    where dbt_change_type not in ('insert', 'update', 'invalidate', 'delete')
+        or dbt_change_type is null
+    group by dbt_change_type
+[0m15:10:43  SQL status: SUCCESS in 0.775 seconds
+[0m15:10:43  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:43  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    
+    select
+      sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))),
+      count(*) as cnt
+    from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp"
+    where dbt_change_type = 'insert'
+    group by sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' )))
+    having count(*) > 1
+[0m15:10:47  SQL status: SUCCESS in 3.417 seconds
+[0m15:10:47  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:47  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    
+    select
+        sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as business_key,
+        dbt_change_type as flag,
+        count(*) as cnt
+    from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp"
+    where dbt_change_type in ('update', 'invalidate')
+    group by sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))), dbt_change_type
+    having count(*) > 1
+[0m15:10:51  SQL status: SUCCESS in 4.293 seconds
+[0m15:10:51  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:51  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    
+    select
+        sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(tech_ats AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(tech_ets AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as delete_row_key,
+        count(*) as cnt
+    from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp"
+    where dbt_change_type = 'delete'
+    group by sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(tech_ats AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(tech_ets AS VARCHAR))), CAST(''AS VARCHAR)), 'م' )))
+    having count(*) > 1
+[0m15:10:52  SQL status: SUCCESS in 0.908 seconds
+[0m15:10:52  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:52  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    
+    with flags as (
+      select
+        sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))),
+        max(case when dbt_change_type = 'insert' then 1 else 0 end) as has_i,
+        max(case when dbt_change_type = 'update' then 1 else 0 end) as has_u,
+        max(case when dbt_change_type = 'invalidate' then 1 else 0 end) as has_inv,
+        max(case when dbt_change_type = 'delete' then 1 else 0 end) as has_d,
+        count(*) as row_cnt
+      from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp"
+      group by sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' )))
+    )
+    select *
+    from flags
+    where not (
+      (has_i = 1 and has_u = 0 and has_inv = 0 and has_d = 0)  -- {I}
+      or
+      (has_i = 1 and has_u = 0 and has_inv = 0 and has_d = 1)  -- {I, D}
+      or
+      (has_i = 0 and has_u = 0 and has_inv = 0 and has_d = 1)  -- {D}
+      or
+      (has_i = 0 and has_u = 0 and has_inv = 1 and has_d = 0)  -- {INV}
+      or
+      (has_i = 1 and has_u = 1 and has_inv = 0 and has_d = 0)  -- {U,I}
+    )
+[0m15:10:57  SQL status: SUCCESS in 5.349 seconds
+[0m15:10:57  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:57  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+select * from (
+        
+
+    
+    
+    
+    
+
+    with snapshot_query as (
+
+        
+
+
+
+with customer_category_relation as (
+
+
+
+    select
+        ss.ss_customer_sk as customer_sk,
+        i.i_category_id,
+        min(d.d_date) as relationship_first_seen_date
+
+    from "lakekeeper-etaps2"."j548910"."tpcds_store_sales" ss
+
+    inner join "lakekeeper-etaps2"."j548910"."tpcds_item" i
+        on ss.ss_item_sk = i.i_item_sk
+
+    inner join "lakekeeper-etaps2"."j548910"."tpcds_date_dim" d
+        on ss.ss_sold_date_sk = d.d_date_sk
+
+    where ss.ss_customer_sk is not null
+      and ss.ss_item_sk is not null
+      and ss.ss_sold_date_sk is not null
+      and i.i_category_id is not null
+      and d.d_date <= DATE '2026-01-01'
+
+    group by
+        ss.ss_customer_sk,
+        i.i_category_id
+
+),
+
+active_customer_ranked as (
+
+
+
+    select
+        c.*,
+        row_number() over (
+            partition by c.c_customer_sk
+            order by c.idh_gltg_fach_adtm desc, c.idh_gltg_fach_edtm desc
+        ) as rn
+
+    from "lakekeeper-etaps2"."j548910"."tpcds_customer" c
+
+    where c.idh_gltg_fach_adtm <= DATE '2026-01-01'
+      and c.idh_gltg_fach_edtm > DATE '2026-01-01'
+
+),
+
+active_customer as (
+
+    select *
+    from active_customer_ranked
+    where rn = 1
+
+),
+
+active_item_ranked as (
+
+
+    select
+        i.*,
+        row_number() over (
+            partition by i.i_item_sk
+            order by i.idh_gltg_fach_adtm desc, i.idh_gltg_fach_edtm desc
+        ) as rn
+
+    from "lakekeeper-etaps2"."j548910"."tpcds_item" i
+
+    where i.idh_gltg_fach_adtm <= DATE '2026-01-01'
+      and i.idh_gltg_fach_edtm > DATE '2026-01-01'
+
+),
+
+active_item as (
+
+    select *
+    from active_item_ranked
+    where rn = 1
+
+),
+
+category_attributes as (
+
+
+
+    select
+        i_category_id,
+
+        max(i_category) as i_category,
+        max(i_class) as i_class,
+        max(i_brand) as i_brand,
+
+        min(idh_gltg_fach_adtm) as item_idh_gltg_fach_adtm,
+        max(idh_gltg_fach_edtm) as item_idh_gltg_fach_edtm
+
+    from active_item
+
+    where i_category_id is not null
+
+    group by
+        i_category_id
+
+),
+
+relationship_enriched as (
+
+    select
+        r.customer_sk,
+        r.i_category_id,
+
+        c.c_customer_id,
+        c.c_first_name,
+        c.c_last_name,
+        c.c_preferred_cust_flag,
+        c.c_birth_country,
+
+        i.i_category,
+        i.i_class,
+        i.i_brand,
+
+        r.relationship_first_seen_date,
+
+
+        greatest(
+            r.relationship_first_seen_date,
+            c.idh_gltg_fach_adtm,
+            i.item_idh_gltg_fach_adtm
+        ) as idh_gltg_fach_adtm,
+
+        least(
+            c.idh_gltg_fach_edtm,
+            i.item_idh_gltg_fach_edtm
+        ) as idh_gltg_fach_edtm
+
+
+
+
+    from customer_category_relation r
+
+    inner join active_customer c
+        on r.customer_sk = c.c_customer_sk
+
+    inner join category_attributes i
+        on r.i_category_id = i.i_category_id
+
+),
+
+final as (
+
+    select
+        'bla' as fusi_quel_inst_schl,
+        customer_sk,
+        i_category_id,
+
+        c_customer_id,
+        c_first_name,
+        c_last_name,
+        c_preferred_cust_flag,
+        c_birth_country,
+
+        i_category,
+        i_class,
+        i_brand,
+
+        relationship_first_seen_date,
+
+        idh_gltg_fach_adtm as von,
+        idh_gltg_fach_edtm as bis
+
+    from relationship_enriched
+
+)
+
+select *
+from final
+
+
+    ),
+
+    filtered_snapshot_query as (
+        select *
+        from snapshot_query as source_data
+        
+    ),
+
+    hard_delete_candidates as (
+        select *,
+            sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as FKEY
+        from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category" as target_data
+
+        
+            where 1 = 0
+        
+    ),
+
+    target_base as (
+        select *,
+            sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as FKEY
+        from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category" as target_data
+
+        
+            where 1 = 1
+        
+
+                  
+    ),
+
+    snapshotted_data as (
+        select *
+        from target_base
+        where
+            tech_ets = TIMESTAMP '9999-12-30 23:59:59.999'
+    ),
+
+    insertions_source_data as (
+
+        select
+            *,
+            sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as FKEY,
+            CURRENT_TIMESTAMP as aend_zeit,
+            cast(current_timestamp as timestamp(6)) as tech_ats,
+            TIMESTAMP '9999-12-30 23:59:59.999' as tech_ets
+
+        from snapshot_query
+
+    ),
+
+    insertions as (
+        select
+            'insert' as dbt_change_type,
+            source_data.*
+        
+        from insertions_source_data as source_data
+        left outer join snapshotted_data on snapshotted_data.FKEY = source_data.FKEY
+        where snapshotted_data.FKEY is null
+            or (
+                snapshotted_data.fkey is not null
+                and (
+                    
+        (
+            
+                snapshotted_data.c_customer_id != source_data.c_customer_id
+                or
+                (
+                    ((snapshotted_data.c_customer_id is null) and not (source_data.c_customer_id is null))
+                    or
+                    ((not snapshotted_data.c_customer_id is null) and (source_data.c_customer_id is null))
+                )
+                 or 
+            
+                snapshotted_data.c_first_name != source_data.c_first_name
+                or
+                (
+                    ((snapshotted_data.c_first_name is null) and not (source_data.c_first_name is null))
+                    or
+                    ((not snapshotted_data.c_first_name is null) and (source_data.c_first_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_last_name != source_data.c_last_name
+                or
+                (
+                    ((snapshotted_data.c_last_name is null) and not (source_data.c_last_name is null))
+                    or
+                    ((not snapshotted_data.c_last_name is null) and (source_data.c_last_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_preferred_cust_flag != source_data.c_preferred_cust_flag
+                or
+                (
+                    ((snapshotted_data.c_preferred_cust_flag is null) and not (source_data.c_preferred_cust_flag is null))
+                    or
+                    ((not snapshotted_data.c_preferred_cust_flag is null) and (source_data.c_preferred_cust_flag is null))
+                )
+                 or 
+            
+                snapshotted_data.c_birth_country != source_data.c_birth_country
+                or
+                (
+                    ((snapshotted_data.c_birth_country is null) and not (source_data.c_birth_country is null))
+                    or
+                    ((not snapshotted_data.c_birth_country is null) and (source_data.c_birth_country is null))
+                )
+                 or 
+            
+                snapshotted_data.i_category != source_data.i_category
+                or
+                (
+                    ((snapshotted_data.i_category is null) and not (source_data.i_category is null))
+                    or
+                    ((not snapshotted_data.i_category is null) and (source_data.i_category is null))
+                )
+                 or 
+            
+                snapshotted_data.i_class != source_data.i_class
+                or
+                (
+                    ((snapshotted_data.i_class is null) and not (source_data.i_class is null))
+                    or
+                    ((not snapshotted_data.i_class is null) and (source_data.i_class is null))
+                )
+                 or 
+            
+                snapshotted_data.i_brand != source_data.i_brand
+                or
+                (
+                    ((snapshotted_data.i_brand is null) and not (source_data.i_brand is null))
+                    or
+                    ((not snapshotted_data.i_brand is null) and (source_data.i_brand is null))
+                )
+                 or 
+            
+                snapshotted_data.relationship_first_seen_date != source_data.relationship_first_seen_date
+                or
+                (
+                    ((snapshotted_data.relationship_first_seen_date is null) and not (source_data.relationship_first_seen_date is null))
+                    or
+                    ((not snapshotted_data.relationship_first_seen_date is null) and (source_data.relationship_first_seen_date is null))
+                )
+                
+            
+        )
+    
+                )
+            )
+    ),
+
+    updates as (
+        
+        select
+            'update' as dbt_change_type,
+            source_data.*
+
+        from insertions_source_data as source_data
+        join snapshotted_data on snapshotted_data.FKEY = source_data.FKEY
+        where (
+            
+        (
+            
+                snapshotted_data.c_customer_id != source_data.c_customer_id
+                or
+                (
+                    ((snapshotted_data.c_customer_id is null) and not (source_data.c_customer_id is null))
+                    or
+                    ((not snapshotted_data.c_customer_id is null) and (source_data.c_customer_id is null))
+                )
+                 or 
+            
+                snapshotted_data.c_first_name != source_data.c_first_name
+                or
+                (
+                    ((snapshotted_data.c_first_name is null) and not (source_data.c_first_name is null))
+                    or
+                    ((not snapshotted_data.c_first_name is null) and (source_data.c_first_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_last_name != source_data.c_last_name
+                or
+                (
+                    ((snapshotted_data.c_last_name is null) and not (source_data.c_last_name is null))
+                    or
+                    ((not snapshotted_data.c_last_name is null) and (source_data.c_last_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_preferred_cust_flag != source_data.c_preferred_cust_flag
+                or
+                (
+                    ((snapshotted_data.c_preferred_cust_flag is null) and not (source_data.c_preferred_cust_flag is null))
+                    or
+                    ((not snapshotted_data.c_preferred_cust_flag is null) and (source_data.c_preferred_cust_flag is null))
+                )
+                 or 
+            
+                snapshotted_data.c_birth_country != source_data.c_birth_country
+                or
+                (
+                    ((snapshotted_data.c_birth_country is null) and not (source_data.c_birth_country is null))
+                    or
+                    ((not snapshotted_data.c_birth_country is null) and (source_data.c_birth_country is null))
+                )
+                 or 
+            
+                snapshotted_data.i_category != source_data.i_category
+                or
+                (
+                    ((snapshotted_data.i_category is null) and not (source_data.i_category is null))
+                    or
+                    ((not snapshotted_data.i_category is null) and (source_data.i_category is null))
+                )
+                 or 
+            
+                snapshotted_data.i_class != source_data.i_class
+                or
+                (
+                    ((snapshotted_data.i_class is null) and not (source_data.i_class is null))
+                    or
+                    ((not snapshotted_data.i_class is null) and (source_data.i_class is null))
+                )
+                 or 
+            
+                snapshotted_data.i_brand != source_data.i_brand
+                or
+                (
+                    ((snapshotted_data.i_brand is null) and not (source_data.i_brand is null))
+                    or
+                    ((not snapshotted_data.i_brand is null) and (source_data.i_brand is null))
+                )
+                 or 
+            
+                snapshotted_data.relationship_first_seen_date != source_data.relationship_first_seen_date
+                or
+                (
+                    ((snapshotted_data.relationship_first_seen_date is null) and not (source_data.relationship_first_seen_date is null))
+                    or
+                    ((not snapshotted_data.relationship_first_seen_date is null) and (source_data.relationship_first_seen_date is null))
+                )
+                
+            
+        )
+    
+        )
+
+    ),
+
+    invalidations as (
+
+        select
+            'invalidate' as dbt_change_type,
+            snapshotted_data.*
+        from snapshotted_data
+        left join insertions_source_data as source_data
+            on snapshotted_data.FKEY = source_data.FKEY
+        where source_data.FKEY is null
+
+    ),
+
+    deletions as (
+        select
+            'delete' as dbt_change_type,
+            hard_delete_candidates.*
+
+        from hard_delete_candidates
+    )
+
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+    , dbt_change_type
+    from insertions
+    union all
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+    , dbt_change_type
+    from updates
+    union all
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+    , dbt_change_type
+    from invalidations
+    union all
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+        , dbt_change_type
+    from deletions
+
+
+    ) as __dbt_sbq
+    where false
+    limit 0
+[0m15:10:58  SQL status: SUCCESS in 0.701 seconds
+[0m15:10:58  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:58  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+select * from (
+        select 
+    current_timestamp
+ as dbt_snapshot_time
+    ) as __dbt_sbq
+    where false
+    limit 0
+[0m15:10:58  SQL status: SUCCESS in 0.349 seconds
+[0m15:10:58  Writing runtime sql for node "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:58  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:10:58  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+      
+    
+
+    merge into "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category" as DBT_INTERNAL_DEST
+    using "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp" as DBT_INTERNAL_SOURCE
+    on sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(DBT_INTERNAL_SOURCE.customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(DBT_INTERNAL_SOURCE.i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) = sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(DBT_INTERNAL_DEST.customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(DBT_INTERNAL_DEST.i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' )))
+    and DBT_INTERNAL_SOURCE.dbt_change_type <> 'insert'
+
+    when matched
+     and DBT_INTERNAL_SOURCE.dbt_change_type = 'delete'
+    then delete
+
+    when matched
+     and DBT_INTERNAL_DEST.tech_ets = TIMESTAMP '9999-12-30 23:59:59.999'
+     and DBT_INTERNAL_SOURCE.dbt_change_type in ('update', 'invalidate')
+        then update
+        set tech_ets = cast(current_timestamp as timestamp(6))
+          , aend_zeit = current_timestamp
+
+    when not matched
+     and DBT_INTERNAL_SOURCE.dbt_change_type = 'insert'
+        then insert ("fusi_quel_inst_schl", "customer_sk", "i_category_id", "c_customer_id", "c_first_name", "c_last_name", "c_preferred_cust_flag", "c_birth_country", "i_category", "i_class", "i_brand", "relationship_first_seen_date", "von", "bis", "tech_ats", "tech_ets", "aend_zeit")
+        values (DBT_INTERNAL_SOURCE."fusi_quel_inst_schl", DBT_INTERNAL_SOURCE."customer_sk", DBT_INTERNAL_SOURCE."i_category_id", DBT_INTERNAL_SOURCE."c_customer_id", DBT_INTERNAL_SOURCE."c_first_name", DBT_INTERNAL_SOURCE."c_last_name", DBT_INTERNAL_SOURCE."c_preferred_cust_flag", DBT_INTERNAL_SOURCE."c_birth_country", DBT_INTERNAL_SOURCE."i_category", DBT_INTERNAL_SOURCE."i_class", DBT_INTERNAL_SOURCE."i_brand", DBT_INTERNAL_SOURCE."relationship_first_seen_date", DBT_INTERNAL_SOURCE."von", DBT_INTERNAL_SOURCE."bis", DBT_INTERNAL_SOURCE."tech_ats", DBT_INTERNAL_SOURCE."tech_ets", DBT_INTERNAL_SOURCE."aend_zeit")
+[0m15:11:05  SQL status: MERGE (9_500_000 rows) in 7.128 seconds
+[0m15:11:05  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: COMMIT
+[0m15:11:05  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:11:05  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    drop view if exists "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp"
+[0m15:11:06  SQL status: DROP VIEW in 0.267 seconds
+[0m15:11:06  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: Close
+[0m15:11:06  1 of 1 OK snapshotted j548910.silver_tpcds_customer_category ................... [[32mMERGE (9_500_000 rows)[0m in 29.86s]
+[0m15:11:06  Finished running node snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY
+[0m15:11:06  On master: COMMIT
+[0m15:11:06  Connection 'master' was properly closed.
+[0m15:11:06  Connection 'snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY' was properly closed.
+[0m15:11:06  
+[0m15:11:06  Finished running 1 snapshot in 0 hours 0 minutes and 31.32 seconds (31.32s).
+[0m15:11:06  Command end result
+[0m15:11:06  Wrote artifact WritableManifest to /Users/j548910/IdeaProjects/Silver_Layer/target/manifest.json
+[0m15:11:06  Wrote artifact SemanticManifest to /Users/j548910/IdeaProjects/Silver_Layer/target/semantic_manifest.json
+[0m15:11:06  Wrote artifact RunExecutionResult to /Users/j548910/IdeaProjects/Silver_Layer/target/run_results.json
+[0m15:11:06  
+[0m15:11:06  [32mCompleted successfully[0m
+[0m15:11:06  
+[0m15:11:06  Done. PASS=1 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=1
+[0m15:11:06  Resource report: {"command_name": "snapshot", "command_success": true, "command_wall_clock_time": 31.866526, "process_in_blocks": "0", "process_kernel_time": 0.285818, "process_mem_max_rss": "133054464", "process_out_blocks": "0", "process_user_time": 2.157021}
+[0m15:11:06  Command `dbt snapshot` succeeded at 17:11:06.153546 after 31.87 seconds
+[0m15:11:06  Flushing usage events
+/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+[0m15:12:42  Running with dbt=1.10.20
+[0m15:12:42  running dbt with arguments {'indirect_selection': 'eager', 'invocation_command': 'dbt snapshot --select INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY --vars {"INR_FKEY": "j548910", "TAB_FKEY": "silver_tpcds_customer_category", "BDAT": "2026-01-01", "ACTIVE_SNAPSHOT": "INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} --debug', 'static_parser': 'True', 'empty': 'False', 'printer_width': '80', 'target_path': 'None', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'version_check': 'True', 'cache_selected_only': 'False', 'debug': 'True', 'log_path': '/Users/j548910/IdeaProjects/Silver_Layer/logs', 'introspect': 'True', 'send_anonymous_usage_stats': 'False', 'log_cache_events': 'False', 'no_print': 'None', 'profiles_dir': '/Users/j548910/IdeaProjects/Silver_Layer', 'warn_error': 'None', 'log_format': 'default', 'write_json': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True', 'quiet': 'False'}
+[0m15:12:42  Registered adapter: trino=1.10.1
+[0m15:12:42  checksum: 1d6cc045d5257f72e00e3865be0735220d036e7fef684ed12f689b8a8e9bc98a, vars: {'ACTIVE_SNAPSHOT': 'INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY',
+ 'BDAT': '2026-01-01',
+ 'INR_FKEY': 'j548910',
+ 'TAB_FKEY': 'silver_tpcds_customer_category'}, profile: , target: , version: 1.10.20
+[0m15:12:42  Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m15:12:42  Partial parsing: updated file: Silver_Layer://macros/helpers.sql
+[0m15:12:42  Unable to do partial parsing because change detected to override macro. Starting full parse.
+[0m15:12:42  Encountered an error:
+
+[0m15:12:42  Traceback (most recent call last):
+  File "/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/dbt/cli/requires.py", line 178, in wrapper
+    result, success = func(*args, **kwargs)
+  File "/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/dbt/cli/requires.py", line 128, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/dbt/cli/requires.py", line 272, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/dbt/cli/requires.py", line 317, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/dbt/cli/requires.py", line 387, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/dbt/cli/requires.py", line 364, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/dbt/cli/requires.py", line 403, in wrapper
+    setup_manifest(ctx, write=write, write_perf_info=write_perf_info)
+  File "/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/dbt/cli/requires.py", line 430, in setup_manifest
+    ctx.obj["manifest"] = parse_manifest(
+  File "/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/dbt/parser/manifest.py", line 2123, in parse_manifest
+    manifest = ManifestLoader.get_full_manifest(
+  File "/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/dbt/parser/manifest.py", line 320, in get_full_manifest
+    manifest = loader.load()
+  File "/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/dbt/parser/manifest.py", line 403, in load
+    self.load_and_parse_macros(project_parser_files)
+  File "/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/dbt/parser/manifest.py", line 707, in load_and_parse_macros
+    self.macro_depends_on()
+  File "/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/dbt/parser/manifest.py", line 801, in macro_depends_on
+    possible_macro_calls = statically_extract_macro_calls(
+  File "/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/dbt/clients/jinja_static.py", line 43, in statically_extract_macro_calls
+    parsed = env.parse(source)
+  File "/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/jinja2/environment.py", line 614, in parse
+    return self._parse(source, name, filename)
+  File "/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/dbt_common/clients/jinja.py", line 183, in _parse
+    return MacroFuzzParser(self, source, name, filename).parse()
+  File "/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/jinja2/parser.py", line 53, in __init__
+    def __init__(
+KeyboardInterrupt
+
+[0m15:12:42  Resource report: {"command_name": "snapshot", "command_success": false, "command_wall_clock_time": 0.90695804, "process_in_blocks": "0", "process_kernel_time": 0.166245, "process_mem_max_rss": "117506048", "process_out_blocks": "0", "process_user_time": 1.540071}
+[0m15:12:42  Command `dbt snapshot` failed at 17:12:42.920742 after 0.91 seconds
+[0m15:12:42  Flushing usage events
+/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+[0m15:12:49  Running with dbt=1.10.20
+[0m15:12:49  running dbt with arguments {'partial_parse': 'True', 'use_experimental_parser': 'False', 'log_format': 'default', 'use_colors': 'True', 'cache_selected_only': 'False', 'write_json': 'True', 'debug': 'True', 'printer_width': '80', 'log_path': '/Users/j548910/IdeaProjects/Silver_Layer/logs', 'static_parser': 'True', 'version_check': 'True', 'profiles_dir': '/Users/j548910/IdeaProjects/Silver_Layer', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'invocation_command': 'dbt snapshot --select INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY --vars {"INR_FKEY": "j548910", "TAB_FKEY": "silver_tpcds_customer_category", "BDAT": "2026-01-01", "ACTIVE_SNAPSHOT": "INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} --debug', 'target_path': 'None', 'no_print': 'None', 'introspect': 'True', 'warn_error': 'None', 'send_anonymous_usage_stats': 'False', 'quiet': 'False', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'fail_fast': 'False', 'empty': 'False'}
+[0m15:12:49  Registered adapter: trino=1.10.1
+[0m15:12:49  checksum: 1d6cc045d5257f72e00e3865be0735220d036e7fef684ed12f689b8a8e9bc98a, vars: {'ACTIVE_SNAPSHOT': 'INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY',
+ 'BDAT': '2026-01-01',
+ 'INR_FKEY': 'j548910',
+ 'TAB_FKEY': 'silver_tpcds_customer_category'}, profile: , target: , version: 1.10.20
+[0m15:12:49  Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m15:12:49  Partial parsing: updated file: Silver_Layer://macros/helpers.sql
+[0m15:12:49  Unable to do partial parsing because change detected to override macro. Starting full parse.
+[0m15:12:51  Wrote artifact WritableManifest to /Users/j548910/IdeaProjects/Silver_Layer/target/manifest.json
+[0m15:12:51  Wrote artifact SemanticManifest to /Users/j548910/IdeaProjects/Silver_Layer/target/semantic_manifest.json
+[0m15:12:51  Found 4 models, 1 snapshot, 4 data tests, 10 sources, 503 macros
+[0m15:12:51  
+[0m15:12:51  Concurrency: 4 threads (target='dev')
+[0m15:12:51  
+[0m15:12:51  Acquiring new trino connection 'master'
+[0m15:12:51  Acquiring new trino connection 'list_lakekeeper-etaps2'
+[0m15:12:51  Using trino connection "list_lakekeeper-etaps2"
+[0m15:12:51  On list_lakekeeper-etaps2: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "connection_name": "list_lakekeeper-etaps2"} */
+
+    select schema_name
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.schemata
+[0m15:12:51  Opening a new connection, currently in state init
+[0m15:12:52  SQL status: SUCCESS in 0.934 seconds
+[0m15:12:52  On list_lakekeeper-etaps2: Close
+[0m15:12:52  Re-using an available connection from the pool (formerly list_lakekeeper-etaps2, now list_lakekeeper-etaps2_j548910)
+[0m15:12:52  Using trino connection "list_lakekeeper-etaps2_j548910"
+[0m15:12:52  On list_lakekeeper-etaps2_j548910: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "connection_name": "list_lakekeeper-etaps2_j548910"} */
+select
+      t.table_catalog as database,
+      t.table_name as name,
+      t.table_schema as schema,
+      case when mv.name is not null then 'materialized_view'
+           when t.table_type = 'BASE TABLE' then 'table'
+           when t.table_type = 'VIEW' then 'view'
+           else t.table_type
+      end as table_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.tables t
+    left join (
+            select * from system.metadata.materialized_views
+            where catalog_name = 'lakekeeper-etaps2'
+              and schema_name = 'j548910') mv
+          on mv.catalog_name = t.table_catalog and mv.schema_name = t.table_schema and mv.name = t.table_name
+    where t.table_schema = 'j548910'
+[0m15:12:52  Opening a new connection, currently in state closed
+[0m15:12:52  SQL status: SUCCESS in 0.728 seconds
+[0m15:12:52  On list_lakekeeper-etaps2_j548910: ROLLBACK
+[0m15:12:52  On list_lakekeeper-etaps2_j548910: Close
+[0m15:12:52  On master: COMMIT
+[0m15:12:52  Began running node snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY
+[0m15:12:52  1 of 1 START snapshot j548910.silver_tpcds_customer_category ................... [RUN]
+[0m15:12:52  Re-using an available connection from the pool (formerly list_lakekeeper-etaps2_j548910, now snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY)
+[0m15:12:52  Began compiling node snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY
+[0m15:12:52  Began executing node snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY
+[0m15:12:52  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:12:52  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:12:52  Opening a new connection, currently in state closed
+[0m15:12:53  SQL status: SUCCESS in 0.670 seconds
+[0m15:12:53  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:12:53  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:12:54  SQL status: SUCCESS in 0.489 seconds
+[0m15:12:54  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:12:54  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:12:54  SQL status: SUCCESS in 0.487 seconds
+[0m15:12:54  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:12:54  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:12:55  SQL status: SUCCESS in 0.503 seconds
+[0m15:12:55  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:12:55  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+        
+  
+    
+
+    create table "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp"
+      
+      
+    as (
+      
+
+    
+    
+    
+    
+
+    with snapshot_query as (
+
+        
+
+
+
+with customer_category_relation as (
+
+
+
+    select
+        ss.ss_customer_sk as customer_sk,
+        i.i_category_id,
+        min(d.d_date) as relationship_first_seen_date
+
+    from "lakekeeper-etaps2"."j548910"."tpcds_store_sales" ss
+
+    inner join "lakekeeper-etaps2"."j548910"."tpcds_item" i
+        on ss.ss_item_sk = i.i_item_sk
+
+    inner join "lakekeeper-etaps2"."j548910"."tpcds_date_dim" d
+        on ss.ss_sold_date_sk = d.d_date_sk
+
+    where ss.ss_customer_sk is not null
+      and ss.ss_item_sk is not null
+      and ss.ss_sold_date_sk is not null
+      and i.i_category_id is not null
+      and d.d_date <= DATE '2026-01-01'
+
+    group by
+        ss.ss_customer_sk,
+        i.i_category_id
+
+),
+
+active_customer_ranked as (
+
+
+
+    select
+        c.*,
+        row_number() over (
+            partition by c.c_customer_sk
+            order by c.idh_gltg_fach_adtm desc, c.idh_gltg_fach_edtm desc
+        ) as rn
+
+    from "lakekeeper-etaps2"."j548910"."tpcds_customer" c
+
+    where c.idh_gltg_fach_adtm <= DATE '2026-01-01'
+      and c.idh_gltg_fach_edtm > DATE '2026-01-01'
+
+),
+
+active_customer as (
+
+    select *
+    from active_customer_ranked
+    where rn = 1
+
+),
+
+active_item_ranked as (
+
+
+    select
+        i.*,
+        row_number() over (
+            partition by i.i_item_sk
+            order by i.idh_gltg_fach_adtm desc, i.idh_gltg_fach_edtm desc
+        ) as rn
+
+    from "lakekeeper-etaps2"."j548910"."tpcds_item" i
+
+    where i.idh_gltg_fach_adtm <= DATE '2026-01-01'
+      and i.idh_gltg_fach_edtm > DATE '2026-01-01'
+
+),
+
+active_item as (
+
+    select *
+    from active_item_ranked
+    where rn = 1
+
+),
+
+category_attributes as (
+
+
+
+    select
+        i_category_id,
+
+        max(i_category) as i_category,
+        max(i_class) as i_class,
+        max(i_brand) as i_brand,
+
+        min(idh_gltg_fach_adtm) as item_idh_gltg_fach_adtm,
+        max(idh_gltg_fach_edtm) as item_idh_gltg_fach_edtm
+
+    from active_item
+
+    where i_category_id is not null
+
+    group by
+        i_category_id
+
+),
+
+relationship_enriched as (
+
+    select
+        r.customer_sk,
+        r.i_category_id,
+
+        c.c_customer_id,
+        c.c_first_name,
+        c.c_last_name,
+        c.c_preferred_cust_flag,
+        c.c_birth_country,
+
+        i.i_category,
+        i.i_class,
+        i.i_brand,
+
+        r.relationship_first_seen_date,
+
+
+        greatest(
+            r.relationship_first_seen_date,
+            c.idh_gltg_fach_adtm,
+            i.item_idh_gltg_fach_adtm
+        ) as idh_gltg_fach_adtm,
+
+        least(
+            c.idh_gltg_fach_edtm,
+            i.item_idh_gltg_fach_edtm
+        ) as idh_gltg_fach_edtm
+
+
+
+
+    from customer_category_relation r
+
+    inner join active_customer c
+        on r.customer_sk = c.c_customer_sk
+
+    inner join category_attributes i
+        on r.i_category_id = i.i_category_id
+
+),
+
+final as (
+
+    select
+        'bla' as fusi_quel_inst_schl,
+        customer_sk,
+        i_category_id,
+
+        c_customer_id,
+        c_first_name,
+        c_last_name,
+        c_preferred_cust_flag,
+        c_birth_country,
+
+        i_category,
+        i_class,
+        i_brand,
+
+        relationship_first_seen_date,
+
+        idh_gltg_fach_adtm as von,
+        idh_gltg_fach_edtm as bis
+
+    from relationship_enriched
+
+)
+
+select *
+from final
+
+
+    ),
+
+    filtered_snapshot_query as (
+        select *
+        from snapshot_query as source_data
+        
+    ),
+
+    hard_delete_candidates as (
+        select *,
+            sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as FKEY
+        from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category" as target_data
+
+        
+            where 1 = 0
+        
+    ),
+
+    target_base as (
+        select *,
+            sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as FKEY
+        from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category" as target_data
+
+        
+            where 1 = 1
+        
+
+                  
+    ),
+
+    snapshotted_data as (
+        select *
+        from target_base
+        where
+            tech_ets = TIMESTAMP '9999-12-30 23:59:59.999'
+    ),
+
+    insertions_source_data as (
+
+        select
+            *,
+            sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as FKEY,
+            CURRENT_TIMESTAMP as aend_zeit,
+            cast(current_timestamp as timestamp(6)) as tech_ats,
+            TIMESTAMP '9999-12-30 23:59:59.999' as tech_ets
+
+        from snapshot_query
+
+    ),
+
+    insertions as (
+        select
+            'insert' as dbt_change_type,
+            source_data.*
+        
+        from insertions_source_data as source_data
+        left outer join snapshotted_data on snapshotted_data.FKEY = source_data.FKEY
+        where snapshotted_data.FKEY is null
+            or (
+                snapshotted_data.fkey is not null
+                and (
+                    
+        (
+            
+                snapshotted_data.c_customer_id != source_data.c_customer_id
+                or
+                (
+                    ((snapshotted_data.c_customer_id is null) and not (source_data.c_customer_id is null))
+                    or
+                    ((not snapshotted_data.c_customer_id is null) and (source_data.c_customer_id is null))
+                )
+                 or 
+            
+                snapshotted_data.c_first_name != source_data.c_first_name
+                or
+                (
+                    ((snapshotted_data.c_first_name is null) and not (source_data.c_first_name is null))
+                    or
+                    ((not snapshotted_data.c_first_name is null) and (source_data.c_first_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_last_name != source_data.c_last_name
+                or
+                (
+                    ((snapshotted_data.c_last_name is null) and not (source_data.c_last_name is null))
+                    or
+                    ((not snapshotted_data.c_last_name is null) and (source_data.c_last_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_preferred_cust_flag != source_data.c_preferred_cust_flag
+                or
+                (
+                    ((snapshotted_data.c_preferred_cust_flag is null) and not (source_data.c_preferred_cust_flag is null))
+                    or
+                    ((not snapshotted_data.c_preferred_cust_flag is null) and (source_data.c_preferred_cust_flag is null))
+                )
+                 or 
+            
+                snapshotted_data.c_birth_country != source_data.c_birth_country
+                or
+                (
+                    ((snapshotted_data.c_birth_country is null) and not (source_data.c_birth_country is null))
+                    or
+                    ((not snapshotted_data.c_birth_country is null) and (source_data.c_birth_country is null))
+                )
+                 or 
+            
+                snapshotted_data.i_category != source_data.i_category
+                or
+                (
+                    ((snapshotted_data.i_category is null) and not (source_data.i_category is null))
+                    or
+                    ((not snapshotted_data.i_category is null) and (source_data.i_category is null))
+                )
+                 or 
+            
+                snapshotted_data.i_class != source_data.i_class
+                or
+                (
+                    ((snapshotted_data.i_class is null) and not (source_data.i_class is null))
+                    or
+                    ((not snapshotted_data.i_class is null) and (source_data.i_class is null))
+                )
+                 or 
+            
+                snapshotted_data.i_brand != source_data.i_brand
+                or
+                (
+                    ((snapshotted_data.i_brand is null) and not (source_data.i_brand is null))
+                    or
+                    ((not snapshotted_data.i_brand is null) and (source_data.i_brand is null))
+                )
+                 or 
+            
+                snapshotted_data.relationship_first_seen_date != source_data.relationship_first_seen_date
+                or
+                (
+                    ((snapshotted_data.relationship_first_seen_date is null) and not (source_data.relationship_first_seen_date is null))
+                    or
+                    ((not snapshotted_data.relationship_first_seen_date is null) and (source_data.relationship_first_seen_date is null))
+                )
+                
+            
+        )
+    
+                )
+            )
+    ),
+
+    updates as (
+        
+        select
+            'update' as dbt_change_type,
+            source_data.*
+
+        from insertions_source_data as source_data
+        join snapshotted_data on snapshotted_data.FKEY = source_data.FKEY
+        where (
+            
+        (
+            
+                snapshotted_data.c_customer_id != source_data.c_customer_id
+                or
+                (
+                    ((snapshotted_data.c_customer_id is null) and not (source_data.c_customer_id is null))
+                    or
+                    ((not snapshotted_data.c_customer_id is null) and (source_data.c_customer_id is null))
+                )
+                 or 
+            
+                snapshotted_data.c_first_name != source_data.c_first_name
+                or
+                (
+                    ((snapshotted_data.c_first_name is null) and not (source_data.c_first_name is null))
+                    or
+                    ((not snapshotted_data.c_first_name is null) and (source_data.c_first_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_last_name != source_data.c_last_name
+                or
+                (
+                    ((snapshotted_data.c_last_name is null) and not (source_data.c_last_name is null))
+                    or
+                    ((not snapshotted_data.c_last_name is null) and (source_data.c_last_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_preferred_cust_flag != source_data.c_preferred_cust_flag
+                or
+                (
+                    ((snapshotted_data.c_preferred_cust_flag is null) and not (source_data.c_preferred_cust_flag is null))
+                    or
+                    ((not snapshotted_data.c_preferred_cust_flag is null) and (source_data.c_preferred_cust_flag is null))
+                )
+                 or 
+            
+                snapshotted_data.c_birth_country != source_data.c_birth_country
+                or
+                (
+                    ((snapshotted_data.c_birth_country is null) and not (source_data.c_birth_country is null))
+                    or
+                    ((not snapshotted_data.c_birth_country is null) and (source_data.c_birth_country is null))
+                )
+                 or 
+            
+                snapshotted_data.i_category != source_data.i_category
+                or
+                (
+                    ((snapshotted_data.i_category is null) and not (source_data.i_category is null))
+                    or
+                    ((not snapshotted_data.i_category is null) and (source_data.i_category is null))
+                )
+                 or 
+            
+                snapshotted_data.i_class != source_data.i_class
+                or
+                (
+                    ((snapshotted_data.i_class is null) and not (source_data.i_class is null))
+                    or
+                    ((not snapshotted_data.i_class is null) and (source_data.i_class is null))
+                )
+                 or 
+            
+                snapshotted_data.i_brand != source_data.i_brand
+                or
+                (
+                    ((snapshotted_data.i_brand is null) and not (source_data.i_brand is null))
+                    or
+                    ((not snapshotted_data.i_brand is null) and (source_data.i_brand is null))
+                )
+                 or 
+            
+                snapshotted_data.relationship_first_seen_date != source_data.relationship_first_seen_date
+                or
+                (
+                    ((snapshotted_data.relationship_first_seen_date is null) and not (source_data.relationship_first_seen_date is null))
+                    or
+                    ((not snapshotted_data.relationship_first_seen_date is null) and (source_data.relationship_first_seen_date is null))
+                )
+                
+            
+        )
+    
+        )
+
+    ),
+
+    invalidations as (
+
+        select
+            'invalidate' as dbt_change_type,
+            snapshotted_data.*
+        from snapshotted_data
+        left join insertions_source_data as source_data
+            on snapshotted_data.FKEY = source_data.FKEY
+        where source_data.FKEY is null
+
+    ),
+
+    deletions as (
+        select
+            'delete' as dbt_change_type,
+            hard_delete_candidates.*
+
+        from hard_delete_candidates
+    )
+
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+    , dbt_change_type
+    from insertions
+    union all
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+    , dbt_change_type
+    from updates
+    union all
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+    , dbt_change_type
+    from invalidations
+    union all
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+        , dbt_change_type
+    from deletions
+
+
+    )
+[0m15:13:03  SQL status: CREATE TABLE (9_500_000 rows) in 8.229 seconds
+[0m15:13:03  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:13:03  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category__dbt_tmp'
+[0m15:13:03  SQL status: SUCCESS in 0.529 seconds
+[0m15:13:03  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:13:03  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:13:04  SQL status: SUCCESS in 0.482 seconds
+[0m15:13:04  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:13:04  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category__dbt_tmp'
+[0m15:13:04  SQL status: SUCCESS in 0.490 seconds
+[0m15:13:04  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:13:04  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:13:05  SQL status: SUCCESS in 0.507 seconds
+[0m15:13:05  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:13:05  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category__dbt_tmp'
+[0m15:13:05  SQL status: SUCCESS in 0.513 seconds
+[0m15:13:05  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:13:05  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:13:06  SQL status: SUCCESS in 0.467 seconds
+[0m15:13:06  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:13:06  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:13:06  SQL status: SUCCESS in 0.430 seconds
+[0m15:13:06  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:13:06  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:13:07  SQL status: SUCCESS in 0.458 seconds
+[0m15:13:07  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:13:07  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    
+    select
+        dbt_change_type as flag,
+        count(*) as cnt
+    from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp"
+    where dbt_change_type not in ('insert', 'update', 'invalidate', 'delete')
+        or dbt_change_type is null
+    group by dbt_change_type
+[0m15:13:08  SQL status: SUCCESS in 0.645 seconds
+[0m15:13:08  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:13:08  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    
+    select
+      sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))),
+      count(*) as cnt
+    from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp"
+    where dbt_change_type = 'insert'
+    group by sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' )))
+    having count(*) > 1
+[0m15:13:09  SQL status: SUCCESS in 1.081 seconds
+[0m15:13:09  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:13:09  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    
+    select
+        sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as business_key,
+        dbt_change_type as flag,
+        count(*) as cnt
+    from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp"
+    where dbt_change_type in ('update', 'invalidate')
+    group by sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))), dbt_change_type
+    having count(*) > 1
+[0m15:13:09  SQL status: SUCCESS in 0.351 seconds
+[0m15:13:09  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:13:09  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    
+    select
+        sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(tech_ats AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(tech_ets AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as delete_row_key,
+        count(*) as cnt
+    from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp"
+    where dbt_change_type = 'delete'
+    group by sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(tech_ats AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(tech_ets AS VARCHAR))), CAST(''AS VARCHAR)), 'م' )))
+    having count(*) > 1
+[0m15:13:09  SQL status: SUCCESS in 0.381 seconds
+[0m15:13:09  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:13:09  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    
+    with flags as (
+      select
+        sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))),
+        max(case when dbt_change_type = 'insert' then 1 else 0 end) as has_i,
+        max(case when dbt_change_type = 'update' then 1 else 0 end) as has_u,
+        max(case when dbt_change_type = 'invalidate' then 1 else 0 end) as has_inv,
+        max(case when dbt_change_type = 'delete' then 1 else 0 end) as has_d,
+        count(*) as row_cnt
+      from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp"
+      group by sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' )))
+    )
+    select *
+    from flags
+    where not (
+      (has_i = 1 and has_u = 0 and has_inv = 0 and has_d = 0)  -- {I}
+      or
+      (has_i = 1 and has_u = 0 and has_inv = 0 and has_d = 1)  -- {I, D}
+      or
+      (has_i = 0 and has_u = 0 and has_inv = 0 and has_d = 1)  -- {D}
+      or
+      (has_i = 0 and has_u = 0 and has_inv = 1 and has_d = 0)  -- {INV}
+      or
+      (has_i = 1 and has_u = 1 and has_inv = 0 and has_d = 0)  -- {U,I}
+    )
+[0m15:13:11  SQL status: SUCCESS in 1.180 seconds
+[0m15:13:11  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:13:11  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+select * from (
+        
+
+    
+    
+    
+    
+
+    with snapshot_query as (
+
+        
+
+
+
+with customer_category_relation as (
+
+
+
+    select
+        ss.ss_customer_sk as customer_sk,
+        i.i_category_id,
+        min(d.d_date) as relationship_first_seen_date
+
+    from "lakekeeper-etaps2"."j548910"."tpcds_store_sales" ss
+
+    inner join "lakekeeper-etaps2"."j548910"."tpcds_item" i
+        on ss.ss_item_sk = i.i_item_sk
+
+    inner join "lakekeeper-etaps2"."j548910"."tpcds_date_dim" d
+        on ss.ss_sold_date_sk = d.d_date_sk
+
+    where ss.ss_customer_sk is not null
+      and ss.ss_item_sk is not null
+      and ss.ss_sold_date_sk is not null
+      and i.i_category_id is not null
+      and d.d_date <= DATE '2026-01-01'
+
+    group by
+        ss.ss_customer_sk,
+        i.i_category_id
+
+),
+
+active_customer_ranked as (
+
+
+
+    select
+        c.*,
+        row_number() over (
+            partition by c.c_customer_sk
+            order by c.idh_gltg_fach_adtm desc, c.idh_gltg_fach_edtm desc
+        ) as rn
+
+    from "lakekeeper-etaps2"."j548910"."tpcds_customer" c
+
+    where c.idh_gltg_fach_adtm <= DATE '2026-01-01'
+      and c.idh_gltg_fach_edtm > DATE '2026-01-01'
+
+),
+
+active_customer as (
+
+    select *
+    from active_customer_ranked
+    where rn = 1
+
+),
+
+active_item_ranked as (
+
+
+    select
+        i.*,
+        row_number() over (
+            partition by i.i_item_sk
+            order by i.idh_gltg_fach_adtm desc, i.idh_gltg_fach_edtm desc
+        ) as rn
+
+    from "lakekeeper-etaps2"."j548910"."tpcds_item" i
+
+    where i.idh_gltg_fach_adtm <= DATE '2026-01-01'
+      and i.idh_gltg_fach_edtm > DATE '2026-01-01'
+
+),
+
+active_item as (
+
+    select *
+    from active_item_ranked
+    where rn = 1
+
+),
+
+category_attributes as (
+
+
+
+    select
+        i_category_id,
+
+        max(i_category) as i_category,
+        max(i_class) as i_class,
+        max(i_brand) as i_brand,
+
+        min(idh_gltg_fach_adtm) as item_idh_gltg_fach_adtm,
+        max(idh_gltg_fach_edtm) as item_idh_gltg_fach_edtm
+
+    from active_item
+
+    where i_category_id is not null
+
+    group by
+        i_category_id
+
+),
+
+relationship_enriched as (
+
+    select
+        r.customer_sk,
+        r.i_category_id,
+
+        c.c_customer_id,
+        c.c_first_name,
+        c.c_last_name,
+        c.c_preferred_cust_flag,
+        c.c_birth_country,
+
+        i.i_category,
+        i.i_class,
+        i.i_brand,
+
+        r.relationship_first_seen_date,
+
+
+        greatest(
+            r.relationship_first_seen_date,
+            c.idh_gltg_fach_adtm,
+            i.item_idh_gltg_fach_adtm
+        ) as idh_gltg_fach_adtm,
+
+        least(
+            c.idh_gltg_fach_edtm,
+            i.item_idh_gltg_fach_edtm
+        ) as idh_gltg_fach_edtm
+
+
+
+
+    from customer_category_relation r
+
+    inner join active_customer c
+        on r.customer_sk = c.c_customer_sk
+
+    inner join category_attributes i
+        on r.i_category_id = i.i_category_id
+
+),
+
+final as (
+
+    select
+        'bla' as fusi_quel_inst_schl,
+        customer_sk,
+        i_category_id,
+
+        c_customer_id,
+        c_first_name,
+        c_last_name,
+        c_preferred_cust_flag,
+        c_birth_country,
+
+        i_category,
+        i_class,
+        i_brand,
+
+        relationship_first_seen_date,
+
+        idh_gltg_fach_adtm as von,
+        idh_gltg_fach_edtm as bis
+
+    from relationship_enriched
+
+)
+
+select *
+from final
+
+
+    ),
+
+    filtered_snapshot_query as (
+        select *
+        from snapshot_query as source_data
+        
+    ),
+
+    hard_delete_candidates as (
+        select *,
+            sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as FKEY
+        from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category" as target_data
+
+        
+            where 1 = 0
+        
+    ),
+
+    target_base as (
+        select *,
+            sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as FKEY
+        from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category" as target_data
+
+        
+            where 1 = 1
+        
+
+                  
+    ),
+
+    snapshotted_data as (
+        select *
+        from target_base
+        where
+            tech_ets = TIMESTAMP '9999-12-30 23:59:59.999'
+    ),
+
+    insertions_source_data as (
+
+        select
+            *,
+            sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as FKEY,
+            CURRENT_TIMESTAMP as aend_zeit,
+            cast(current_timestamp as timestamp(6)) as tech_ats,
+            TIMESTAMP '9999-12-30 23:59:59.999' as tech_ets
+
+        from snapshot_query
+
+    ),
+
+    insertions as (
+        select
+            'insert' as dbt_change_type,
+            source_data.*
+        
+        from insertions_source_data as source_data
+        left outer join snapshotted_data on snapshotted_data.FKEY = source_data.FKEY
+        where snapshotted_data.FKEY is null
+            or (
+                snapshotted_data.fkey is not null
+                and (
+                    
+        (
+            
+                snapshotted_data.c_customer_id != source_data.c_customer_id
+                or
+                (
+                    ((snapshotted_data.c_customer_id is null) and not (source_data.c_customer_id is null))
+                    or
+                    ((not snapshotted_data.c_customer_id is null) and (source_data.c_customer_id is null))
+                )
+                 or 
+            
+                snapshotted_data.c_first_name != source_data.c_first_name
+                or
+                (
+                    ((snapshotted_data.c_first_name is null) and not (source_data.c_first_name is null))
+                    or
+                    ((not snapshotted_data.c_first_name is null) and (source_data.c_first_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_last_name != source_data.c_last_name
+                or
+                (
+                    ((snapshotted_data.c_last_name is null) and not (source_data.c_last_name is null))
+                    or
+                    ((not snapshotted_data.c_last_name is null) and (source_data.c_last_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_preferred_cust_flag != source_data.c_preferred_cust_flag
+                or
+                (
+                    ((snapshotted_data.c_preferred_cust_flag is null) and not (source_data.c_preferred_cust_flag is null))
+                    or
+                    ((not snapshotted_data.c_preferred_cust_flag is null) and (source_data.c_preferred_cust_flag is null))
+                )
+                 or 
+            
+                snapshotted_data.c_birth_country != source_data.c_birth_country
+                or
+                (
+                    ((snapshotted_data.c_birth_country is null) and not (source_data.c_birth_country is null))
+                    or
+                    ((not snapshotted_data.c_birth_country is null) and (source_data.c_birth_country is null))
+                )
+                 or 
+            
+                snapshotted_data.i_category != source_data.i_category
+                or
+                (
+                    ((snapshotted_data.i_category is null) and not (source_data.i_category is null))
+                    or
+                    ((not snapshotted_data.i_category is null) and (source_data.i_category is null))
+                )
+                 or 
+            
+                snapshotted_data.i_class != source_data.i_class
+                or
+                (
+                    ((snapshotted_data.i_class is null) and not (source_data.i_class is null))
+                    or
+                    ((not snapshotted_data.i_class is null) and (source_data.i_class is null))
+                )
+                 or 
+            
+                snapshotted_data.i_brand != source_data.i_brand
+                or
+                (
+                    ((snapshotted_data.i_brand is null) and not (source_data.i_brand is null))
+                    or
+                    ((not snapshotted_data.i_brand is null) and (source_data.i_brand is null))
+                )
+                 or 
+            
+                snapshotted_data.relationship_first_seen_date != source_data.relationship_first_seen_date
+                or
+                (
+                    ((snapshotted_data.relationship_first_seen_date is null) and not (source_data.relationship_first_seen_date is null))
+                    or
+                    ((not snapshotted_data.relationship_first_seen_date is null) and (source_data.relationship_first_seen_date is null))
+                )
+                
+            
+        )
+    
+                )
+            )
+    ),
+
+    updates as (
+        
+        select
+            'update' as dbt_change_type,
+            source_data.*
+
+        from insertions_source_data as source_data
+        join snapshotted_data on snapshotted_data.FKEY = source_data.FKEY
+        where (
+            
+        (
+            
+                snapshotted_data.c_customer_id != source_data.c_customer_id
+                or
+                (
+                    ((snapshotted_data.c_customer_id is null) and not (source_data.c_customer_id is null))
+                    or
+                    ((not snapshotted_data.c_customer_id is null) and (source_data.c_customer_id is null))
+                )
+                 or 
+            
+                snapshotted_data.c_first_name != source_data.c_first_name
+                or
+                (
+                    ((snapshotted_data.c_first_name is null) and not (source_data.c_first_name is null))
+                    or
+                    ((not snapshotted_data.c_first_name is null) and (source_data.c_first_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_last_name != source_data.c_last_name
+                or
+                (
+                    ((snapshotted_data.c_last_name is null) and not (source_data.c_last_name is null))
+                    or
+                    ((not snapshotted_data.c_last_name is null) and (source_data.c_last_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_preferred_cust_flag != source_data.c_preferred_cust_flag
+                or
+                (
+                    ((snapshotted_data.c_preferred_cust_flag is null) and not (source_data.c_preferred_cust_flag is null))
+                    or
+                    ((not snapshotted_data.c_preferred_cust_flag is null) and (source_data.c_preferred_cust_flag is null))
+                )
+                 or 
+            
+                snapshotted_data.c_birth_country != source_data.c_birth_country
+                or
+                (
+                    ((snapshotted_data.c_birth_country is null) and not (source_data.c_birth_country is null))
+                    or
+                    ((not snapshotted_data.c_birth_country is null) and (source_data.c_birth_country is null))
+                )
+                 or 
+            
+                snapshotted_data.i_category != source_data.i_category
+                or
+                (
+                    ((snapshotted_data.i_category is null) and not (source_data.i_category is null))
+                    or
+                    ((not snapshotted_data.i_category is null) and (source_data.i_category is null))
+                )
+                 or 
+            
+                snapshotted_data.i_class != source_data.i_class
+                or
+                (
+                    ((snapshotted_data.i_class is null) and not (source_data.i_class is null))
+                    or
+                    ((not snapshotted_data.i_class is null) and (source_data.i_class is null))
+                )
+                 or 
+            
+                snapshotted_data.i_brand != source_data.i_brand
+                or
+                (
+                    ((snapshotted_data.i_brand is null) and not (source_data.i_brand is null))
+                    or
+                    ((not snapshotted_data.i_brand is null) and (source_data.i_brand is null))
+                )
+                 or 
+            
+                snapshotted_data.relationship_first_seen_date != source_data.relationship_first_seen_date
+                or
+                (
+                    ((snapshotted_data.relationship_first_seen_date is null) and not (source_data.relationship_first_seen_date is null))
+                    or
+                    ((not snapshotted_data.relationship_first_seen_date is null) and (source_data.relationship_first_seen_date is null))
+                )
+                
+            
+        )
+    
+        )
+
+    ),
+
+    invalidations as (
+
+        select
+            'invalidate' as dbt_change_type,
+            snapshotted_data.*
+        from snapshotted_data
+        left join insertions_source_data as source_data
+            on snapshotted_data.FKEY = source_data.FKEY
+        where source_data.FKEY is null
+
+    ),
+
+    deletions as (
+        select
+            'delete' as dbt_change_type,
+            hard_delete_candidates.*
+
+        from hard_delete_candidates
+    )
+
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+    , dbt_change_type
+    from insertions
+    union all
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+    , dbt_change_type
+    from updates
+    union all
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+    , dbt_change_type
+    from invalidations
+    union all
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+        , dbt_change_type
+    from deletions
+
+
+    ) as __dbt_sbq
+    where false
+    limit 0
+[0m15:13:11  SQL status: SUCCESS in 0.855 seconds
+[0m15:13:11  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:13:11  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+select * from (
+        select 
+    current_timestamp
+ as dbt_snapshot_time
+    ) as __dbt_sbq
+    where false
+    limit 0
+[0m15:13:12  SQL status: SUCCESS in 0.467 seconds
+[0m15:13:12  Writing runtime sql for node "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:13:12  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:13:12  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+      
+    
+
+    merge into "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category" as DBT_INTERNAL_DEST
+    using "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp" as DBT_INTERNAL_SOURCE
+    on sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(DBT_INTERNAL_SOURCE.customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(DBT_INTERNAL_SOURCE.i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) = sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(DBT_INTERNAL_DEST.customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(DBT_INTERNAL_DEST.i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' )))
+    and DBT_INTERNAL_SOURCE.dbt_change_type <> 'insert'
+
+    when matched
+     and DBT_INTERNAL_SOURCE.dbt_change_type = 'delete'
+    then delete
+
+    when matched
+     and DBT_INTERNAL_DEST.tech_ets = TIMESTAMP '9999-12-30 23:59:59.999'
+     and DBT_INTERNAL_SOURCE.dbt_change_type in ('update', 'invalidate')
+        then update
+        set tech_ets = cast(current_timestamp as timestamp(6))
+          , aend_zeit = current_timestamp
+
+    when not matched
+     and DBT_INTERNAL_SOURCE.dbt_change_type = 'insert'
+        then insert ("fusi_quel_inst_schl", "customer_sk", "i_category_id", "c_customer_id", "c_first_name", "c_last_name", "c_preferred_cust_flag", "c_birth_country", "i_category", "i_class", "i_brand", "relationship_first_seen_date", "von", "bis", "tech_ats", "tech_ets", "aend_zeit")
+        values (DBT_INTERNAL_SOURCE."fusi_quel_inst_schl", DBT_INTERNAL_SOURCE."customer_sk", DBT_INTERNAL_SOURCE."i_category_id", DBT_INTERNAL_SOURCE."c_customer_id", DBT_INTERNAL_SOURCE."c_first_name", DBT_INTERNAL_SOURCE."c_last_name", DBT_INTERNAL_SOURCE."c_preferred_cust_flag", DBT_INTERNAL_SOURCE."c_birth_country", DBT_INTERNAL_SOURCE."i_category", DBT_INTERNAL_SOURCE."i_class", DBT_INTERNAL_SOURCE."i_brand", DBT_INTERNAL_SOURCE."relationship_first_seen_date", DBT_INTERNAL_SOURCE."von", DBT_INTERNAL_SOURCE."bis", DBT_INTERNAL_SOURCE."tech_ats", DBT_INTERNAL_SOURCE."tech_ets", DBT_INTERNAL_SOURCE."aend_zeit")
+[0m15:13:19  SQL status: MERGE (9_500_000 rows) in 7.216 seconds
+[0m15:13:19  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: COMMIT
+[0m15:13:19  Applying DROP to: "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp"
+[0m15:13:19  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:13:19  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    drop table if exists "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp"
+[0m15:13:20  SQL status: DROP TABLE in 0.392 seconds
+[0m15:13:20  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: Close
+[0m15:13:20  1 of 1 OK snapshotted j548910.silver_tpcds_customer_category ................... [[32mMERGE (9_500_000 rows)[0m in 27.28s]
+[0m15:13:20  Finished running node snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY
+[0m15:13:20  On master: COMMIT
+[0m15:13:20  Connection 'master' was properly closed.
+[0m15:13:20  Connection 'snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY' was properly closed.
+[0m15:13:20  
+[0m15:13:20  Finished running 1 snapshot in 0 hours 0 minutes and 29.02 seconds (29.02s).
+[0m15:13:20  Command end result
+[0m15:13:20  Wrote artifact WritableManifest to /Users/j548910/IdeaProjects/Silver_Layer/target/manifest.json
+[0m15:13:20  Wrote artifact SemanticManifest to /Users/j548910/IdeaProjects/Silver_Layer/target/semantic_manifest.json
+[0m15:13:20  Wrote artifact RunExecutionResult to /Users/j548910/IdeaProjects/Silver_Layer/target/run_results.json
+[0m15:13:20  
+[0m15:13:20  [32mCompleted successfully[0m
+[0m15:13:20  
+[0m15:13:20  Done. PASS=1 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=1
+[0m15:13:20  Resource report: {"command_name": "snapshot", "command_success": true, "command_wall_clock_time": 30.66388, "process_in_blocks": "0", "process_kernel_time": 0.29897, "process_mem_max_rss": "144719872", "process_out_blocks": "0", "process_user_time": 3.328003}
+[0m15:13:20  Command `dbt snapshot` succeeded at 17:13:20.124389 after 30.66 seconds
+[0m15:13:20  Flushing usage events
+/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+[0m15:56:30  Running with dbt=1.10.20
+[0m15:56:30  running dbt with arguments {'debug': 'True', 'quiet': 'False', 'cache_selected_only': 'False', 'warn_error': 'None', 'log_path': '/Users/j548910/IdeaProjects/Silver_Layer/logs', 'empty': 'False', 'static_parser': 'True', 'log_cache_events': 'False', 'indirect_selection': 'eager', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'False', 'printer_width': '80', 'use_colors': 'True', 'no_print': 'None', 'fail_fast': 'False', 'invocation_command': 'dbt snapshot --select INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY --vars {"INR_FKEY": "j548910", "TAB_FKEY": "silver_tpcds_customer_category", "BDAT": "2026-01-01", "ACTIVE_SNAPSHOT": "INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} --debug', 'use_experimental_parser': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'introspect': 'True', 'log_format': 'default', 'version_check': 'True', 'write_json': 'True', 'profiles_dir': '/Users/j548910/IdeaProjects/Silver_Layer'}
+[0m15:56:30  Registered adapter: trino=1.10.1
+[0m15:56:30  checksum: 1d6cc045d5257f72e00e3865be0735220d036e7fef684ed12f689b8a8e9bc98a, vars: {'ACTIVE_SNAPSHOT': 'INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY',
+ 'BDAT': '2026-01-01',
+ 'INR_FKEY': 'j548910',
+ 'TAB_FKEY': 'silver_tpcds_customer_category'}, profile: , target: , version: 1.10.20
+[0m15:56:30  Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m15:56:30  Partial parsing enabled, no changes found, skipping parsing
+[0m15:56:30  Wrote artifact WritableManifest to /Users/j548910/IdeaProjects/Silver_Layer/target/manifest.json
+[0m15:56:30  Wrote artifact SemanticManifest to /Users/j548910/IdeaProjects/Silver_Layer/target/semantic_manifest.json
+[0m15:56:30  Found 4 models, 1 snapshot, 4 data tests, 10 sources, 505 macros
+[0m15:56:30  
+[0m15:56:30  Concurrency: 4 threads (target='dev')
+[0m15:56:30  
+[0m15:56:30  Acquiring new trino connection 'master'
+[0m15:56:30  Acquiring new trino connection 'list_lakekeeper-etaps2'
+[0m15:56:30  Using trino connection "list_lakekeeper-etaps2"
+[0m15:56:30  On list_lakekeeper-etaps2: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "connection_name": "list_lakekeeper-etaps2"} */
+
+    select schema_name
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.schemata
+[0m15:56:30  Opening a new connection, currently in state init
+[0m15:56:31  SQL status: SUCCESS in 0.835 seconds
+[0m15:56:31  On list_lakekeeper-etaps2: Close
+[0m15:56:31  Re-using an available connection from the pool (formerly list_lakekeeper-etaps2, now list_lakekeeper-etaps2_j548910)
+[0m15:56:31  Using trino connection "list_lakekeeper-etaps2_j548910"
+[0m15:56:31  On list_lakekeeper-etaps2_j548910: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "connection_name": "list_lakekeeper-etaps2_j548910"} */
+select
+      t.table_catalog as database,
+      t.table_name as name,
+      t.table_schema as schema,
+      case when mv.name is not null then 'materialized_view'
+           when t.table_type = 'BASE TABLE' then 'table'
+           when t.table_type = 'VIEW' then 'view'
+           else t.table_type
+      end as table_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.tables t
+    left join (
+            select * from system.metadata.materialized_views
+            where catalog_name = 'lakekeeper-etaps2'
+              and schema_name = 'j548910') mv
+          on mv.catalog_name = t.table_catalog and mv.schema_name = t.table_schema and mv.name = t.table_name
+    where t.table_schema = 'j548910'
+[0m15:56:31  Opening a new connection, currently in state closed
+[0m15:56:32  SQL status: SUCCESS in 0.641 seconds
+[0m15:56:32  On list_lakekeeper-etaps2_j548910: ROLLBACK
+[0m15:56:32  On list_lakekeeper-etaps2_j548910: Close
+[0m15:56:32  On master: COMMIT
+[0m15:56:32  Began running node snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY
+[0m15:56:32  1 of 1 START snapshot j548910.silver_tpcds_customer_category ................... [RUN]
+[0m15:56:32  Re-using an available connection from the pool (formerly list_lakekeeper-etaps2_j548910, now snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY)
+[0m15:56:32  Began compiling node snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY
+[0m15:56:32  Began executing node snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY
+[0m15:56:32  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:32  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:56:32  Opening a new connection, currently in state closed
+[0m15:56:32  SQL status: SUCCESS in 0.645 seconds
+[0m15:56:33  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:33  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:56:33  SQL status: SUCCESS in 0.465 seconds
+[0m15:56:33  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:33  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:56:33  SQL status: SUCCESS in 0.440 seconds
+[0m15:56:34  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:34  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:56:34  SQL status: SUCCESS in 0.482 seconds
+[0m15:56:34  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:34  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+        
+  create or replace view
+    "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp"
+  security definer
+  as
+    
+
+    
+    
+    
+    
+
+    with snapshot_query as (
+
+        
+
+
+
+with customer_category_relation as (
+
+
+
+    select
+        ss.ss_customer_sk as customer_sk,
+        i.i_category_id,
+        min(d.d_date) as relationship_first_seen_date
+
+    from "lakekeeper-etaps2"."j548910"."tpcds_store_sales" ss
+
+    inner join "lakekeeper-etaps2"."j548910"."tpcds_item" i
+        on ss.ss_item_sk = i.i_item_sk
+
+    inner join "lakekeeper-etaps2"."j548910"."tpcds_date_dim" d
+        on ss.ss_sold_date_sk = d.d_date_sk
+
+    where ss.ss_customer_sk is not null
+      and ss.ss_item_sk is not null
+      and ss.ss_sold_date_sk is not null
+      and i.i_category_id is not null
+      and d.d_date <= DATE '2026-01-01'
+
+    group by
+        ss.ss_customer_sk,
+        i.i_category_id
+
+),
+
+active_customer_ranked as (
+
+
+
+    select
+        c.*,
+        row_number() over (
+            partition by c.c_customer_sk
+            order by c.idh_gltg_fach_adtm desc, c.idh_gltg_fach_edtm desc
+        ) as rn
+
+    from "lakekeeper-etaps2"."j548910"."tpcds_customer" c
+
+    where c.idh_gltg_fach_adtm <= DATE '2026-01-01'
+      and c.idh_gltg_fach_edtm > DATE '2026-01-01'
+
+),
+
+active_customer as (
+
+    select *
+    from active_customer_ranked
+    where rn = 1
+
+),
+
+active_item_ranked as (
+
+
+    select
+        i.*,
+        row_number() over (
+            partition by i.i_item_sk
+            order by i.idh_gltg_fach_adtm desc, i.idh_gltg_fach_edtm desc
+        ) as rn
+
+    from "lakekeeper-etaps2"."j548910"."tpcds_item" i
+
+    where i.idh_gltg_fach_adtm <= DATE '2026-01-01'
+      and i.idh_gltg_fach_edtm > DATE '2026-01-01'
+
+),
+
+active_item as (
+
+    select *
+    from active_item_ranked
+    where rn = 1
+
+),
+
+category_attributes as (
+
+
+
+    select
+        i_category_id,
+
+        max(i_category) as i_category,
+        max(i_class) as i_class,
+        max(i_brand) as i_brand,
+
+        min(idh_gltg_fach_adtm) as item_idh_gltg_fach_adtm,
+        max(idh_gltg_fach_edtm) as item_idh_gltg_fach_edtm
+
+    from active_item
+
+    where i_category_id is not null
+
+    group by
+        i_category_id
+
+),
+
+relationship_enriched as (
+
+    select
+        r.customer_sk,
+        r.i_category_id,
+
+        c.c_customer_id,
+        c.c_first_name,
+        c.c_last_name,
+        c.c_preferred_cust_flag,
+        c.c_birth_country,
+
+        i.i_category,
+        i.i_class,
+        i.i_brand,
+
+        r.relationship_first_seen_date,
+
+
+        greatest(
+            r.relationship_first_seen_date,
+            c.idh_gltg_fach_adtm,
+            i.item_idh_gltg_fach_adtm
+        ) as idh_gltg_fach_adtm,
+
+        least(
+            c.idh_gltg_fach_edtm,
+            i.item_idh_gltg_fach_edtm
+        ) as idh_gltg_fach_edtm
+
+
+
+
+    from customer_category_relation r
+
+    inner join active_customer c
+        on r.customer_sk = c.c_customer_sk
+
+    inner join category_attributes i
+        on r.i_category_id = i.i_category_id
+
+),
+
+final as (
+
+    select
+        'bla' as fusi_quel_inst_schl,
+        customer_sk,
+        i_category_id,
+
+        c_customer_id,
+        c_first_name,
+        c_last_name,
+        c_preferred_cust_flag,
+        c_birth_country,
+
+        i_category,
+        i_class,
+        i_brand,
+
+        relationship_first_seen_date,
+
+        idh_gltg_fach_adtm as von,
+        idh_gltg_fach_edtm as bis
+
+    from relationship_enriched
+
+)
+
+select *
+from final
+
+
+    ),
+
+    filtered_snapshot_query as (
+        select *
+        from snapshot_query as source_data
+        
+    ),
+
+    hard_delete_candidates as (
+        select *,
+            sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as FKEY
+        from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category" as target_data
+
+        
+            where 1 = 0
+        
+    ),
+
+    target_base as (
+        select *,
+            sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as FKEY
+        from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category" as target_data
+
+        
+            where 1 = 1
+        
+
+                  
+    ),
+
+    snapshotted_data as (
+        select *
+        from target_base
+        where
+            tech_ets = TIMESTAMP '9999-12-30 23:59:59.999'
+    ),
+
+    insertions_source_data as (
+
+        select
+            *,
+            sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as FKEY,
+            CURRENT_TIMESTAMP as aend_zeit,
+            cast(current_timestamp as timestamp(6)) as tech_ats,
+            TIMESTAMP '9999-12-30 23:59:59.999' as tech_ets
+
+        from snapshot_query
+
+    ),
+
+    insertions as (
+        select
+            'insert' as dbt_change_type,
+            source_data.*
+        
+        from insertions_source_data as source_data
+        left outer join snapshotted_data on snapshotted_data.FKEY = source_data.FKEY
+        where snapshotted_data.FKEY is null
+            or (
+                snapshotted_data.fkey is not null
+                and (
+                    
+        (
+            
+                snapshotted_data.c_customer_id != source_data.c_customer_id
+                or
+                (
+                    ((snapshotted_data.c_customer_id is null) and not (source_data.c_customer_id is null))
+                    or
+                    ((not snapshotted_data.c_customer_id is null) and (source_data.c_customer_id is null))
+                )
+                 or 
+            
+                snapshotted_data.c_first_name != source_data.c_first_name
+                or
+                (
+                    ((snapshotted_data.c_first_name is null) and not (source_data.c_first_name is null))
+                    or
+                    ((not snapshotted_data.c_first_name is null) and (source_data.c_first_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_last_name != source_data.c_last_name
+                or
+                (
+                    ((snapshotted_data.c_last_name is null) and not (source_data.c_last_name is null))
+                    or
+                    ((not snapshotted_data.c_last_name is null) and (source_data.c_last_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_preferred_cust_flag != source_data.c_preferred_cust_flag
+                or
+                (
+                    ((snapshotted_data.c_preferred_cust_flag is null) and not (source_data.c_preferred_cust_flag is null))
+                    or
+                    ((not snapshotted_data.c_preferred_cust_flag is null) and (source_data.c_preferred_cust_flag is null))
+                )
+                 or 
+            
+                snapshotted_data.c_birth_country != source_data.c_birth_country
+                or
+                (
+                    ((snapshotted_data.c_birth_country is null) and not (source_data.c_birth_country is null))
+                    or
+                    ((not snapshotted_data.c_birth_country is null) and (source_data.c_birth_country is null))
+                )
+                 or 
+            
+                snapshotted_data.i_category != source_data.i_category
+                or
+                (
+                    ((snapshotted_data.i_category is null) and not (source_data.i_category is null))
+                    or
+                    ((not snapshotted_data.i_category is null) and (source_data.i_category is null))
+                )
+                 or 
+            
+                snapshotted_data.i_class != source_data.i_class
+                or
+                (
+                    ((snapshotted_data.i_class is null) and not (source_data.i_class is null))
+                    or
+                    ((not snapshotted_data.i_class is null) and (source_data.i_class is null))
+                )
+                 or 
+            
+                snapshotted_data.i_brand != source_data.i_brand
+                or
+                (
+                    ((snapshotted_data.i_brand is null) and not (source_data.i_brand is null))
+                    or
+                    ((not snapshotted_data.i_brand is null) and (source_data.i_brand is null))
+                )
+                 or 
+            
+                snapshotted_data.relationship_first_seen_date != source_data.relationship_first_seen_date
+                or
+                (
+                    ((snapshotted_data.relationship_first_seen_date is null) and not (source_data.relationship_first_seen_date is null))
+                    or
+                    ((not snapshotted_data.relationship_first_seen_date is null) and (source_data.relationship_first_seen_date is null))
+                )
+                
+            
+        )
+    
+                )
+            )
+    ),
+
+    updates as (
+        
+        select
+            'update' as dbt_change_type,
+            source_data.*
+
+        from insertions_source_data as source_data
+        join snapshotted_data on snapshotted_data.FKEY = source_data.FKEY
+        where (
+            
+        (
+            
+                snapshotted_data.c_customer_id != source_data.c_customer_id
+                or
+                (
+                    ((snapshotted_data.c_customer_id is null) and not (source_data.c_customer_id is null))
+                    or
+                    ((not snapshotted_data.c_customer_id is null) and (source_data.c_customer_id is null))
+                )
+                 or 
+            
+                snapshotted_data.c_first_name != source_data.c_first_name
+                or
+                (
+                    ((snapshotted_data.c_first_name is null) and not (source_data.c_first_name is null))
+                    or
+                    ((not snapshotted_data.c_first_name is null) and (source_data.c_first_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_last_name != source_data.c_last_name
+                or
+                (
+                    ((snapshotted_data.c_last_name is null) and not (source_data.c_last_name is null))
+                    or
+                    ((not snapshotted_data.c_last_name is null) and (source_data.c_last_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_preferred_cust_flag != source_data.c_preferred_cust_flag
+                or
+                (
+                    ((snapshotted_data.c_preferred_cust_flag is null) and not (source_data.c_preferred_cust_flag is null))
+                    or
+                    ((not snapshotted_data.c_preferred_cust_flag is null) and (source_data.c_preferred_cust_flag is null))
+                )
+                 or 
+            
+                snapshotted_data.c_birth_country != source_data.c_birth_country
+                or
+                (
+                    ((snapshotted_data.c_birth_country is null) and not (source_data.c_birth_country is null))
+                    or
+                    ((not snapshotted_data.c_birth_country is null) and (source_data.c_birth_country is null))
+                )
+                 or 
+            
+                snapshotted_data.i_category != source_data.i_category
+                or
+                (
+                    ((snapshotted_data.i_category is null) and not (source_data.i_category is null))
+                    or
+                    ((not snapshotted_data.i_category is null) and (source_data.i_category is null))
+                )
+                 or 
+            
+                snapshotted_data.i_class != source_data.i_class
+                or
+                (
+                    ((snapshotted_data.i_class is null) and not (source_data.i_class is null))
+                    or
+                    ((not snapshotted_data.i_class is null) and (source_data.i_class is null))
+                )
+                 or 
+            
+                snapshotted_data.i_brand != source_data.i_brand
+                or
+                (
+                    ((snapshotted_data.i_brand is null) and not (source_data.i_brand is null))
+                    or
+                    ((not snapshotted_data.i_brand is null) and (source_data.i_brand is null))
+                )
+                 or 
+            
+                snapshotted_data.relationship_first_seen_date != source_data.relationship_first_seen_date
+                or
+                (
+                    ((snapshotted_data.relationship_first_seen_date is null) and not (source_data.relationship_first_seen_date is null))
+                    or
+                    ((not snapshotted_data.relationship_first_seen_date is null) and (source_data.relationship_first_seen_date is null))
+                )
+                
+            
+        )
+    
+        )
+
+    ),
+
+    invalidations as (
+
+        select
+            'invalidate' as dbt_change_type,
+            snapshotted_data.*
+        from snapshotted_data
+        left join insertions_source_data as source_data
+            on snapshotted_data.FKEY = source_data.FKEY
+        where source_data.FKEY is null
+
+    ),
+
+    deletions as (
+        select
+            'delete' as dbt_change_type,
+            hard_delete_candidates.*
+
+        from hard_delete_candidates
+    )
+
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+    , dbt_change_type
+    from insertions
+    union all
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+    , dbt_change_type
+    from updates
+    union all
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+    , dbt_change_type
+    from invalidations
+    union all
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+        , dbt_change_type
+    from deletions
+
+
+  
+[0m15:56:35  SQL status: CREATE VIEW in 0.823 seconds
+[0m15:56:35  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:35  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category__dbt_tmp'
+[0m15:56:35  SQL status: SUCCESS in 0.406 seconds
+[0m15:56:35  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:35  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:56:36  SQL status: SUCCESS in 0.428 seconds
+[0m15:56:36  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:36  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category__dbt_tmp'
+[0m15:56:36  SQL status: SUCCESS in 0.411 seconds
+[0m15:56:36  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:36  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:56:37  SQL status: SUCCESS in 0.426 seconds
+[0m15:56:37  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:37  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category__dbt_tmp'
+[0m15:56:37  SQL status: SUCCESS in 0.417 seconds
+[0m15:56:37  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:37  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:56:37  SQL status: SUCCESS in 0.411 seconds
+[0m15:56:37  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:37  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:56:38  SQL status: SUCCESS in 0.446 seconds
+[0m15:56:38  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:38  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_category'
+[0m15:56:38  SQL status: SUCCESS in 0.475 seconds
+[0m15:56:38  Applying DROP to: "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp__dupchk"
+[0m15:56:38  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:38  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    drop table if exists "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp__dupchk"
+[0m15:56:39  SQL status: DROP TABLE in 0.292 seconds
+[0m15:56:39  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:39  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    create table "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp__dupchk" as
+    select
+        sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as business_key,
+        sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(tech_ats AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(tech_ets AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as delete_row_key,
+        dbt_change_type as flag
+    from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp"
+[0m15:56:47  SQL status: CREATE TABLE (9_500_000 rows) in 8.512 seconds
+[0m15:56:47  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:47  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    
+    with invalid_flags as (
+      select
+          'invalid_flag_values' as check_name,
+          count(*) as bad_count
+      from (
+        select flag
+        from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp__dupchk"
+        where flag not in ('insert', 'update', 'invalidate', 'delete')
+           or flag is null
+        group by flag
+      ) invalid_flag_groups
+    ),
+
+    duplicate_inserts as (
+      select
+          'duplicate_insert_rows_per_business_key' as check_name,
+          count(*) as bad_count
+      from (
+        select business_key
+        from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp__dupchk"
+        where flag = 'insert'
+        group by business_key
+        having count(*) > 1
+      ) bad_insert_keys
+    ),
+
+    duplicate_history_actions as (
+      select
+          'duplicate_update_or_invalidate_rows_per_business_key' as check_name,
+          count(*) as bad_count
+      from (
+        select business_key, flag
+        from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp__dupchk"
+        where flag in ('update', 'invalidate')
+        group by business_key, flag
+        having count(*) > 1
+      ) bad_history_groups
+    ),
+
+    duplicate_deletes as (
+      select
+          'duplicate_delete_rows_per_target_row_identity' as check_name,
+          count(*) as bad_count
+      from (
+        select delete_row_key
+        from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp__dupchk"
+        where flag = 'delete'
+        group by delete_row_key
+        having count(*) > 1
+      ) bad_delete_keys
+    ),
+
+    bad_patterns as (
+      select
+          'invalid_flag_pattern_per_business_key' as check_name,
+          count(*) as bad_count
+      from (
+        select
+            business_key,
+            max(case when flag = 'insert' then 1 else 0 end) as has_i,
+            max(case when flag = 'update' then 1 else 0 end) as has_u,
+            max(case when flag = 'invalidate' then 1 else 0 end) as has_inv,
+            max(case when flag = 'delete' then 1 else 0 end) as has_d,
+            count(*) as row_cnt
+        from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp__dupchk"
+        group by business_key
+      ) flags
+      where not (
+        (has_i = 1 and has_u = 0 and has_inv = 0 and has_d = 0)  -- {I}
+        or
+        (has_i = 1 and has_u = 0 and has_inv = 0 and has_d = 1)  -- {I, D}
+        or
+        (has_i = 0 and has_u = 0 and has_inv = 0 and has_d = 1)  -- {D}
+        or
+        (has_i = 0 and has_u = 0 and has_inv = 1 and has_d = 0)  -- {INV}
+        or
+        (has_i = 1 and has_u = 1 and has_inv = 0 and has_d = 0)  -- {U, I}
+      )
+    )
+
+    select check_name, bad_count
+    from (
+      select * from invalid_flags
+      union all
+      select * from duplicate_inserts
+      union all
+      select * from duplicate_history_actions
+      union all
+      select * from duplicate_deletes
+      union all
+      select * from bad_patterns
+    ) checks
+    where bad_count > 0
+[0m15:56:48  SQL status: SUCCESS in 1.144 seconds
+[0m15:56:48  Applying DROP to: "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp__dupchk"
+[0m15:56:48  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:48  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    drop table if exists "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp__dupchk"
+[0m15:56:49  SQL status: DROP TABLE in 0.282 seconds
+[0m15:56:49  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:49  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+select * from (
+        
+
+    
+    
+    
+    
+
+    with snapshot_query as (
+
+        
+
+
+
+with customer_category_relation as (
+
+
+
+    select
+        ss.ss_customer_sk as customer_sk,
+        i.i_category_id,
+        min(d.d_date) as relationship_first_seen_date
+
+    from "lakekeeper-etaps2"."j548910"."tpcds_store_sales" ss
+
+    inner join "lakekeeper-etaps2"."j548910"."tpcds_item" i
+        on ss.ss_item_sk = i.i_item_sk
+
+    inner join "lakekeeper-etaps2"."j548910"."tpcds_date_dim" d
+        on ss.ss_sold_date_sk = d.d_date_sk
+
+    where ss.ss_customer_sk is not null
+      and ss.ss_item_sk is not null
+      and ss.ss_sold_date_sk is not null
+      and i.i_category_id is not null
+      and d.d_date <= DATE '2026-01-01'
+
+    group by
+        ss.ss_customer_sk,
+        i.i_category_id
+
+),
+
+active_customer_ranked as (
+
+
+
+    select
+        c.*,
+        row_number() over (
+            partition by c.c_customer_sk
+            order by c.idh_gltg_fach_adtm desc, c.idh_gltg_fach_edtm desc
+        ) as rn
+
+    from "lakekeeper-etaps2"."j548910"."tpcds_customer" c
+
+    where c.idh_gltg_fach_adtm <= DATE '2026-01-01'
+      and c.idh_gltg_fach_edtm > DATE '2026-01-01'
+
+),
+
+active_customer as (
+
+    select *
+    from active_customer_ranked
+    where rn = 1
+
+),
+
+active_item_ranked as (
+
+
+    select
+        i.*,
+        row_number() over (
+            partition by i.i_item_sk
+            order by i.idh_gltg_fach_adtm desc, i.idh_gltg_fach_edtm desc
+        ) as rn
+
+    from "lakekeeper-etaps2"."j548910"."tpcds_item" i
+
+    where i.idh_gltg_fach_adtm <= DATE '2026-01-01'
+      and i.idh_gltg_fach_edtm > DATE '2026-01-01'
+
+),
+
+active_item as (
+
+    select *
+    from active_item_ranked
+    where rn = 1
+
+),
+
+category_attributes as (
+
+
+
+    select
+        i_category_id,
+
+        max(i_category) as i_category,
+        max(i_class) as i_class,
+        max(i_brand) as i_brand,
+
+        min(idh_gltg_fach_adtm) as item_idh_gltg_fach_adtm,
+        max(idh_gltg_fach_edtm) as item_idh_gltg_fach_edtm
+
+    from active_item
+
+    where i_category_id is not null
+
+    group by
+        i_category_id
+
+),
+
+relationship_enriched as (
+
+    select
+        r.customer_sk,
+        r.i_category_id,
+
+        c.c_customer_id,
+        c.c_first_name,
+        c.c_last_name,
+        c.c_preferred_cust_flag,
+        c.c_birth_country,
+
+        i.i_category,
+        i.i_class,
+        i.i_brand,
+
+        r.relationship_first_seen_date,
+
+
+        greatest(
+            r.relationship_first_seen_date,
+            c.idh_gltg_fach_adtm,
+            i.item_idh_gltg_fach_adtm
+        ) as idh_gltg_fach_adtm,
+
+        least(
+            c.idh_gltg_fach_edtm,
+            i.item_idh_gltg_fach_edtm
+        ) as idh_gltg_fach_edtm
+
+
+
+
+    from customer_category_relation r
+
+    inner join active_customer c
+        on r.customer_sk = c.c_customer_sk
+
+    inner join category_attributes i
+        on r.i_category_id = i.i_category_id
+
+),
+
+final as (
+
+    select
+        'bla' as fusi_quel_inst_schl,
+        customer_sk,
+        i_category_id,
+
+        c_customer_id,
+        c_first_name,
+        c_last_name,
+        c_preferred_cust_flag,
+        c_birth_country,
+
+        i_category,
+        i_class,
+        i_brand,
+
+        relationship_first_seen_date,
+
+        idh_gltg_fach_adtm as von,
+        idh_gltg_fach_edtm as bis
+
+    from relationship_enriched
+
+)
+
+select *
+from final
+
+
+    ),
+
+    filtered_snapshot_query as (
+        select *
+        from snapshot_query as source_data
+        
+    ),
+
+    hard_delete_candidates as (
+        select *,
+            sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as FKEY
+        from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category" as target_data
+
+        
+            where 1 = 0
+        
+    ),
+
+    target_base as (
+        select *,
+            sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as FKEY
+        from "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category" as target_data
+
+        
+            where 1 = 1
+        
+
+                  
+    ),
+
+    snapshotted_data as (
+        select *
+        from target_base
+        where
+            tech_ets = TIMESTAMP '9999-12-30 23:59:59.999'
+    ),
+
+    insertions_source_data as (
+
+        select
+            *,
+            sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) as FKEY,
+            CURRENT_TIMESTAMP as aend_zeit,
+            cast(current_timestamp as timestamp(6)) as tech_ats,
+            TIMESTAMP '9999-12-30 23:59:59.999' as tech_ets
+
+        from snapshot_query
+
+    ),
+
+    insertions as (
+        select
+            'insert' as dbt_change_type,
+            source_data.*
+        
+        from insertions_source_data as source_data
+        left outer join snapshotted_data on snapshotted_data.FKEY = source_data.FKEY
+        where snapshotted_data.FKEY is null
+            or (
+                snapshotted_data.fkey is not null
+                and (
+                    
+        (
+            
+                snapshotted_data.c_customer_id != source_data.c_customer_id
+                or
+                (
+                    ((snapshotted_data.c_customer_id is null) and not (source_data.c_customer_id is null))
+                    or
+                    ((not snapshotted_data.c_customer_id is null) and (source_data.c_customer_id is null))
+                )
+                 or 
+            
+                snapshotted_data.c_first_name != source_data.c_first_name
+                or
+                (
+                    ((snapshotted_data.c_first_name is null) and not (source_data.c_first_name is null))
+                    or
+                    ((not snapshotted_data.c_first_name is null) and (source_data.c_first_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_last_name != source_data.c_last_name
+                or
+                (
+                    ((snapshotted_data.c_last_name is null) and not (source_data.c_last_name is null))
+                    or
+                    ((not snapshotted_data.c_last_name is null) and (source_data.c_last_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_preferred_cust_flag != source_data.c_preferred_cust_flag
+                or
+                (
+                    ((snapshotted_data.c_preferred_cust_flag is null) and not (source_data.c_preferred_cust_flag is null))
+                    or
+                    ((not snapshotted_data.c_preferred_cust_flag is null) and (source_data.c_preferred_cust_flag is null))
+                )
+                 or 
+            
+                snapshotted_data.c_birth_country != source_data.c_birth_country
+                or
+                (
+                    ((snapshotted_data.c_birth_country is null) and not (source_data.c_birth_country is null))
+                    or
+                    ((not snapshotted_data.c_birth_country is null) and (source_data.c_birth_country is null))
+                )
+                 or 
+            
+                snapshotted_data.i_category != source_data.i_category
+                or
+                (
+                    ((snapshotted_data.i_category is null) and not (source_data.i_category is null))
+                    or
+                    ((not snapshotted_data.i_category is null) and (source_data.i_category is null))
+                )
+                 or 
+            
+                snapshotted_data.i_class != source_data.i_class
+                or
+                (
+                    ((snapshotted_data.i_class is null) and not (source_data.i_class is null))
+                    or
+                    ((not snapshotted_data.i_class is null) and (source_data.i_class is null))
+                )
+                 or 
+            
+                snapshotted_data.i_brand != source_data.i_brand
+                or
+                (
+                    ((snapshotted_data.i_brand is null) and not (source_data.i_brand is null))
+                    or
+                    ((not snapshotted_data.i_brand is null) and (source_data.i_brand is null))
+                )
+                 or 
+            
+                snapshotted_data.relationship_first_seen_date != source_data.relationship_first_seen_date
+                or
+                (
+                    ((snapshotted_data.relationship_first_seen_date is null) and not (source_data.relationship_first_seen_date is null))
+                    or
+                    ((not snapshotted_data.relationship_first_seen_date is null) and (source_data.relationship_first_seen_date is null))
+                )
+                
+            
+        )
+    
+                )
+            )
+    ),
+
+    updates as (
+        
+        select
+            'update' as dbt_change_type,
+            source_data.*
+
+        from insertions_source_data as source_data
+        join snapshotted_data on snapshotted_data.FKEY = source_data.FKEY
+        where (
+            
+        (
+            
+                snapshotted_data.c_customer_id != source_data.c_customer_id
+                or
+                (
+                    ((snapshotted_data.c_customer_id is null) and not (source_data.c_customer_id is null))
+                    or
+                    ((not snapshotted_data.c_customer_id is null) and (source_data.c_customer_id is null))
+                )
+                 or 
+            
+                snapshotted_data.c_first_name != source_data.c_first_name
+                or
+                (
+                    ((snapshotted_data.c_first_name is null) and not (source_data.c_first_name is null))
+                    or
+                    ((not snapshotted_data.c_first_name is null) and (source_data.c_first_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_last_name != source_data.c_last_name
+                or
+                (
+                    ((snapshotted_data.c_last_name is null) and not (source_data.c_last_name is null))
+                    or
+                    ((not snapshotted_data.c_last_name is null) and (source_data.c_last_name is null))
+                )
+                 or 
+            
+                snapshotted_data.c_preferred_cust_flag != source_data.c_preferred_cust_flag
+                or
+                (
+                    ((snapshotted_data.c_preferred_cust_flag is null) and not (source_data.c_preferred_cust_flag is null))
+                    or
+                    ((not snapshotted_data.c_preferred_cust_flag is null) and (source_data.c_preferred_cust_flag is null))
+                )
+                 or 
+            
+                snapshotted_data.c_birth_country != source_data.c_birth_country
+                or
+                (
+                    ((snapshotted_data.c_birth_country is null) and not (source_data.c_birth_country is null))
+                    or
+                    ((not snapshotted_data.c_birth_country is null) and (source_data.c_birth_country is null))
+                )
+                 or 
+            
+                snapshotted_data.i_category != source_data.i_category
+                or
+                (
+                    ((snapshotted_data.i_category is null) and not (source_data.i_category is null))
+                    or
+                    ((not snapshotted_data.i_category is null) and (source_data.i_category is null))
+                )
+                 or 
+            
+                snapshotted_data.i_class != source_data.i_class
+                or
+                (
+                    ((snapshotted_data.i_class is null) and not (source_data.i_class is null))
+                    or
+                    ((not snapshotted_data.i_class is null) and (source_data.i_class is null))
+                )
+                 or 
+            
+                snapshotted_data.i_brand != source_data.i_brand
+                or
+                (
+                    ((snapshotted_data.i_brand is null) and not (source_data.i_brand is null))
+                    or
+                    ((not snapshotted_data.i_brand is null) and (source_data.i_brand is null))
+                )
+                 or 
+            
+                snapshotted_data.relationship_first_seen_date != source_data.relationship_first_seen_date
+                or
+                (
+                    ((snapshotted_data.relationship_first_seen_date is null) and not (source_data.relationship_first_seen_date is null))
+                    or
+                    ((not snapshotted_data.relationship_first_seen_date is null) and (source_data.relationship_first_seen_date is null))
+                )
+                
+            
+        )
+    
+        )
+
+    ),
+
+    invalidations as (
+
+        select
+            'invalidate' as dbt_change_type,
+            snapshotted_data.*
+        from snapshotted_data
+        left join insertions_source_data as source_data
+            on snapshotted_data.FKEY = source_data.FKEY
+        where source_data.FKEY is null
+
+    ),
+
+    deletions as (
+        select
+            'delete' as dbt_change_type,
+            hard_delete_candidates.*
+
+        from hard_delete_candidates
+    )
+
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+    , dbt_change_type
+    from insertions
+    union all
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+    , dbt_change_type
+    from updates
+    union all
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+    , dbt_change_type
+    from invalidations
+    union all
+    select fusi_quel_inst_schl,  customer_sk,  i_category_id,  c_customer_id,  c_first_name,  c_last_name,  c_preferred_cust_flag,  c_birth_country,  i_category,  i_class,  i_brand,  relationship_first_seen_date,  von,  bis,  tech_ats,  tech_ets,  aend_zeit
+        , dbt_change_type
+    from deletions
+
+
+    ) as __dbt_sbq
+    where false
+    limit 0
+[0m15:56:49  SQL status: SUCCESS in 0.699 seconds
+[0m15:56:49  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:49  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+select * from (
+        select 
+    current_timestamp
+ as dbt_snapshot_time
+    ) as __dbt_sbq
+    where false
+    limit 0
+[0m15:56:50  SQL status: SUCCESS in 0.335 seconds
+[0m15:56:50  Writing runtime sql for node "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:50  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:50  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+      
+    
+
+    merge into "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category" as DBT_INTERNAL_DEST
+    using "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp" as DBT_INTERNAL_SOURCE
+    on sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(DBT_INTERNAL_SOURCE.customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(DBT_INTERNAL_SOURCE.i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' ))) = sha1(to_utf8(concat_ws('م', coalesce(to_hex(to_utf8(CAST(DBT_INTERNAL_DEST.customer_sk AS VARCHAR))), CAST(''AS VARCHAR)), 'م', coalesce(to_hex(to_utf8(CAST(DBT_INTERNAL_DEST.i_category_id AS VARCHAR))), CAST(''AS VARCHAR)), 'م' )))
+    and DBT_INTERNAL_SOURCE.dbt_change_type <> 'insert'
+
+    when matched
+     and DBT_INTERNAL_SOURCE.dbt_change_type = 'delete'
+    then delete
+
+    when matched
+     and DBT_INTERNAL_DEST.tech_ets = TIMESTAMP '9999-12-30 23:59:59.999'
+     and DBT_INTERNAL_SOURCE.dbt_change_type in ('update', 'invalidate')
+        then update
+        set tech_ets = cast(current_timestamp as timestamp(6))
+          , aend_zeit = current_timestamp
+
+    when not matched
+     and DBT_INTERNAL_SOURCE.dbt_change_type = 'insert'
+        then insert ("fusi_quel_inst_schl", "customer_sk", "i_category_id", "c_customer_id", "c_first_name", "c_last_name", "c_preferred_cust_flag", "c_birth_country", "i_category", "i_class", "i_brand", "relationship_first_seen_date", "von", "bis", "tech_ats", "tech_ets", "aend_zeit")
+        values (DBT_INTERNAL_SOURCE."fusi_quel_inst_schl", DBT_INTERNAL_SOURCE."customer_sk", DBT_INTERNAL_SOURCE."i_category_id", DBT_INTERNAL_SOURCE."c_customer_id", DBT_INTERNAL_SOURCE."c_first_name", DBT_INTERNAL_SOURCE."c_last_name", DBT_INTERNAL_SOURCE."c_preferred_cust_flag", DBT_INTERNAL_SOURCE."c_birth_country", DBT_INTERNAL_SOURCE."i_category", DBT_INTERNAL_SOURCE."i_class", DBT_INTERNAL_SOURCE."i_brand", DBT_INTERNAL_SOURCE."relationship_first_seen_date", DBT_INTERNAL_SOURCE."von", DBT_INTERNAL_SOURCE."bis", DBT_INTERNAL_SOURCE."tech_ats", DBT_INTERNAL_SOURCE."tech_ets", DBT_INTERNAL_SOURCE."aend_zeit")
+[0m15:56:57  SQL status: MERGE (9_500_000 rows) in 7.570 seconds
+[0m15:56:57  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: COMMIT
+[0m15:56:57  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"
+[0m15:56:57  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY"} */
+
+    drop view if exists "lakekeeper-etaps2"."j548910"."silver_tpcds_customer_category__dbt_tmp"
+[0m15:56:58  SQL status: DROP VIEW in 0.251 seconds
+[0m15:56:58  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY: Close
+[0m15:56:58  1 of 1 OK snapshotted j548910.silver_tpcds_customer_category ................... [[32mMERGE (9_500_000 rows)[0m in 25.90s]
+[0m15:56:58  Finished running node snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY
+[0m15:56:58  On master: COMMIT
+[0m15:56:58  Connection 'master' was properly closed.
+[0m15:56:58  Connection 'snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY' was properly closed.
+[0m15:56:58  
+[0m15:56:58  Finished running 1 snapshot in 0 hours 0 minutes and 27.47 seconds (27.47s).
+[0m15:56:58  Command end result
+[0m15:56:58  Wrote artifact WritableManifest to /Users/j548910/IdeaProjects/Silver_Layer/target/manifest.json
+[0m15:56:58  Wrote artifact SemanticManifest to /Users/j548910/IdeaProjects/Silver_Layer/target/semantic_manifest.json
+[0m15:56:58  Wrote artifact RunExecutionResult to /Users/j548910/IdeaProjects/Silver_Layer/target/run_results.json
+[0m15:56:58  
+[0m15:56:58  [32mCompleted successfully[0m
+[0m15:56:58  
+[0m15:56:58  Done. PASS=1 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=1
+[0m15:56:58  Resource report: {"command_name": "snapshot", "command_success": true, "command_wall_clock_time": 27.99683, "process_in_blocks": "0", "process_kernel_time": 0.410056, "process_mem_max_rss": "132071424", "process_out_blocks": "0", "process_user_time": 2.31919}
+[0m15:56:58  Command `dbt snapshot` succeeded at 17:56:58.237255 after 28.00 seconds
+[0m15:56:58  Flushing usage events

@@ -1,0 +1,396 @@
+-- {% macro resolve_load_filter_condition(strategy, relation_alias=none) %}
+
+--     {% set load_filter = strategy.get('load_filter') %}
+
+--     {{ log("load_filter: " ~ load_filter|string, info=true) }}
+--     {% if load_filter is none or load_filter | trim == '' %}
+--         {% do return(none) %}
+--     {% endif %}
+
+--     {% set re = modules.re %}
+
+--     {% set filter_text = load_filter
+--         | replace('"', '"')
+--         | replace('"', '"')
+--         | replace("’", "'")
+--         | trim
+--      %}
+
+--      {% if is_advanced_load_filter(filter_text) %}
+--         {% do return(render_raw_load_filter_condition(filter_text, relation_alias)) %}
+--     {% endif %}
+
+--      {% set condition_parts = re.split('\\s+and\\s+', filter_text, flags=re.IGNORECASE) %}
+
+--      {% set resolved_conditions = [] %}
+
+--      {% for condition_part in condition_parts %}
+        
+--         {% set condition = condition_part | trim %}
+
+--         {{ log("condition_part: " ~ condition_part|string, info=true) }}
+
+--         {% if condition == '' %}
+--             {{ exceptions.raise_compiler_error(
+--                 "Invalid load_filter: empty condition found in '" ~ load_filter ~ "'."
+--             ) }}
+--         {% endif %}
+
+--         {% set in_match = re.match(
+--             '^([A-Za-z_][A-Za-z0-9_]*)\\s+in\\s*\\((.*)\\)$',
+--             condition,
+--             flags=re.IGNORECASE
+--         ) %}
+
+--         {% set eq_match = re.match(
+--             '^([A-Za-z_][A-Za-z0-9_]*)\\s*=\\s*(.+)$',
+--             condition,
+--             flags=re.IGNORECASE
+--         ) %}
+--         {{ log("in_match: " ~ in_match|string, info=true) }}
+--         {{ log("eq_match: " ~ eq_match|string, info=true) }}
+
+--         {% if in_match %}
+--             {% set filter_col_input = in_match.group(1) | trim %}
+--             {% set raw_value_text = in_match.group(2) | trim %}
+
+--             {{ log("raw_value_text: " ~ raw_value_text|string, info=true) }}
+
+--             {% set col_info = get_load_filter_column_info(strategy, filter_col_input) %}
+--             {% set left_expr = build_load_filter_left_expr(col_info['name'], relation_alias) %}
+
+--             {% if raw_value_text == '' %}
+--                 {{ exceptions.raise_compiler_error(
+--                     "Invalid load_filter condition : '" ~ condition ~ "'. IN-list must not be empty."
+--                 ) }}
+--             {% endif %}
+
+--             {% set raw_values_regex = "\\s*,\\s*(?=(?:[^'\\\"]|'[^']*'|\\\"[^\\\"]*\\\")*$)" %}
+
+--             {{ log("raw_values_regex: " ~ raw_values_regex|string, info=true) }}
+
+--             {% set raw_values = re.split(
+--                 "\\s*,\\s*(?=(?:[^'\\\"]|'[^']*'|\\\"[^\\\"]*\\\")*$)",
+--                 raw_value_text
+--             ) %}
+--             {{ log("raw_values: " ~ raw_values|string, info=true) }}
+
+--             {% set non_null_values = [] %}
+--             {% set ns = namespace(has_null=false) %}
+
+--             {% for raw_value in raw_values %}
+
+--                 {{ log("raw_value: " ~ raw_value|string, info=true) }}
+
+--                 {% set literal = render_load_filter_literal(raw_value, col_info['type']) %}
+
+--                 {% if literal['is_null'] %}
+--                     {% set ns.has_null = true %}
+--                 {% else %}
+--                     {% do non_null_values.append(literal['expr']) %}
+--                 {% endif %}
+
+--             {% endfor %}
+
+--             {% if non_null_values | length == 0 and ns.has_null %}
+
+--                 {% do resolved_conditions.append(left_expr ~ " is null") %}
+
+--             {% elif non_null_values | length > 0 and ns.has_null %}
+            
+--                 {% do resolved_conditions.append(
+--                     "(" ~ left_expr ~ " in (" ~ non_null_values | join(', ') ~ ") or " ~ left_expr ~ " is null)"
+--                 ) %}
+
+--             {% elif non_null_values |  length > 0 %}
+
+--                 {% do resolved_conditions.append(
+--                     left_expr ~ " in (" ~ non_null_values | join(', ') ~ ")"
+--                 ) %}
+
+--             {% else %}
+
+--                 {{ exceptions.raise_compiler_error(
+--                     "Invalid load_filter_condition: '" ~ condition ~ "'. No valid IN values found."
+--                 ) }}
+
+--             {% endif %}
+
+--         {% elif eq_match %}
+
+--             {% set filter_col_input = eq_match.group(1) | trim %}
+--             {% set raw_value = eq_match.group(2) | trim %}
+
+--             {% set col_info = get_load_filter_column_info(strategy, filter_col_input) %}
+--             {% set left_expr = build_load_filter_left_expr(col_info['name'], relation_alias) %}
+--             {% set literal = render_load_filter_literal(raw_value, col_info['type']) %}
+
+--             {% if literal['is_null'] %}
+--                 {% do resolved_conditions.append(left_expr ~ " is null") %}
+--             {% else %}
+--                 {% do resolved_conditions.append(left_expr ~ " = " ~ literal['expr']) %}
+--             {% endif %}
+
+--         {% else %}
+
+--             {{ exceptions.raise_compiler_error(
+--                 "Invalid load_filter condition: '" ~ condition ~ "'. " ~
+--                 "Supported formats are: <column> = <value> and <column> in (<value1>, <value2>, ...)."
+--             ) }}
+
+--         {% endif %}
+
+
+--      {% endfor %}
+
+--      {% do return(resolved_conditions | join(' and ')) %}
+
+-- {% endmacro %}
+
+
+-- {% macro get_load_filter_column_info(strategy, filter_col_input) %}
+
+--     {% set ns = namespace(
+--         found=false,
+--         column_name=none,
+--         column_type=none
+--     ) %}
+
+--     {% for c in strategy.cols %}
+
+--         {% if c.name | lower == filter_col_input | lower %}
+
+--             {% set ns.found = true %}
+--             {% set ns.column_name = c.name %}
+
+--             {% if c.data_type is defined %}
+--                 {% set ns.column_type = c.data_type | lower %}
+--             {% elif c.dtype is defined %}
+--                 {% set ns.column_type = c.dtype | lower %}
+--             {% else %}
+--                 {{ exceptions.raise_compiler_error(
+--                     "Could not determine data type for load_filter column: " ~ c.name
+--                 ) }}
+--             {% endif %}
+
+--         {% endif %}
+
+--     {% endfor %}
+
+--     {% if not ns.found %}
+
+--     {{ exceptions.raise_compiler_error(
+--         "Invalid load_filter column: '" ~ filter_col_input ~ "'. " ~ "Column does not exist in strategy.cols"
+--     ) }}
+
+--     {% endif %}
+
+--     {% do return({
+--         'name': ns.column_name,
+--         'type': ns.column_type
+--     }) %}
+
+-- {% endmacro %}
+
+
+-- {% macro build_load_filter_left_expr(column_name, relation_alias=none) %}
+
+--     {% if relation_alias is not none and relation_alias | trim != '' %}
+--         {% do return(relation_alias ~ "." ~ column_name) %}
+--     {% else %}
+--         {% do return(column_name) %}
+--     {% endif %}
+
+-- {% endmacro %}
+
+-- {% macro render_load_filter_literal(raw_value, column_type) %}
+
+--     {% set value_raw = raw_value | trim %}
+--     {% set value_lower = value_raw | lower %}
+
+--     {% if value_lower in ['null', 'none'] %}
+    
+--         {% do return({
+--             'expr': 'null',
+--             'is_null': true
+--         }) %}
+
+--     {% endif %}
+
+--     {% set value_clean = value_raw %}
+
+--     {% if value_clean[0:1] == "'" and value_clean [-1:] == "'" %}
+--         {% set value_clean = value_clean [1:-1] %}
+--     {% elif value_clean[0:1] == '"' and value_clean[-1:] == '"' %}
+--         {% set value_clean = value_clean[1:-1] %}
+--     {% endif %}
+
+--     {% set value_escaped = value_clean | replace("'", "''") %}
+
+--     {% if 'char' in column_type 
+--        or 'varchar' in column_type
+--        or 'string' in column_type %}
+    
+--         {% set expr = "'" ~ value_escaped ~ "'" %}
+
+--     {% elif column_type.startswith('date') %}
+
+--         {% set expr = "cast('" ~ value_escaped ~ "' as date )" %}
+
+--     {% elif column_type.startswith('timestamp') %}
+
+--         {% set expr = "cast('" ~ value_escaped ~ "' as " ~ column_type ~ ")" %}
+
+--     {% elif column_type.startswith('boolean') %}
+
+--         {% if value_lower in ['true', '1', 'yes', 'y'] %}
+--             {% set expr = "true" %}
+--         {% elif value_lower in ['false', '0', 'no', 'n'] %}
+--             {% set expr = "false" %}
+--         {% else %}
+--             {{ exceptions.raise_compiler_error(
+--                 "Invalid boolean value for load_filter: '" ~ raw_value ~ "'. " ~
+--                 "Allowed values: true, false, 1, 0, yes, no."
+--             ) }}
+--         {% endif %}
+
+--     {% elif 'int' in column_type
+--        or column_type.startswith('decimal')
+--        or column_type.startswith('numeric')
+--        or column_type.startswith('double')
+--        or column_type.startswith('real') %}
+
+--        {% set expr = "cast('" ~ value_escaped ~ "' as " ~ column_type ~ ")" %}
+
+--     {% else %}
+
+--         {{ exceptions.raise_compiler_error(
+--             "Unsupported load_filter column type: " ~ column_type
+--         ) }}
+
+--     {% endif %}
+
+--     {% do return({
+--         'expr': expr,
+--         'is_null': false
+--     }) %}
+
+
+-- {% endmacro %}
+
+
+-- {% macro is_advanced_load_filter(load_filter) %}
+
+--     {%- set re = modules.re -%}
+--     {%- set filter_text = load_filter | trim -%}
+
+--     {%- set advanced_pattern -%}
+--         (\bor\b)
+--         |(\bnot\b)
+--         |(\bbetween\b)
+--         |(\blike\b)
+--         |(\bis\s+null\b)
+--         |(\bis\s+not\s+null\b)
+--         |(\bis\s+distinct\s+from\b)
+--         |(\bis\s+not\s+distinct\s+from\b)
+--         |(\bregexp_like\s*\()
+--         |(\bexists\s*\()
+--         |(<>)
+--         |(!=)
+--         |(<=)
+--         |(>=)
+--         |(<)
+--         |(>)
+--     {%- endset -%}
+
+--     {%- set advanced_match = re.search(
+--         advanced_pattern | replace('\n', '') | replace(' ', ''),
+--         filter_text,
+--         flags=re.IGNORECASE
+--     ) -%}
+
+--     {% do return(advanced_match is not none) %}
+
+-- {% endmacro %}
+
+
+-- {% macro render_raw_load_filter_condition(load_filter, relation_alias=none) %}
+
+--     {%- set filter_text = load_filter
+--         | replace('“', '"')
+--         | replace('”', '"')
+--         | replace("’", "'")
+--         | trim
+--     -%}
+
+--     {# Basic safety checks #}
+--     {%- set lower_filter = filter_text | lower -%}
+
+--     {%- if ';' in filter_text
+--         or '--' in filter_text
+--         or '/*' in filter_text
+--         or '*/' in filter_text -%}
+
+--         {{ exceptions.raise_compiler_error(
+--             "Invalid load_filter: semicolons and SQL comments are not allowed."
+--         ) }}
+
+--     {%- endif -%}
+
+--     {%- set forbidden_keywords = [
+--         ' insert ',
+--         ' update ',
+--         ' delete ',
+--         ' merge ',
+--         ' drop ',
+--         ' alter ',
+--         ' create ',
+--         ' truncate ',
+--         ' grant ',
+--         ' revoke '
+--     ] -%}
+
+--     {%- for keyword in forbidden_keywords -%}
+--         {%- if keyword in (' ' ~ lower_filter ~ ' ') -%}
+--             {{ exceptions.raise_compiler_error(
+--                 "Invalid load_filter: forbidden keyword found: " ~ keyword | trim
+--             ) }}
+--         {%- endif -%}
+--     {%- endfor -%}
+
+--     {%- if relation_alias is not none and relation_alias | trim != '' -%}
+--         {%- set filter_text = filter_text | replace('__alias__', relation_alias) -%}
+--         {%- set filter_text = filter_text | replace('{alias}', relation_alias) -%}
+--     {%- endif -%}
+
+--     {% do return(filter_text) %}
+
+-- {% endmacro %}
+
+
+
+{% set load_filter_condition = resolve_load_filter_condition('tmp') %}
+
+    {{ log("load_filter_condition: " ~ load_filter_condition|string, info=true) }}
+
+    {% if load_filter_condition is not none %}
+        where {{ load_filter_source_condition }}
+    {% endif %}
+
+
+
+    {% if load_filter_condition is not none %}
+        where {{ load_filter_condition }}
+    {% endif %}
+
+
+    now please create a model for that materialization so we can use it for testing purposes. these tables are largly similar to booking day based tables yet they are additive along the time. there are three columns to take into consideration, yet only one of them can be used as temporal column:
+
+- TRANS_DAT/TS: this one
+
+- BOOK_DAT
+
+- VAL_DAT
+
+
+

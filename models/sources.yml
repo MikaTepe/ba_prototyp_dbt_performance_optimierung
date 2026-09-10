@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: local_lakehouse
+    database: lakekeeper-etaps2
+    schema: j548910
+    tables:
+      - name: rds_grundkonto_az1
+      - name: bronze_kunden_konto_feed
+      - name: bronze_kunden_konto_feed_1
+      - name: bronze_kunden_konto_feed_100
+      - name: bronze_kunden_konto_feed_10mil_test
+      - name: tpcds_customer
+      - name: tpcds_store
+      - name: tpcds_date_dim
+      - name: tpcds_item
+      - name: tpcds_store_sales

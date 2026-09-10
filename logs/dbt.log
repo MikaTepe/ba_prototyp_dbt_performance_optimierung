@@ -1,0 +1,675 @@
+
+
+============================== 16:26:00.968027 | 1d471cf2-da0b-4aa3-bb6e-f2c273b3c1ab ==============================
+[0m16:26:00.968027 [info ] [MainThread]: Running with dbt=1.10.22
+[0m16:26:00.971301 [debug] [MainThread]: running dbt with arguments {'partial_parse': 'True', 'debug': 'False', 'warn_error': 'None', 'profiles_dir': '.', 'fail_fast': 'False', 'quiet': 'False', 'no_print': 'None', 'target_path': 'None', 'introspect': 'True', 'static_parser': 'True', 'indirect_selection': 'eager', 'invocation_command': 'dbt debug --profiles-dir .', 'use_colors': 'True', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_experimental_parser': 'False', 'printer_width': '80', 'empty': 'None', 'write_json': 'True', 'log_format': 'default', 'cache_selected_only': 'False', 'log_path': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test/logs', 'log_cache_events': 'False', 'send_anonymous_usage_stats': 'False'}
+[0m16:26:00.986957 [info ] [MainThread]: dbt version: 1.10.22
+[0m16:26:00.987257 [info ] [MainThread]: python version: 3.9.6
+[0m16:26:00.987440 [info ] [MainThread]: python path: /Users/j549680/IdeaProjects/Tabellen-Relationen/Tabellen Relation Projekt Python/venv/bin/python
+[0m16:26:00.987608 [info ] [MainThread]: os info: macOS-26.6-arm64-arm-64bit
+[0m16:26:00.990183 [info ] [MainThread]: target not specified in profile 'Silver_Layer', using 'default'
+[0m16:26:00.990574 [info ] [MainThread]: Using profiles dir at .
+[0m16:26:00.990851 [info ] [MainThread]: Using profiles.yml file at ./profiles.yml
+[0m16:26:00.991041 [info ] [MainThread]: Using dbt_project.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/dbt_project.yml
+[0m16:26:01.077871 [info ] [MainThread]: Configuration:
+[0m16:26:01.078470 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m16:26:01.078719 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m16:26:01.078904 [info ] [MainThread]: Required dependencies:
+[0m16:26:01.079197 [debug] [MainThread]: Executing "git --help"
+[0m16:26:01.109025 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m16:26:01.110042 [debug] [MainThread]: STDERR: "b''"
+[0m16:26:01.110334 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m16:26:01.110569 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m16:26:01.110766 [info ] [MainThread]: [31m1 check failed:[0m
+[0m16:26:01.110955 [info ] [MainThread]: Profile loading failed for the following reason:
+Runtime Error
+  The profile 'Silver_Layer' does not have a target named 'default'. The valid target names for this profile are:
+   - dev
+   - prod
+   - target
+
+
+[0m16:26:01.114819 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.2152785, "process_in_blocks": "0", "process_kernel_time": 0.264733, "process_mem_max_rss": "107888640", "process_out_blocks": "0", "process_user_time": 1.125321}
+[0m16:26:01.115192 [debug] [MainThread]: Command `dbt debug` failed at 16:26:01.115115 after 0.22 seconds
+[0m16:26:01.115495 [debug] [MainThread]: Flushing usage events
+
+
+============================== 16:26:26.567899 | 81ff8466-40e4-497f-908c-2521862decaa ==============================
+[0m16:26:26.567899 [info ] [MainThread]: Running with dbt=1.10.22
+[0m16:26:26.571261 [debug] [MainThread]: running dbt with arguments {'quiet': 'False', 'introspect': 'True', 'partial_parse': 'True', 'write_json': 'True', 'use_colors': 'True', 'cache_selected_only': 'False', 'no_print': 'None', 'static_parser': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'fail_fast': 'False', 'log_format': 'default', 'debug': 'False', 'profiles_dir': '.', 'invocation_command': 'dbt debug --profiles-dir .', 'log_cache_events': 'False', 'version_check': 'True', 'log_path': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test/logs', 'send_anonymous_usage_stats': 'False', 'target_path': 'None', 'printer_width': '80', 'warn_error': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'empty': 'None'}
+[0m16:26:26.583746 [info ] [MainThread]: dbt version: 1.10.22
+[0m16:26:26.584099 [info ] [MainThread]: python version: 3.9.6
+[0m16:26:26.584319 [info ] [MainThread]: python path: /Users/j549680/IdeaProjects/Tabellen-Relationen/Tabellen Relation Projekt Python/venv/bin/python
+[0m16:26:26.584501 [info ] [MainThread]: os info: macOS-26.6-arm64-arm-64bit
+[0m16:26:26.587277 [info ] [MainThread]: Using profiles dir at .
+[0m16:26:26.587720 [info ] [MainThread]: Using profiles.yml file at ./profiles.yml
+[0m16:26:26.587926 [info ] [MainThread]: Using dbt_project.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/dbt_project.yml
+[0m16:26:26.673134 [info ] [MainThread]: Configuration:
+[0m16:26:26.673480 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m16:26:26.673697 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m16:26:26.674076 [info ] [MainThread]: Required dependencies:
+[0m16:26:26.674455 [debug] [MainThread]: Executing "git --help"
+[0m16:26:26.701355 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m16:26:26.701941 [debug] [MainThread]: STDERR: "b''"
+[0m16:26:26.702182 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m16:26:26.702400 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m16:26:26.702616 [info ] [MainThread]: [31m1 check failed:[0m
+[0m16:26:26.702793 [info ] [MainThread]: Profile loading failed for the following reason:
+Runtime Error
+  Could not find profile named 'Silver_Layer'
+
+
+[0m16:26:26.705104 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.19869904, "process_in_blocks": "0", "process_kernel_time": 0.188025, "process_mem_max_rss": "102203392", "process_out_blocks": "0", "process_user_time": 1.024389}
+[0m16:26:26.705617 [debug] [MainThread]: Command `dbt debug` failed at 16:26:26.705522 after 0.20 seconds
+[0m16:26:26.705973 [debug] [MainThread]: Flushing usage events
+
+
+============================== 16:26:41.117665 | 6c8a5482-691b-4460-9865-aea353018cfa ==============================
+[0m16:26:41.117665 [info ] [MainThread]: Running with dbt=1.10.22
+[0m16:26:41.120315 [debug] [MainThread]: running dbt with arguments {'partial_parse': 'True', 'indirect_selection': 'eager', 'empty': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'False', 'printer_width': '80', 'log_path': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test/logs', 'static_parser': 'True', 'invocation_command': 'dbt debug --profiles-dir .', 'target_path': 'None', 'cache_selected_only': 'False', 'log_format': 'default', 'fail_fast': 'False', 'use_colors': 'True', 'write_json': 'True', 'profiles_dir': '.', 'debug': 'False', 'log_cache_events': 'False', 'no_print': 'None', 'warn_error': 'None', 'use_experimental_parser': 'False', 'introspect': 'True', 'version_check': 'True'}
+[0m16:26:41.126608 [info ] [MainThread]: dbt version: 1.10.22
+[0m16:26:41.126883 [info ] [MainThread]: python version: 3.9.6
+[0m16:26:41.127074 [info ] [MainThread]: python path: /Users/j549680/IdeaProjects/Tabellen-Relationen/Tabellen Relation Projekt Python/venv/bin/python
+[0m16:26:41.127296 [info ] [MainThread]: os info: macOS-26.6-arm64-arm-64bit
+[0m16:26:41.129613 [info ] [MainThread]: Using profiles dir at .
+[0m16:26:41.129827 [info ] [MainThread]: Using profiles.yml file at ./profiles.yml
+[0m16:26:41.130009 [info ] [MainThread]: Using dbt_project.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/dbt_project.yml
+[0m16:26:41.217104 [info ] [MainThread]: Configuration:
+[0m16:26:41.217515 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m16:26:41.217710 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m16:26:41.217919 [info ] [MainThread]: Required dependencies:
+[0m16:26:41.218217 [debug] [MainThread]: Executing "git --help"
+[0m16:26:41.244912 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m16:26:41.245550 [debug] [MainThread]: STDERR: "b''"
+[0m16:26:41.245802 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m16:26:41.246020 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m16:26:41.246251 [info ] [MainThread]: [31m1 check failed:[0m
+[0m16:26:41.246428 [info ] [MainThread]: Profile loading failed for the following reason:
+Runtime Error
+  Could not find profile named 'Silver_Layer'
+
+
+[0m16:26:41.248407 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.18883929, "process_in_blocks": "0", "process_kernel_time": 0.140847, "process_mem_max_rss": "102236160", "process_out_blocks": "0", "process_user_time": 0.984872}
+[0m16:26:41.248768 [debug] [MainThread]: Command `dbt debug` failed at 16:26:41.248694 after 0.19 seconds
+[0m16:26:41.249061 [debug] [MainThread]: Flushing usage events
+
+
+============================== 16:27:59.138334 | 164e6530-b259-47fa-a6be-b2d0005d0a5c ==============================
+[0m16:27:59.138334 [info ] [MainThread]: Running with dbt=1.10.22
+[0m16:27:59.140839 [debug] [MainThread]: running dbt with arguments {'write_json': 'True', 'version_check': 'True', 'printer_width': '80', 'cache_selected_only': 'False', 'static_parser': 'True', 'warn_error': 'None', 'log_path': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test/logs', 'indirect_selection': 'eager', 'use_colors': 'True', 'partial_parse': 'True', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'profiles_dir': '.', 'log_cache_events': 'False', 'debug': 'False', 'send_anonymous_usage_stats': 'False', 'use_experimental_parser': 'False', 'log_format': 'default', 'empty': 'None', 'invocation_command': 'dbt debug --profiles-dir .', 'introspect': 'True', 'fail_fast': 'False', 'target_path': 'None', 'quiet': 'False'}
+[0m16:27:59.146936 [info ] [MainThread]: dbt version: 1.10.22
+[0m16:27:59.147164 [info ] [MainThread]: python version: 3.9.6
+[0m16:27:59.147360 [info ] [MainThread]: python path: /Users/j549680/IdeaProjects/Tabellen-Relationen/Tabellen Relation Projekt Python/venv/bin/python
+[0m16:27:59.147550 [info ] [MainThread]: os info: macOS-26.6-arm64-arm-64bit
+[0m16:27:59.150063 [info ] [MainThread]: Using profiles dir at .
+[0m16:27:59.150333 [info ] [MainThread]: Using profiles.yml file at ./profiles.yml
+[0m16:27:59.150533 [info ] [MainThread]: Using dbt_project.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/dbt_project.yml
+[0m16:27:59.235368 [info ] [MainThread]: Configuration:
+[0m16:27:59.235746 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m16:27:59.235945 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m16:27:59.236125 [info ] [MainThread]: Required dependencies:
+[0m16:27:59.236400 [debug] [MainThread]: Executing "git --help"
+[0m16:27:59.263096 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m16:27:59.263800 [debug] [MainThread]: STDERR: "b''"
+[0m16:27:59.264093 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m16:27:59.264353 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m16:27:59.264555 [info ] [MainThread]: [31m1 check failed:[0m
+[0m16:27:59.264738 [info ] [MainThread]: Profile loading failed for the following reason:
+Runtime Error
+  Could not find profile named 'Silver_Layer'
+
+
+[0m16:27:59.266886 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.189845, "process_in_blocks": "0", "process_kernel_time": 0.154849, "process_mem_max_rss": "102219776", "process_out_blocks": "0", "process_user_time": 0.978213}
+[0m16:27:59.267230 [debug] [MainThread]: Command `dbt debug` failed at 16:27:59.267167 after 0.19 seconds
+[0m16:27:59.267502 [debug] [MainThread]: Flushing usage events
+
+
+============================== 16:29:08.460638 | 55284234-0c1a-4695-aadb-938948d6da42 ==============================
+[0m16:29:08.460638 [info ] [MainThread]: Running with dbt=1.10.22
+[0m16:29:08.464109 [debug] [MainThread]: running dbt with arguments {'log_format': 'default', 'printer_width': '80', 'profiles_dir': '.', 'send_anonymous_usage_stats': 'False', 'debug': 'False', 'indirect_selection': 'eager', 'introspect': 'True', 'empty': 'None', 'version_check': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'target_path': 'None', 'static_parser': 'True', 'log_path': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test/logs', 'write_json': 'True', 'fail_fast': 'False', 'quiet': 'False', 'invocation_command': 'dbt debug --profiles-dir .', 'use_colors': 'True', 'no_print': 'None', 'log_cache_events': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_experimental_parser': 'False'}
+[0m16:29:08.475063 [info ] [MainThread]: dbt version: 1.10.22
+[0m16:29:08.475463 [info ] [MainThread]: python version: 3.9.6
+[0m16:29:08.475705 [info ] [MainThread]: python path: /Users/j549680/IdeaProjects/Tabellen-Relationen/Tabellen Relation Projekt Python/venv/bin/python
+[0m16:29:08.475894 [info ] [MainThread]: os info: macOS-26.6-arm64-arm-64bit
+[0m16:29:08.478557 [info ] [MainThread]: Using profiles dir at .
+[0m16:29:08.478814 [info ] [MainThread]: Using profiles.yml file at ./profiles.yml
+[0m16:29:08.479008 [info ] [MainThread]: Using dbt_project.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/dbt_project.yml
+[0m16:29:08.563995 [info ] [MainThread]: Configuration:
+[0m16:29:08.564357 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m16:29:08.564552 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m16:29:08.564729 [info ] [MainThread]: Required dependencies:
+[0m16:29:08.564991 [debug] [MainThread]: Executing "git --help"
+[0m16:29:08.592310 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m16:29:08.592937 [debug] [MainThread]: STDERR: "b''"
+[0m16:29:08.593194 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m16:29:08.593469 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m16:29:08.593720 [info ] [MainThread]: [31m1 check failed:[0m
+[0m16:29:08.593960 [info ] [MainThread]: Profile loading failed for the following reason:
+Runtime Error
+  Could not find profile named 'Silver_Layer'
+
+
+[0m16:29:08.596326 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.1934825, "process_in_blocks": "0", "process_kernel_time": 0.169968, "process_mem_max_rss": "101613568", "process_out_blocks": "0", "process_user_time": 1.011574}
+[0m16:29:08.596806 [debug] [MainThread]: Command `dbt debug` failed at 16:29:08.596724 after 0.19 seconds
+[0m16:29:08.597129 [debug] [MainThread]: Flushing usage events
+
+
+============================== 16:29:44.773823 | 1b480391-b0b4-4c96-a6fc-79d5669efe78 ==============================
+[0m16:29:44.773823 [info ] [MainThread]: Running with dbt=1.10.22
+[0m16:29:44.777105 [debug] [MainThread]: running dbt with arguments {'cache_selected_only': 'False', 'printer_width': '80', 'log_cache_events': 'False', 'send_anonymous_usage_stats': 'False', 'quiet': 'False', 'warn_error': 'None', 'use_experimental_parser': 'False', 'use_colors': 'True', 'fail_fast': 'False', 'no_print': 'None', 'version_check': 'True', 'target_path': 'None', 'empty': 'None', 'log_path': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test/logs', 'invocation_command': 'dbt debug --profiles-dir .', 'debug': 'False', 'profiles_dir': '.', 'indirect_selection': 'eager', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True', 'introspect': 'True', 'log_format': 'default', 'static_parser': 'True', 'write_json': 'True'}
+[0m16:29:44.787387 [info ] [MainThread]: dbt version: 1.10.22
+[0m16:29:44.787843 [info ] [MainThread]: python version: 3.9.6
+[0m16:29:44.788081 [info ] [MainThread]: python path: /Users/j549680/IdeaProjects/Tabellen-Relationen/Tabellen Relation Projekt Python/venv/bin/python
+[0m16:29:44.788481 [info ] [MainThread]: os info: macOS-26.6-arm64-arm-64bit
+[0m16:29:44.791315 [info ] [MainThread]: Using profiles dir at .
+[0m16:29:44.791587 [info ] [MainThread]: Using profiles.yml file at ./profiles.yml
+[0m16:29:44.791787 [info ] [MainThread]: Using dbt_project.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/dbt_project.yml
+[0m16:29:44.878225 [info ] [MainThread]: Configuration:
+[0m16:29:44.878584 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m16:29:44.878780 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m16:29:44.878958 [info ] [MainThread]: Required dependencies:
+[0m16:29:44.879234 [debug] [MainThread]: Executing "git --help"
+[0m16:29:44.905752 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m16:29:44.906442 [debug] [MainThread]: STDERR: "b''"
+[0m16:29:44.906700 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m16:29:44.906925 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m16:29:44.907123 [info ] [MainThread]: [31m1 check failed:[0m
+[0m16:29:44.907300 [info ] [MainThread]: Profile loading failed for the following reason:
+Runtime Error
+  Could not find profile named 'Silver_Layer'
+
+
+[0m16:29:44.910204 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.1979903, "process_in_blocks": "0", "process_kernel_time": 0.16267, "process_mem_max_rss": "102170624", "process_out_blocks": "0", "process_user_time": 1.014788}
+[0m16:29:44.910611 [debug] [MainThread]: Command `dbt debug` failed at 16:29:44.910528 after 0.20 seconds
+[0m16:29:44.910950 [debug] [MainThread]: Flushing usage events
+
+
+============================== 15:14:47.283411 | 859279fc-f4a0-4de2-858d-2db0484d92b5 ==============================
+[0m15:14:47.283411 [info ] [MainThread]: Running with dbt=1.10.22
+[0m15:14:47.287012 [debug] [MainThread]: running dbt with arguments {'profiles_dir': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test', 'empty': 'False', 'partial_parse': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'write_json': 'True', 'no_print': 'None', 'log_format': 'default', 'log_path': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test/logs', 'introspect': 'True', 'warn_error': 'None', 'use_experimental_parser': 'False', 'fail_fast': 'False', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'invocation_command': 'dbt compile', 'send_anonymous_usage_stats': 'False', 'target_path': 'None', 'debug': 'False', 'version_check': 'True', 'log_cache_events': 'False', 'use_colors': 'True', 'quiet': 'False', 'static_parser': 'True', 'printer_width': '80'}
+[0m15:14:47.289694 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'Silver_Layer'
+[0m15:14:47.292390 [debug] [MainThread]: Resource report: {"command_name": "compile", "command_success": false, "command_wall_clock_time": 0.07081242, "process_in_blocks": "0", "process_kernel_time": 0.219697, "process_mem_max_rss": "97566720", "process_out_blocks": "0", "process_user_time": 0.931775}
+[0m15:14:47.292753 [debug] [MainThread]: Command `dbt compile` failed at 15:14:47.292685 after 0.07 seconds
+[0m15:14:47.292985 [debug] [MainThread]: Flushing usage events
+
+
+============================== 15:25:40.899824 | 240aa918-81e4-4d21-b556-b5b26d7095da ==============================
+[0m15:25:40.899824 [info ] [MainThread]: Running with dbt=1.10.22
+[0m15:25:40.902971 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'send_anonymous_usage_stats': 'False', 'log_cache_events': 'False', 'fail_fast': 'False', 'no_print': 'None', 'use_experimental_parser': 'False', 'cache_selected_only': 'False', 'indirect_selection': 'eager', 'profiles_dir': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test', 'log_format': 'default', 'write_json': 'True', 'warn_error': 'None', 'empty': 'None', 'log_path': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test/logs', 'invocation_command': 'dbt debug', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'debug': 'False', 'quiet': 'False', 'introspect': 'True', 'use_colors': 'True', 'printer_width': '80', 'partial_parse': 'True', 'target_path': 'None'}
+[0m15:25:40.915006 [info ] [MainThread]: dbt version: 1.10.22
+[0m15:25:40.915419 [info ] [MainThread]: python version: 3.9.6
+[0m15:25:40.915631 [info ] [MainThread]: python path: /Users/j549680/IdeaProjects/Tabellen-Relationen/Tabellen Relation Projekt Python/venv/bin/python
+[0m15:25:40.915820 [info ] [MainThread]: os info: macOS-26.6.1-arm64-arm-64bit
+[0m15:25:40.918251 [info ] [MainThread]: Using profiles dir at /Users/j549680/IdeaProjects/dbt_Silverlayer_test
+[0m15:25:40.918462 [info ] [MainThread]: Using profiles.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/profiles.yml
+[0m15:25:40.918641 [info ] [MainThread]: Using dbt_project.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/dbt_project.yml
+[0m15:25:41.001794 [info ] [MainThread]: Configuration:
+[0m15:25:41.002166 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m15:25:41.002370 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m15:25:41.002556 [info ] [MainThread]: Required dependencies:
+[0m15:25:41.002837 [debug] [MainThread]: Executing "git --help"
+[0m15:25:41.029995 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m15:25:41.030599 [debug] [MainThread]: STDERR: "b''"
+[0m15:25:41.030846 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m15:25:41.031115 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m15:25:41.031347 [info ] [MainThread]: [31m1 check failed:[0m
+[0m15:25:41.031547 [info ] [MainThread]: Profile loading failed for the following reason:
+Runtime Error
+  Could not find profile named 'Silver_Layer'
+
+
+[0m15:25:41.034281 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.19336346, "process_in_blocks": "0", "process_kernel_time": 0.223044, "process_mem_max_rss": "102727680", "process_out_blocks": "0", "process_user_time": 0.98082}
+[0m15:25:41.034611 [debug] [MainThread]: Command `dbt debug` failed at 15:25:41.034539 after 0.19 seconds
+[0m15:25:41.034902 [debug] [MainThread]: Flushing usage events
+
+
+============================== 15:44:48.853464 | 4eef414d-9bc8-47cd-aa7e-81021dcd818c ==============================
+[0m15:44:48.853464 [info ] [MainThread]: Running with dbt=1.10.22
+[0m15:44:48.856508 [debug] [MainThread]: running dbt with arguments {'log_path': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test/logs', 'printer_width': '80', 'invocation_command': 'dbt debug', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'partial_parse': 'True', 'indirect_selection': 'eager', 'use_colors': 'True', 'empty': 'None', 'no_print': 'None', 'send_anonymous_usage_stats': 'False', 'log_format': 'default', 'fail_fast': 'False', 'static_parser': 'True', 'profiles_dir': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test', 'write_json': 'True', 'use_experimental_parser': 'False', 'version_check': 'True', 'introspect': 'True', 'quiet': 'False', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'log_cache_events': 'False'}
+[0m15:44:48.866199 [info ] [MainThread]: dbt version: 1.10.22
+[0m15:44:48.866455 [info ] [MainThread]: python version: 3.9.6
+[0m15:44:48.866645 [info ] [MainThread]: python path: /Users/j549680/IdeaProjects/Tabellen-Relationen/Tabellen Relation Projekt Python/venv/bin/python
+[0m15:44:48.866823 [info ] [MainThread]: os info: macOS-26.6.1-arm64-arm-64bit
+[0m15:44:48.869465 [info ] [MainThread]: Using profiles dir at /Users/j549680/IdeaProjects/dbt_Silverlayer_test
+[0m15:44:48.869743 [info ] [MainThread]: Using profiles.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/profiles.yml
+[0m15:44:48.869928 [info ] [MainThread]: Using dbt_project.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/dbt_project.yml
+[0m15:44:48.954858 [info ] [MainThread]: Configuration:
+[0m15:44:48.955255 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m15:44:48.955455 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m15:44:48.955637 [info ] [MainThread]: Required dependencies:
+[0m15:44:48.955908 [debug] [MainThread]: Executing "git --help"
+[0m15:44:48.979702 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m15:44:48.980329 [debug] [MainThread]: STDERR: "b''"
+[0m15:44:48.980563 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m15:44:48.980803 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m15:44:48.980999 [info ] [MainThread]: [31m1 check failed:[0m
+[0m15:44:48.981177 [info ] [MainThread]: Profile loading failed for the following reason:
+Runtime Error
+  Could not find profile named 'Silver_Layer'
+
+
+[0m15:44:48.983968 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.18480784, "process_in_blocks": "0", "process_kernel_time": 0.169067, "process_mem_max_rss": "102678528", "process_out_blocks": "0", "process_user_time": 0.959538}
+[0m15:44:48.984377 [debug] [MainThread]: Command `dbt debug` failed at 15:44:48.984311 after 0.19 seconds
+[0m15:44:48.984675 [debug] [MainThread]: Flushing usage events
+
+
+============================== 16:14:37.895700 | e018eb4f-9e8b-40c3-9f69-2365a89c463d ==============================
+[0m16:14:37.895700 [info ] [MainThread]: Running with dbt=1.10.22
+[0m16:14:37.899217 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'warn_error': 'None', 'empty': 'None', 'log_path': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test/logs', 'send_anonymous_usage_stats': 'False', 'write_json': 'True', 'debug': 'False', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'profiles_dir': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test', 'fail_fast': 'False', 'invocation_command': 'dbt debug', 'static_parser': 'True', 'indirect_selection': 'eager', 'introspect': 'True', 'no_print': 'None', 'use_experimental_parser': 'False', 'log_cache_events': 'False', 'partial_parse': 'True', 'log_format': 'default', 'quiet': 'False', 'cache_selected_only': 'False', 'use_colors': 'True', 'printer_width': '80'}
+[0m16:14:37.909533 [info ] [MainThread]: dbt version: 1.10.22
+[0m16:14:37.909771 [info ] [MainThread]: python version: 3.9.6
+[0m16:14:37.909952 [info ] [MainThread]: python path: /Users/j549680/IdeaProjects/Tabellen-Relationen/Tabellen Relation Projekt Python/venv/bin/python
+[0m16:14:37.910125 [info ] [MainThread]: os info: macOS-26.6.1-arm64-arm-64bit
+[0m16:14:37.912365 [info ] [MainThread]: Using profiles dir at /Users/j549680/IdeaProjects/dbt_Silverlayer_test
+[0m16:14:37.912576 [info ] [MainThread]: Using profiles.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/profiles.yml
+[0m16:14:37.912757 [info ] [MainThread]: Using dbt_project.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/dbt_project.yml
+[0m16:14:37.995264 [info ] [MainThread]: Configuration:
+[0m16:14:37.995656 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m16:14:37.995858 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m16:14:37.996040 [info ] [MainThread]: Required dependencies:
+[0m16:14:37.996325 [debug] [MainThread]: Executing "git --help"
+[0m16:14:38.023226 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m16:14:38.023785 [debug] [MainThread]: STDERR: "b''"
+[0m16:14:38.024014 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m16:14:38.024251 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m16:14:38.024457 [info ] [MainThread]: [31m1 check failed:[0m
+[0m16:14:38.024639 [info ] [MainThread]: Profile loading failed for the following reason:
+Runtime Error
+  Could not find profile named 'Silver_Layer'
+
+
+[0m16:14:38.026925 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.18835062, "process_in_blocks": "0", "process_kernel_time": 0.188559, "process_mem_max_rss": "102006784", "process_out_blocks": "0", "process_user_time": 0.938724}
+[0m16:14:38.027309 [debug] [MainThread]: Command `dbt debug` failed at 16:14:38.027235 after 0.19 seconds
+[0m16:14:38.027630 [debug] [MainThread]: Flushing usage events
+
+
+============================== 08:51:36.960150 | fa285f4c-737a-44ad-9836-aa12624815b6 ==============================
+[0m08:51:36.960150 [info ] [MainThread]: Running with dbt=1.10.22
+[0m08:51:36.963014 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'send_anonymous_usage_stats': 'False', 'fail_fast': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'use_colors': 'True', 'empty': 'None', 'invocation_command': 'dbt debug', 'introspect': 'True', 'use_experimental_parser': 'False', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'profiles_dir': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test', 'static_parser': 'True', 'no_print': 'None', 'target_path': 'None', 'log_path': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test/logs', 'debug': 'False', 'log_format': 'default', 'cache_selected_only': 'False'}
+[0m08:51:36.974220 [info ] [MainThread]: dbt version: 1.10.22
+[0m08:51:36.974484 [info ] [MainThread]: python version: 3.9.6
+[0m08:51:36.974677 [info ] [MainThread]: python path: /Users/j549680/IdeaProjects/Tabellen-Relationen/Tabellen Relation Projekt Python/venv/bin/python
+[0m08:51:36.974863 [info ] [MainThread]: os info: macOS-26.6.2-arm64-arm-64bit
+[0m08:51:37.555646 [info ] [MainThread]: Using profiles dir at /Users/j549680/IdeaProjects/dbt_Silverlayer_test
+[0m08:51:37.556053 [info ] [MainThread]: Using profiles.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/profiles.yml
+[0m08:51:37.556352 [info ] [MainThread]: Using dbt_project.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/dbt_project.yml
+[0m08:51:37.556612 [info ] [MainThread]: adapter type: trino
+[0m08:51:37.556840 [info ] [MainThread]: adapter version: 1.10.3
+[0m08:51:37.638922 [info ] [MainThread]: Configuration:
+[0m08:51:37.639241 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m08:51:37.639524 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m08:51:37.639741 [info ] [MainThread]: Required dependencies:
+[0m08:51:37.639996 [debug] [MainThread]: Executing "git --help"
+[0m08:51:37.664180 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m08:51:37.664720 [debug] [MainThread]: STDERR: "b''"
+[0m08:51:37.664936 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m08:51:37.665144 [info ] [MainThread]: Connection:
+[0m08:51:37.665379 [info ] [MainThread]:   host: fi-starburst.entw.dapcont.intern
+[0m08:51:37.665554 [info ] [MainThread]:   port: 443
+[0m08:51:37.665725 [info ] [MainThread]:   user: J549680@v990dtv1.v990.intern
+[0m08:51:37.665908 [info ] [MainThread]:   database: lakekeeper-etaps2
+[0m08:51:37.666088 [info ] [MainThread]:   schema: j548910
+[0m08:51:37.666257 [info ] [MainThread]:   cert: /Users/j549680/IdeaProjects/dbt_Silverlayer_test/cert.pem
+[0m08:51:37.666427 [info ] [MainThread]:   prepared_statements_enabled: True
+[0m08:51:37.666597 [info ] [MainThread]:   starburst_url: None
+[0m08:51:37.666773 [info ] [MainThread]:   starburst_metadata_failure_strategy: continue_on_error
+[0m08:51:37.666941 [info ] [MainThread]:   starburst_max_column_batch_size: 100
+[0m08:51:37.667350 [info ] [MainThread]: Registered adapter: trino=1.10.3
+[0m08:51:37.743018 [debug] [MainThread]: Acquiring new trino connection 'debug'
+[0m08:51:37.794476 [debug] [MainThread]: Using trino connection "debug"
+[0m08:51:37.794697 [debug] [MainThread]: On debug: select 1 as id
+[0m08:51:37.794883 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m08:51:38.236886 [debug] [MainThread]: On debug: Close
+[0m08:51:38.238792 [info ] [MainThread]:   Connection test: [[31mERROR[0m]
+
+[0m08:51:38.239550 [info ] [MainThread]: [31m1 check failed:[0m
+[0m08:51:38.240085 [info ] [MainThread]: dbt was unable to connect to the specified database.
+The database returned the following error:
+
+  >Runtime Error
+  error 401: b'Access Denied: Invalid credentials'
+
+Check your database credentials and try again. For more information, visit:
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m08:51:38.245562 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 1.3383685, "process_in_blocks": "0", "process_kernel_time": 0.234661, "process_mem_max_rss": "114016256", "process_out_blocks": "0", "process_user_time": 1.045978}
+[0m08:51:38.246692 [debug] [MainThread]: Command `dbt debug` failed at 08:51:38.246476 after 1.34 seconds
+[0m08:51:38.247516 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m08:51:38.248562 [debug] [MainThread]: Flushing usage events
+
+
+============================== 09:36:30.858707 | 54ff942a-f27c-4016-be0c-2e552a686d4b ==============================
+[0m09:36:30.858707 [info ] [MainThread]: Running with dbt=1.10.22
+[0m09:36:30.861913 [debug] [MainThread]: running dbt with arguments {'cache_selected_only': 'False', 'invocation_command': 'dbt debug', 'use_experimental_parser': 'False', 'version_check': 'True', 'send_anonymous_usage_stats': 'False', 'no_print': 'None', 'target_path': 'None', 'use_colors': 'True', 'empty': 'None', 'static_parser': 'True', 'printer_width': '80', 'fail_fast': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'write_json': 'True', 'log_path': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test/logs', 'indirect_selection': 'eager', 'introspect': 'True', 'debug': 'False', 'warn_error': 'None', 'quiet': 'False', 'log_cache_events': 'False', 'partial_parse': 'True', 'profiles_dir': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test', 'log_format': 'default'}
+[0m09:36:30.872355 [info ] [MainThread]: dbt version: 1.10.22
+[0m09:36:30.872624 [info ] [MainThread]: python version: 3.9.6
+[0m09:36:30.872827 [info ] [MainThread]: python path: /Users/j549680/IdeaProjects/Tabellen-Relationen/Tabellen Relation Projekt Python/venv/bin/python
+[0m09:36:30.873027 [info ] [MainThread]: os info: macOS-26.6.2-arm64-arm-64bit
+[0m09:36:30.935911 [info ] [MainThread]: Using profiles dir at /Users/j549680/IdeaProjects/dbt_Silverlayer_test
+[0m09:36:30.936245 [info ] [MainThread]: Using profiles.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/profiles.yml
+[0m09:36:30.936454 [info ] [MainThread]: Using dbt_project.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/dbt_project.yml
+[0m09:36:30.936651 [info ] [MainThread]: adapter type: trino
+[0m09:36:30.936823 [info ] [MainThread]: adapter version: 1.10.3
+[0m09:36:31.014610 [info ] [MainThread]: Configuration:
+[0m09:36:31.014947 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m09:36:31.015151 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m09:36:31.015344 [info ] [MainThread]: Required dependencies:
+[0m09:36:31.015641 [debug] [MainThread]: Executing "git --help"
+[0m09:36:31.039016 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m09:36:31.039510 [debug] [MainThread]: STDERR: "b''"
+[0m09:36:31.039730 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m09:36:31.039957 [info ] [MainThread]: Connection:
+[0m09:36:31.040205 [info ] [MainThread]:   host: fi-starburst.entw.dapcont.intern
+[0m09:36:31.040406 [info ] [MainThread]:   port: 443
+[0m09:36:31.040579 [info ] [MainThread]:   user: J549680@v990dtv1.v990.intern
+[0m09:36:31.040751 [info ] [MainThread]:   database: lakekeeper-etaps2
+[0m09:36:31.040920 [info ] [MainThread]:   schema: j548910
+[0m09:36:31.041083 [info ] [MainThread]:   cert: /Users/j549680/IdeaProjects/dbt_Silverlayer_test/cert.pem
+[0m09:36:31.041280 [info ] [MainThread]:   prepared_statements_enabled: True
+[0m09:36:31.041520 [info ] [MainThread]:   starburst_url: None
+[0m09:36:31.041751 [info ] [MainThread]:   starburst_metadata_failure_strategy: continue_on_error
+[0m09:36:31.041943 [info ] [MainThread]:   starburst_max_column_batch_size: 100
+[0m09:36:31.042364 [info ] [MainThread]: Registered adapter: trino=1.10.3
+[0m09:36:31.115541 [debug] [MainThread]: Acquiring new trino connection 'debug'
+[0m09:36:31.158987 [debug] [MainThread]: Using trino connection "debug"
+[0m09:36:31.159207 [debug] [MainThread]: On debug: select 1 as id
+[0m09:36:31.159392 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m09:36:31.597212 [debug] [MainThread]: On debug: Close
+[0m09:36:31.598858 [info ] [MainThread]:   Connection test: [[31mERROR[0m]
+
+[0m09:36:31.599517 [info ] [MainThread]: [31m1 check failed:[0m
+[0m09:36:31.600000 [info ] [MainThread]: dbt was unable to connect to the specified database.
+The database returned the following error:
+
+  >Runtime Error
+  error 401: b'Access Denied: Invalid credentials'
+
+Check your database credentials and try again. For more information, visit:
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m09:36:31.607116 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.8019555, "process_in_blocks": "0", "process_kernel_time": 0.240088, "process_mem_max_rss": "113639424", "process_out_blocks": "0", "process_user_time": 1.06442}
+[0m09:36:31.608068 [debug] [MainThread]: Command `dbt debug` failed at 09:36:31.607921 after 0.80 seconds
+[0m09:36:31.608634 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m09:36:31.609135 [debug] [MainThread]: Flushing usage events
+
+
+============================== 10:13:45.250937 | 3b3de09c-4955-4c1d-9fab-8d610e7c2b0a ==============================
+[0m10:13:45.250937 [info ] [MainThread]: Running with dbt=1.10.22
+[0m10:13:45.254096 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'quiet': 'False', 'fail_fast': 'False', 'log_path': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test/logs', 'empty': 'None', 'log_format': 'default', 'introspect': 'True', 'use_colors': 'True', 'debug': 'False', 'no_print': 'None', 'log_cache_events': 'False', 'warn_error': 'None', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'profiles_dir': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test', 'send_anonymous_usage_stats': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'version_check': 'True', 'printer_width': '80', 'invocation_command': 'dbt debug', 'partial_parse': 'True', 'write_json': 'True', 'target_path': 'None', 'use_experimental_parser': 'False'}
+[0m10:13:45.263940 [info ] [MainThread]: dbt version: 1.10.22
+[0m10:13:45.264214 [info ] [MainThread]: python version: 3.9.6
+[0m10:13:45.264423 [info ] [MainThread]: python path: /Users/j549680/IdeaProjects/Tabellen-Relationen/Tabellen Relation Projekt Python/venv/bin/python
+[0m10:13:45.264617 [info ] [MainThread]: os info: macOS-26.6.2-arm64-arm-64bit
+[0m10:13:45.322085 [info ] [MainThread]: Using profiles dir at /Users/j549680/IdeaProjects/dbt_Silverlayer_test
+[0m10:13:45.322415 [info ] [MainThread]: Using profiles.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/profiles.yml
+[0m10:13:45.322635 [info ] [MainThread]: Using dbt_project.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/dbt_project.yml
+[0m10:13:45.322832 [info ] [MainThread]: adapter type: trino
+[0m10:13:45.323031 [info ] [MainThread]: adapter version: 1.10.3
+[0m10:13:45.400573 [info ] [MainThread]: Configuration:
+[0m10:13:45.400940 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m10:13:45.401138 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m10:13:45.401316 [info ] [MainThread]: Required dependencies:
+[0m10:13:45.401582 [debug] [MainThread]: Executing "git --help"
+[0m10:13:45.434478 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m10:13:45.435057 [debug] [MainThread]: STDERR: "b''"
+[0m10:13:45.435296 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m10:13:45.435528 [info ] [MainThread]: Connection:
+[0m10:13:45.435784 [info ] [MainThread]:   host: fi-starburst.entw.dapcont.intern
+[0m10:13:45.435982 [info ] [MainThread]:   port: 443
+[0m10:13:45.436163 [info ] [MainThread]:   user: J549680@v990dtv1.v990.intern
+[0m10:13:45.436335 [info ] [MainThread]:   database: lakekeeper-etaps2
+[0m10:13:45.436507 [info ] [MainThread]:   schema: j548910
+[0m10:13:45.436679 [info ] [MainThread]:   cert: /Users/j549680/IdeaProjects/dbt_Silverlayer_test/cert.pem
+[0m10:13:45.436851 [info ] [MainThread]:   prepared_statements_enabled: True
+[0m10:13:45.437023 [info ] [MainThread]:   starburst_url: None
+[0m10:13:45.437207 [info ] [MainThread]:   starburst_metadata_failure_strategy: continue_on_error
+[0m10:13:45.437376 [info ] [MainThread]:   starburst_max_column_batch_size: 100
+[0m10:13:45.437802 [info ] [MainThread]: Registered adapter: trino=1.10.3
+[0m10:13:45.512157 [debug] [MainThread]: Acquiring new trino connection 'debug'
+[0m10:13:45.553183 [debug] [MainThread]: Using trino connection "debug"
+[0m10:13:45.553402 [debug] [MainThread]: On debug: select 1 as id
+[0m10:13:45.553576 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m10:13:46.058278 [debug] [MainThread]: On debug: Close
+[0m10:13:46.059860 [info ] [MainThread]:   Connection test: [[31mERROR[0m]
+
+[0m10:13:46.060962 [info ] [MainThread]: [31m1 check failed:[0m
+[0m10:13:46.061595 [info ] [MainThread]: dbt was unable to connect to the specified database.
+The database returned the following error:
+
+  >Runtime Error
+  error 401: b'Access Denied: Invalid credentials'
+
+Check your database credentials and try again. For more information, visit:
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m10:13:46.069432 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.8782297, "process_in_blocks": "0", "process_kernel_time": 0.229001, "process_mem_max_rss": "112771072", "process_out_blocks": "0", "process_user_time": 1.009808}
+[0m10:13:46.070286 [debug] [MainThread]: Command `dbt debug` failed at 10:13:46.070130 after 0.88 seconds
+[0m10:13:46.070814 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m10:13:46.071286 [debug] [MainThread]: Flushing usage events
+
+
+============================== 10:14:04.832328 | 1ae54ad6-fd20-4848-8ce3-5305b41148b0 ==============================
+[0m10:14:04.832328 [info ] [MainThread]: Running with dbt=1.10.22
+[0m10:14:04.835384 [debug] [MainThread]: running dbt with arguments {'target_path': 'None', 'log_path': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test/logs', 'debug': 'False', 'invocation_command': 'dbt debug', 'cache_selected_only': 'False', 'log_format': 'default', 'use_experimental_parser': 'False', 'introspect': 'True', 'partial_parse': 'True', 'static_parser': 'True', 'printer_width': '80', 'fail_fast': 'False', 'profiles_dir': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test', 'warn_error': 'None', 'send_anonymous_usage_stats': 'False', 'version_check': 'True', 'quiet': 'False', 'log_cache_events': 'False', 'use_colors': 'True', 'empty': 'None', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'indirect_selection': 'eager', 'write_json': 'True'}
+[0m10:14:04.845360 [info ] [MainThread]: dbt version: 1.10.22
+[0m10:14:04.845629 [info ] [MainThread]: python version: 3.9.6
+[0m10:14:04.845818 [info ] [MainThread]: python path: /Users/j549680/IdeaProjects/Tabellen-Relationen/Tabellen Relation Projekt Python/venv/bin/python
+[0m10:14:04.846006 [info ] [MainThread]: os info: macOS-26.6.2-arm64-arm-64bit
+[0m10:14:04.903809 [info ] [MainThread]: Using profiles dir at /Users/j549680/IdeaProjects/dbt_Silverlayer_test
+[0m10:14:04.904119 [info ] [MainThread]: Using profiles.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/profiles.yml
+[0m10:14:04.904316 [info ] [MainThread]: Using dbt_project.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/dbt_project.yml
+[0m10:14:04.904515 [info ] [MainThread]: adapter type: trino
+[0m10:14:04.904686 [info ] [MainThread]: adapter version: 1.10.3
+[0m10:14:04.981825 [info ] [MainThread]: Configuration:
+[0m10:14:04.982136 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m10:14:04.982346 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m10:14:04.982529 [info ] [MainThread]: Required dependencies:
+[0m10:14:04.982781 [debug] [MainThread]: Executing "git --help"
+[0m10:14:05.008353 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m10:14:05.008900 [debug] [MainThread]: STDERR: "b''"
+[0m10:14:05.009121 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m10:14:05.009363 [info ] [MainThread]: Connection:
+[0m10:14:05.009619 [info ] [MainThread]:   host: fi-starburst.entw.dapcont.intern
+[0m10:14:05.009816 [info ] [MainThread]:   port: 443
+[0m10:14:05.009997 [info ] [MainThread]:   user: J549680@v990dtv1.v990.intern
+[0m10:14:05.010194 [info ] [MainThread]:   database: lakekeeper-etaps2
+[0m10:14:05.010363 [info ] [MainThread]:   schema: j548910
+[0m10:14:05.010537 [info ] [MainThread]:   cert: /Users/j549680/IdeaProjects/dbt_Silverlayer_test/cert.pem
+[0m10:14:05.010708 [info ] [MainThread]:   prepared_statements_enabled: True
+[0m10:14:05.010876 [info ] [MainThread]:   starburst_url: None
+[0m10:14:05.011076 [info ] [MainThread]:   starburst_metadata_failure_strategy: continue_on_error
+[0m10:14:05.011317 [info ] [MainThread]:   starburst_max_column_batch_size: 100
+[0m10:14:05.011723 [info ] [MainThread]: Registered adapter: trino=1.10.3
+[0m10:14:05.088194 [debug] [MainThread]: Acquiring new trino connection 'debug'
+[0m10:14:05.130226 [debug] [MainThread]: Using trino connection "debug"
+[0m10:14:05.130453 [debug] [MainThread]: On debug: select 1 as id
+[0m10:14:05.130622 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m10:14:05.359999 [debug] [MainThread]: On debug: Close
+[0m10:14:05.361620 [info ] [MainThread]:   Connection test: [[31mERROR[0m]
+
+[0m10:14:05.362305 [info ] [MainThread]: [31m1 check failed:[0m
+[0m10:14:05.362783 [info ] [MainThread]: dbt was unable to connect to the specified database.
+The database returned the following error:
+
+  >Runtime Error
+  error 401: b'Access Denied: Invalid credentials'
+
+Check your database credentials and try again. For more information, visit:
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m10:14:05.368403 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.5901015, "process_in_blocks": "0", "process_kernel_time": 0.203196, "process_mem_max_rss": "112836608", "process_out_blocks": "0", "process_user_time": 1.001555}
+[0m10:14:05.369448 [debug] [MainThread]: Command `dbt debug` failed at 10:14:05.369232 after 0.59 seconds
+[0m10:14:05.370054 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m10:14:05.370607 [debug] [MainThread]: Flushing usage events
+
+
+============================== 10:16:13.310820 | 2b043509-7384-477a-aebe-1c083a1d1b87 ==============================
+[0m10:16:13.310820 [info ] [MainThread]: Running with dbt=1.10.22
+[0m10:16:13.313635 [debug] [MainThread]: running dbt with arguments {'warn_error': 'None', 'version_check': 'True', 'profiles_dir': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test', 'debug': 'False', 'no_print': 'None', 'printer_width': '80', 'log_format': 'default', 'indirect_selection': 'eager', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'quiet': 'False', 'log_cache_events': 'False', 'partial_parse': 'True', 'introspect': 'True', 'write_json': 'True', 'target_path': 'None', 'invocation_command': 'dbt debug', 'use_colors': 'True', 'log_path': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test/logs', 'send_anonymous_usage_stats': 'False', 'cache_selected_only': 'False', 'static_parser': 'True', 'fail_fast': 'False', 'empty': 'None', 'use_experimental_parser': 'False'}
+[0m10:16:13.322903 [info ] [MainThread]: dbt version: 1.10.22
+[0m10:16:13.323156 [info ] [MainThread]: python version: 3.9.6
+[0m10:16:13.323347 [info ] [MainThread]: python path: /Users/j549680/IdeaProjects/Tabellen-Relationen/Tabellen Relation Projekt Python/venv/bin/python
+[0m10:16:13.323531 [info ] [MainThread]: os info: macOS-26.6.2-arm64-arm-64bit
+[0m10:16:13.381553 [info ] [MainThread]: Using profiles dir at /Users/j549680/IdeaProjects/dbt_Silverlayer_test
+[0m10:16:13.381908 [info ] [MainThread]: Using profiles.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/profiles.yml
+[0m10:16:13.382124 [info ] [MainThread]: Using dbt_project.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/dbt_project.yml
+[0m10:16:13.382326 [info ] [MainThread]: adapter type: trino
+[0m10:16:13.382513 [info ] [MainThread]: adapter version: 1.10.3
+[0m10:16:13.462631 [info ] [MainThread]: Configuration:
+[0m10:16:13.462985 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m10:16:13.463199 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m10:16:13.463382 [info ] [MainThread]: Required dependencies:
+[0m10:16:13.463652 [debug] [MainThread]: Executing "git --help"
+[0m10:16:13.496997 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m10:16:13.497554 [debug] [MainThread]: STDERR: "b''"
+[0m10:16:13.497796 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m10:16:13.498012 [info ] [MainThread]: Connection:
+[0m10:16:13.498248 [info ] [MainThread]:   host: fi-starburst.entw.dapcont.intern
+[0m10:16:13.498437 [info ] [MainThread]:   port: 443
+[0m10:16:13.498613 [info ] [MainThread]:   user: J549680@v990dtv1.v990.intern
+[0m10:16:13.498787 [info ] [MainThread]:   database: lakekeeper-etaps2
+[0m10:16:13.499005 [info ] [MainThread]:   schema: j548910
+[0m10:16:13.499229 [info ] [MainThread]:   cert: /Users/j549680/IdeaProjects/dbt_Silverlayer_test/cert.pem
+[0m10:16:13.499419 [info ] [MainThread]:   prepared_statements_enabled: True
+[0m10:16:13.499611 [info ] [MainThread]:   starburst_url: None
+[0m10:16:13.499799 [info ] [MainThread]:   starburst_metadata_failure_strategy: continue_on_error
+[0m10:16:13.499973 [info ] [MainThread]:   starburst_max_column_batch_size: 100
+[0m10:16:13.500382 [info ] [MainThread]: Registered adapter: trino=1.10.3
+[0m10:16:13.576374 [debug] [MainThread]: Acquiring new trino connection 'debug'
+[0m10:16:13.617994 [debug] [MainThread]: Using trino connection "debug"
+[0m10:16:13.618225 [debug] [MainThread]: On debug: select 1 as id
+[0m10:16:13.618405 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m10:16:13.896664 [debug] [MainThread]: On debug: Close
+[0m10:16:13.898976 [info ] [MainThread]:   Connection test: [[31mERROR[0m]
+
+[0m10:16:13.899690 [info ] [MainThread]: [31m1 check failed:[0m
+[0m10:16:13.900156 [info ] [MainThread]: dbt was unable to connect to the specified database.
+The database returned the following error:
+
+  >Runtime Error
+  error 401: b'Access Denied: Invalid credentials'
+
+Check your database credentials and try again. For more information, visit:
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m10:16:13.906605 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.64709514, "process_in_blocks": "0", "process_kernel_time": 0.228086, "process_mem_max_rss": "113180672", "process_out_blocks": "0", "process_user_time": 1.024852}
+[0m10:16:13.907674 [debug] [MainThread]: Command `dbt debug` failed at 10:16:13.907444 after 0.65 seconds
+[0m10:16:13.908292 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m10:16:13.908764 [debug] [MainThread]: Flushing usage events
+
+
+============================== 10:16:35.517230 | 640db4b9-f557-491f-844e-97850e5744be ==============================
+[0m10:16:35.517230 [info ] [MainThread]: Running with dbt=1.10.22
+[0m10:16:35.519408 [debug] [MainThread]: running dbt with arguments {'send_anonymous_usage_stats': 'False', 'warn_error': 'None', 'write_json': 'True', 'use_experimental_parser': 'False', 'log_format': 'default', 'cache_selected_only': 'False', 'printer_width': '80', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'debug': 'False', 'indirect_selection': 'eager', 'version_check': 'True', 'empty': 'None', 'profiles_dir': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test', 'invocation_command': 'dbt debug', 'fail_fast': 'False', 'introspect': 'True', 'static_parser': 'True', 'quiet': 'False', 'target_path': 'None', 'use_colors': 'True', 'log_cache_events': 'False', 'no_print': 'None', 'log_path': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test/logs', 'partial_parse': 'True'}
+[0m10:16:35.524750 [info ] [MainThread]: dbt version: 1.10.22
+[0m10:16:35.524977 [info ] [MainThread]: python version: 3.9.6
+[0m10:16:35.525173 [info ] [MainThread]: python path: /Users/j549680/IdeaProjects/Tabellen-Relationen/Tabellen Relation Projekt Python/venv/bin/python
+[0m10:16:35.525415 [info ] [MainThread]: os info: macOS-26.6.2-arm64-arm-64bit
+[0m10:16:35.579760 [info ] [MainThread]: Using profiles dir at /Users/j549680/IdeaProjects/dbt_Silverlayer_test
+[0m10:16:35.580122 [info ] [MainThread]: Using profiles.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/profiles.yml
+[0m10:16:35.580345 [info ] [MainThread]: Using dbt_project.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/dbt_project.yml
+[0m10:16:35.580551 [info ] [MainThread]: adapter type: trino
+[0m10:16:35.580735 [info ] [MainThread]: adapter version: 1.10.3
+[0m10:16:35.658697 [info ] [MainThread]: Configuration:
+[0m10:16:35.659041 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m10:16:35.659265 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m10:16:35.659450 [info ] [MainThread]: Required dependencies:
+[0m10:16:35.659702 [debug] [MainThread]: Executing "git --help"
+[0m10:16:35.682792 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m10:16:35.683297 [debug] [MainThread]: STDERR: "b''"
+[0m10:16:35.683527 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m10:16:35.683745 [info ] [MainThread]: Connection:
+[0m10:16:35.683977 [info ] [MainThread]:   host: fi-starburst.entw.dapcont.intern
+[0m10:16:35.684153 [info ] [MainThread]:   port: 443
+[0m10:16:35.684322 [info ] [MainThread]:   user: J549680@v990dtv1.v990.intern
+[0m10:16:35.684488 [info ] [MainThread]:   database: lakekeeper-etaps2
+[0m10:16:35.684654 [info ] [MainThread]:   schema: j549680
+[0m10:16:35.684833 [info ] [MainThread]:   cert: /Users/j549680/IdeaProjects/dbt_Silverlayer_test/cert.pem
+[0m10:16:35.684998 [info ] [MainThread]:   prepared_statements_enabled: True
+[0m10:16:35.685182 [info ] [MainThread]:   starburst_url: None
+[0m10:16:35.685349 [info ] [MainThread]:   starburst_metadata_failure_strategy: continue_on_error
+[0m10:16:35.685518 [info ] [MainThread]:   starburst_max_column_batch_size: 100
+[0m10:16:35.685890 [info ] [MainThread]: Registered adapter: trino=1.10.3
+[0m10:16:35.758667 [debug] [MainThread]: Acquiring new trino connection 'debug'
+[0m10:16:35.800519 [debug] [MainThread]: Using trino connection "debug"
+[0m10:16:35.800739 [debug] [MainThread]: On debug: select 1 as id
+[0m10:16:35.800919 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m10:16:36.269837 [debug] [MainThread]: SQL status: SUCCESS in 0.469 seconds
+[0m10:16:36.273361 [debug] [MainThread]: On debug: Close
+[0m10:16:36.274377 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m10:16:36.274986 [info ] [MainThread]: [32mAll checks passed![0m
+[0m10:16:36.281470 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": true, "command_wall_clock_time": 0.8144389, "process_in_blocks": "0", "process_kernel_time": 0.211547, "process_mem_max_rss": "113737728", "process_out_blocks": "0", "process_user_time": 1.02741}
+[0m10:16:36.282695 [debug] [MainThread]: Command `dbt debug` succeeded at 10:16:36.282452 after 0.82 seconds
+[0m10:16:36.283287 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m10:16:36.283814 [debug] [MainThread]: Flushing usage events
+
+
+============================== 10:16:46.800195 | 2cde4249-a63c-4f11-a15c-cf0e18d556df ==============================
+[0m10:16:46.800195 [info ] [MainThread]: Running with dbt=1.10.22
+[0m10:16:46.803474 [debug] [MainThread]: running dbt with arguments {'log_path': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test/logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'empty': 'None', 'static_parser': 'True', 'introspect': 'True', 'version_check': 'True', 'quiet': 'False', 'target_path': 'None', 'use_experimental_parser': 'False', 'debug': 'False', 'send_anonymous_usage_stats': 'False', 'no_print': 'None', 'printer_width': '80', 'use_colors': 'True', 'warn_error': 'None', 'fail_fast': 'False', 'log_cache_events': 'False', 'log_format': 'default', 'write_json': 'True', 'invocation_command': 'dbt debug', 'profiles_dir': '/Users/j549680/IdeaProjects/dbt_Silverlayer_test', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'partial_parse': 'True'}
+[0m10:16:46.812852 [info ] [MainThread]: dbt version: 1.10.22
+[0m10:16:46.813129 [info ] [MainThread]: python version: 3.9.6
+[0m10:16:46.813331 [info ] [MainThread]: python path: /Users/j549680/IdeaProjects/Tabellen-Relationen/Tabellen Relation Projekt Python/venv/bin/python
+[0m10:16:46.813518 [info ] [MainThread]: os info: macOS-26.6.2-arm64-arm-64bit
+[0m10:16:46.871277 [info ] [MainThread]: Using profiles dir at /Users/j549680/IdeaProjects/dbt_Silverlayer_test
+[0m10:16:46.871628 [info ] [MainThread]: Using profiles.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/profiles.yml
+[0m10:16:46.871842 [info ] [MainThread]: Using dbt_project.yml file at /Users/j549680/IdeaProjects/dbt_Silverlayer_test/dbt_project.yml
+[0m10:16:46.872045 [info ] [MainThread]: adapter type: trino
+[0m10:16:46.872223 [info ] [MainThread]: adapter version: 1.10.3
+[0m10:16:46.951136 [info ] [MainThread]: Configuration:
+[0m10:16:46.951467 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m10:16:46.951688 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m10:16:46.951877 [info ] [MainThread]: Required dependencies:
+[0m10:16:46.952143 [debug] [MainThread]: Executing "git --help"
+[0m10:16:46.976990 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m10:16:46.977515 [debug] [MainThread]: STDERR: "b''"
+[0m10:16:46.977742 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m10:16:46.977968 [info ] [MainThread]: Connection:
+[0m10:16:46.978192 [info ] [MainThread]:   host: fi-starburst.entw.dapcont.intern
+[0m10:16:46.978367 [info ] [MainThread]:   port: 443
+[0m10:16:46.978539 [info ] [MainThread]:   user: J549680@v990dtv1.v990.intern
+[0m10:16:46.978728 [info ] [MainThread]:   database: lakekeeper-etaps2
+[0m10:16:46.978927 [info ] [MainThread]:   schema: j548910
+[0m10:16:46.979101 [info ] [MainThread]:   cert: /Users/j549680/IdeaProjects/dbt_Silverlayer_test/cert.pem
+[0m10:16:46.979276 [info ] [MainThread]:   prepared_statements_enabled: True
+[0m10:16:46.979451 [info ] [MainThread]:   starburst_url: None
+[0m10:16:46.979625 [info ] [MainThread]:   starburst_metadata_failure_strategy: continue_on_error
+[0m10:16:46.979795 [info ] [MainThread]:   starburst_max_column_batch_size: 100
+[0m10:16:46.980220 [info ] [MainThread]: Registered adapter: trino=1.10.3
+[0m10:16:47.053976 [debug] [MainThread]: Acquiring new trino connection 'debug'
+[0m10:16:47.090930 [debug] [MainThread]: Using trino connection "debug"
+[0m10:16:47.091154 [debug] [MainThread]: On debug: select 1 as id
+[0m10:16:47.091327 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m10:16:47.723784 [debug] [MainThread]: SQL status: SUCCESS in 0.632 seconds
+[0m10:16:47.726627 [debug] [MainThread]: On debug: Close
+[0m10:16:47.727383 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m10:16:47.728037 [info ] [MainThread]: [32mAll checks passed![0m
+[0m10:16:47.734674 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": true, "command_wall_clock_time": 0.98810214, "process_in_blocks": "0", "process_kernel_time": 0.207385, "process_mem_max_rss": "113868800", "process_out_blocks": "0", "process_user_time": 1.049354}
+[0m10:16:47.735897 [debug] [MainThread]: Command `dbt debug` succeeded at 10:16:47.735690 after 0.99 seconds
+[0m10:16:47.736529 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m10:16:47.737031 [debug] [MainThread]: Flushing usage events

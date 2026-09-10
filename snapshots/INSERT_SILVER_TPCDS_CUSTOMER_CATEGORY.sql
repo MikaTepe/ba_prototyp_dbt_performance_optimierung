@@ -1,0 +1,198 @@
+{% snapshot INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY %}
+
+{{
+    config(
+        unique_key=['customer_sk','i_category_id'],
+        strategy='bitemporal',
+        alias=var('TAB_FKEY', None),
+        schema=var('INR_FKEY'),
+        enabled=(this.name == var('ACTIVE_SNAPSHOT', this.name)),
+        temporal_cols={
+            "von": "tech_ats",
+            "bis": "tech_ets"
+        },
+        temporal_value="CURRENT_TIMESTAMP",
+        meta={
+            "INSERT_STATEMENT": "INSERT_SILVER_TPCDS_CUSTOMER_CATEGORY",
+            "TAB_FKEY": "silver_tpcds_customer_category",
+            "RELEASE_FKEY": "26.0"
+        }
+    )
+}}
+
+with customer_category_relation as (
+
+
+
+    select
+        ss.ss_customer_sk as customer_sk,
+        i.i_category_id,
+        min(d.d_date) as relationship_first_seen_date
+
+    from {{ source('local_lakehouse', 'tpcds_store_sales') }} ss
+
+    inner join {{ source('local_lakehouse', 'tpcds_item') }} i
+        on ss.ss_item_sk = i.i_item_sk
+
+    inner join {{ source('local_lakehouse', 'tpcds_date_dim') }} d
+        on ss.ss_sold_date_sk = d.d_date_sk
+
+    where ss.ss_customer_sk is not null
+      and ss.ss_item_sk is not null
+      and ss.ss_sold_date_sk is not null
+      and i.i_category_id is not null
+      and d.d_date <= DATE '{{ var("BDAT") }}'
+
+    group by
+        ss.ss_customer_sk,
+        i.i_category_id
+
+),
+
+active_customer_ranked as (
+
+
+
+    select
+        c.*,
+        row_number() over (
+            partition by c.c_customer_sk
+            order by c.idh_gltg_fach_adtm desc, c.idh_gltg_fach_edtm desc
+        ) as rn
+
+    from {{ source('local_lakehouse', 'tpcds_customer') }} c
+
+    where c.idh_gltg_fach_adtm <= DATE '{{ var("BDAT") }}'
+      and c.idh_gltg_fach_edtm > DATE '{{ var("BDAT") }}'
+
+),
+
+active_customer as (
+
+    select *
+    from active_customer_ranked
+    where rn = 1
+
+),
+
+active_item_ranked as (
+
+
+    select
+        i.*,
+        row_number() over (
+            partition by i.i_item_sk
+            order by i.idh_gltg_fach_adtm desc, i.idh_gltg_fach_edtm desc
+        ) as rn
+
+    from {{ source('local_lakehouse', 'tpcds_item') }} i
+
+    where i.idh_gltg_fach_adtm <= DATE '{{ var("BDAT") }}'
+      and i.idh_gltg_fach_edtm > DATE '{{ var("BDAT") }}'
+
+),
+
+active_item as (
+
+    select *
+    from active_item_ranked
+    where rn = 1
+
+),
+
+category_attributes as (
+
+
+
+    select
+        i_category_id,
+
+        max(i_category) as i_category,
+        max(i_class) as i_class,
+        max(i_brand) as i_brand,
+
+        min(idh_gltg_fach_adtm) as item_idh_gltg_fach_adtm,
+        max(idh_gltg_fach_edtm) as item_idh_gltg_fach_edtm
+
+    from active_item
+
+    where i_category_id is not null
+
+    group by
+        i_category_id
+
+),
+
+relationship_enriched as (
+
+    select
+        r.customer_sk,
+        r.i_category_id,
+
+        c.c_customer_id,
+        c.c_first_name,
+        c.c_last_name,
+        c.c_preferred_cust_flag,
+        c.c_birth_country,
+
+        i.i_category,
+        i.i_class,
+        i.i_brand,
+
+        r.relationship_first_seen_date,
+
+
+        greatest(
+            r.relationship_first_seen_date,
+            c.idh_gltg_fach_adtm,
+            i.item_idh_gltg_fach_adtm
+        ) as idh_gltg_fach_adtm,
+
+        least(
+            c.idh_gltg_fach_edtm,
+            i.item_idh_gltg_fach_edtm
+        ) as idh_gltg_fach_edtm
+
+
+
+
+    from customer_category_relation r
+
+    inner join active_customer c
+        on r.customer_sk = c.c_customer_sk
+
+    inner join category_attributes i
+        on r.i_category_id = i.i_category_id
+
+),
+
+final as (
+
+    select
+        'bla' as fusi_quel_inst_schl,
+        customer_sk,
+        i_category_id,
+
+        c_customer_id,
+        c_first_name,
+        c_last_name,
+        c_preferred_cust_flag,
+        c_birth_country,
+
+        i_category,
+        i_class,
+        i_brand,
+
+        relationship_first_seen_date,
+
+        idh_gltg_fach_adtm as von,
+        idh_gltg_fach_edtm as bis
+
+    from relationship_enriched
+
+)
+
+select *
+from final
+
+{% endsnapshot %}

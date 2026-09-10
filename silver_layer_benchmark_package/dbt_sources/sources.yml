@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: local_lakehouse
+    database: local_lakehouse
+    schema: bronze
+    tables:
+      - name: bronze_kunden_konto_feed_100

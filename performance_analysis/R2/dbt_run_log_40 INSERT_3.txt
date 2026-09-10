@@ -1,0 +1,100 @@
+/Users/j548910/IdeaProjects/untitled/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+[0m16:04:51  Running with dbt=1.10.20
+[0m16:04:51  running dbt with arguments {'static_parser': 'True', 'cache_selected_only': 'False', 'fail_fast': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'invocation_command': 'dbt snapshot --select INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE --vars {"INR_FKEY": "j548910", "TAB_FKEY": "silver_tpcds_customer_home_store", "BDAT": "2025-10-01", "ACTIVE_SNAPSHOT": "INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE"} --debug', 'log_format': 'default', 'introspect': 'True', 'warn_error': 'None', 'write_json': 'True', 'printer_width': '80', 'log_path': '/Users/j548910/IdeaProjects/Silver_Layer/logs', 'profiles_dir': '/Users/j548910/IdeaProjects/Silver_Layer', 'quiet': 'False', 'debug': 'True', 'use_colors': 'True', 'send_anonymous_usage_stats': 'False', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'version_check': 'True', 'target_path': 'None', 'no_print': 'None', 'partial_parse': 'True', 'log_cache_events': 'False'}
+[0m16:04:51  Registered adapter: trino=1.10.1
+[0m16:04:51  checksum: 4370e63645a88a6d5e76a0e4d88649a57e34f7103783adfc352718ddfde67567, vars: {'ACTIVE_SNAPSHOT': 'INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE',
+ 'BDAT': '2025-10-01',
+ 'INR_FKEY': 'j548910',
+ 'TAB_FKEY': 'silver_tpcds_customer_home_store'}, profile: , target: , version: 1.10.20
+[0m16:04:52  Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m16:04:52  Partial parsing enabled, no changes found, skipping parsing
+[0m16:04:52  Wrote artifact WritableManifest to /Users/j548910/IdeaProjects/Silver_Layer/target/manifest.json
+[0m16:04:52  Wrote artifact SemanticManifest to /Users/j548910/IdeaProjects/Silver_Layer/target/semantic_manifest.json
+[0m16:04:52  Found 4 models, 1 snapshot, 4 data tests, 10 sources, 505 macros
+[0m16:04:52  
+[0m16:04:52  Concurrency: 4 threads (target='dev')
+[0m16:04:52  
+[0m16:04:52  Acquiring new trino connection 'master'
+[0m16:04:52  Acquiring new trino connection 'list_lakekeeper-etaps2'
+[0m16:04:52  Using trino connection "list_lakekeeper-etaps2"
+[0m16:04:52  On list_lakekeeper-etaps2: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "connection_name": "list_lakekeeper-etaps2"} */
+
+    select schema_name
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.schemata
+[0m16:04:52  Opening a new connection, currently in state init
+[0m16:04:52  SQL status: SUCCESS in 0.659 seconds
+[0m16:04:52  On list_lakekeeper-etaps2: Close
+[0m16:04:52  Re-using an available connection from the pool (formerly list_lakekeeper-etaps2, now list_lakekeeper-etaps2_j548910)
+[0m16:04:52  Using trino connection "list_lakekeeper-etaps2_j548910"
+[0m16:04:52  On list_lakekeeper-etaps2_j548910: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "connection_name": "list_lakekeeper-etaps2_j548910"} */
+select
+      t.table_catalog as database,
+      t.table_name as name,
+      t.table_schema as schema,
+      case when mv.name is not null then 'materialized_view'
+           when t.table_type = 'BASE TABLE' then 'table'
+           when t.table_type = 'VIEW' then 'view'
+           else t.table_type
+      end as table_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.tables t
+    left join (
+            select * from system.metadata.materialized_views
+            where catalog_name = 'lakekeeper-etaps2'
+              and schema_name = 'j548910') mv
+          on mv.catalog_name = t.table_catalog and mv.schema_name = t.table_schema and mv.name = t.table_name
+    where t.table_schema = 'j548910'
+[0m16:04:52  Opening a new connection, currently in state closed
+[0m16:04:53  SQL status: SUCCESS in 0.591 seconds
+[0m16:04:53  On list_lakekeeper-etaps2_j548910: ROLLBACK
+[0m16:04:53  On list_lakekeeper-etaps2_j548910: Close
+[0m16:04:53  On master: COMMIT
+[0m16:04:53  Began running node snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE
+[0m16:04:53  1 of 1 START snapshot j548910.silver_tpcds_customer_home_store ................. [RUN]
+[0m16:04:53  Re-using an available connection from the pool (formerly list_lakekeeper-etaps2_j548910, now snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE)
+[0m16:04:53  Began compiling node snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE
+[0m16:04:53  Began executing node snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE
+[0m16:04:53  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE"
+[0m16:04:53  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_home_store'
+[0m16:04:53  Opening a new connection, currently in state closed
+[0m16:04:54  SQL status: SUCCESS in 0.610 seconds
+[0m16:04:54  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE"
+[0m16:04:54  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_home_store'
+[0m16:04:54  SQL status: SUCCESS in 0.407 seconds
+[0m16:04:54  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE"
+[0m16:04:54  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_home_store'
+[0m16:04:55  SQL status: SUCCESS in 0.377 seconds
+[0m16:04:55  Using trino connection "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE"
+[0m16:04:55  On snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE: /* {"app": "dbt", "dbt_version": "1.10.20", "profile_name": "Silver_Layer", "target_name": "dev", "node_id": "snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE"} */
+
+    select column_name, data_type
+    from "lakekeeper-etaps2".INFORMATION_SCHEMA.columns
+    where
+      table_catalog = 'lakekeeper-etaps2'
+      and table_schema = 'j548910'
+      and table_name = 'silver_tpcds_customer_home_store'
+[0m16:04:55  Wrote artifact RunExecutionResult to /Users/j548910/IdeaProjects/Silver_Layer/target/run_results.json
+[0m16:04:55  CANCEL query snapshot.Silver_Layer.INSERT_SILVER_TPCDS_CUSTOMER_HOME_STORE ..... [[31mCANCEL[0m]
+/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/multiprocessing/resource_tracker.py:216: UserWarning: resource_tracker: There appear to be 4 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

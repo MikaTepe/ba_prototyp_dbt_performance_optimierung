@@ -1,0 +1,23 @@
+{% snapshot <Modelname> %}
+
+{{
+    config(
+        unique_key=,
+        strategy=,
+        alias=var('TAB_FKEY', None),
+        schema=var('INR_FKEY'),
+        enabled=(this.name == var('active_snapshot', this.name)),
+        temporal_cols={
+            "von": "",
+            "bis": ""
+        },
+        temporal_value='',
+        meta={
+            "INSERT_STATEMENT":"",
+            "TAB_FKEY":"",
+            "RELEASE_FKEY":""
+        }
+    )
+}}
+
+{% endsnapshot %}

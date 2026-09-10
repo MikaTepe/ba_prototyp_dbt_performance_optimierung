@@ -1,0 +1,25 @@
+{{
+    config(
+        materialized='Silvershot',
+        unique_key=['idh_przs_id_ins'],
+        strategy='unitemporal',
+        temporal_cols={
+            "von": "von",
+            "bis": "bis"
+        },
+        temporal_value='ULTIMO(TO_DATE("2026-04-24"))',
+        meta={
+            "INSERT_STATEMENT":"INSERT_IAM_I_GRUNDKONTO_AZ1_U",
+            "TAB_FKEY":"iam_i_grundkonto_az1_u",
+            "RELEASE_FKEY":"25.1"
+        }
+    )
+}}
+
+    select
+        idh_przs_id_ins,
+        gut_last_merk
+    from {{ source('local_lakehouse', 'rds_grundkonto_az1') }} az1
+    where szsa_art = 'E'
+      and az1.idh_gltg_fach_adtm <= CURRENT_DATE
+      and az1.idh_gltg_fach_edtm > CURRENT_DATE

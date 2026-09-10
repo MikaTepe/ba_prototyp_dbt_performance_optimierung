@@ -1,0 +1,32 @@
+{{
+    config(
+        materialized='Silvershot',
+        unique_key=['konto_id', 'przs_id_ins'],
+        strategy='bitemporal',
+        temporal_cols={
+            "von": "tech_ats",
+            "bis": "tech_ets"
+        },
+        temporal_value='',
+        meta={
+            "INSERT_STATEMENT":"INSERT_IAM_I_GRUNDKONTO_SALDO_SL",
+            "TAB_FKEY":"IAM_I_GRUNDKONTO_SALDO_SL",
+            "RELEASE_FKEY":"26.1"
+        }
+    )
+}}
+
+select
+    cast(konto_id as varchar) as konto_id,
+    idh_przs_id_ins as przs_id_ins,
+    saldo,
+    kredit_art,
+    zinssatz_soll,
+    kred_ext_limit,
+    kred_int_limit,
+    (idh_gltg_fach_adtm) as von,
+    (idh_gltg_fach_edtm) as bis
+from {{ source('local_lakehouse', 'rds_grundkonto_az1') }}
+    where szsa_art = 'E'
+      and idh_gltg_fach_adtm <= CURRENT_DATE
+      and idh_gltg_fach_edtm > CURRENT_DATE

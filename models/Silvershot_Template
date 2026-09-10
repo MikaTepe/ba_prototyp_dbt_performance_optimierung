@@ -1,0 +1,17 @@
+{{
+    config(
+        materialized='Silvershot',
+        unique_key=[],
+        strategy='',
+        temporal_cols={
+            "von": "",
+            "bis": ""
+        },
+        temporal_value='',
+        meta={
+            "INSERT_STATEMENT":"",
+            "TAB_FKEY":"",
+            "RELEASE_FKEY":""
+        }
+    )
+}}
