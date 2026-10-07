@@ -3,7 +3,7 @@
 {{
     config(
         unique_key=['kunden_nr', 'konto_nr', 'iban', 'geburtsdatum'],
-        strategy='unitemporal_hash',
+        strategy='unitemporal',
         alias=var('TAB_FKEY', None),
         schema=var('INR_FKEY'),
         enabled=(this.name == var('ACTIVE_SNAPSHOT', this.name)),
