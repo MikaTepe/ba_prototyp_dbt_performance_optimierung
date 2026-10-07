@@ -192,7 +192,7 @@
     {% set upper_names = [] %}
     {% for n in col_names %}{% do upper_names.append(n | upper) %}{% endfor %}
     {% set history_set = ['von','bis','tech_ats','tech_ets'] %}
-    {% set extra_tech_set = ['aend_zeit', 'trans_start'] %}
+    {% set extra_tech_set = ['fusi_quel_inst_schl', 'aend_zeit', 'trans_start'] %}
 
     {% set history_cols = [] %}
     {% set key_cols = [] %}
@@ -593,15 +593,6 @@
 
 {% endmacro %}
 
-{% macro silver_merge_key_condition(base_relation, comp_relation, key_cols) %}
-    {% set pieces = [] %}
-    {% for key in key_cols %}
-        {% do pieces.append(base_relation ~ "." ~ key ~ " IS DISTINCT FROM " ~ comp_relation ~ "." ~ key) %}
-    {% endfor %}    
-    {% set expr = " " ~ (pieces | join('\n AND ')) %}
-    {{ return(expr) }}
-{% endmacro %}
-
 
 
 {% macro silvershot_active_max_value(strategy, target_relation, cols) %}
@@ -843,14 +834,25 @@
 {% endmacro %}
 
 {% macro build_business_hash(business_cols, rel_name) %}
-
-    xxhash64(
-        to_utf8(
-            concat_ws('م', 
-                {% for col in business_cols %}
-                    coalesce(cast({{ rel_name }}.{{ col }} as varchar),'<NULL>')
-                    {% if not loop.last %}, {% endif %}
-                {% endfor %}
+    to_hex(
+        md5(
+            to_utf8(
+                array_join(
+                    ARRAY[
+                        {% for col in business_cols %}
+                            coalesce(
+                                concat(
+                                    cast(length(cast({{ rel_name }}.{{ col }} as varchar)) as varchar),
+                                    ':',
+                                    cast({{ rel_name }}.{{ col }} as varchar)
+                                ),
+                                '-1:<NULL>'
+                            )
+                            {% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    ],
+                    'م'
+                )
             )
         )
     )
